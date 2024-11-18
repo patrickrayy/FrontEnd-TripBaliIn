@@ -24,7 +24,7 @@ const RecommendationCard = ({ item }) => {
           <span style={styles.reviewText}>{item.reviews} reviews</span>
         </div>
         <div style={styles.textprice}>
-          <span style={styles.price}>IDR {item.price}</span>
+          <span style={styles.price}>{item.price}</span>
           <span style={styles.perperson}>per person</span>
         </div>
       </div>

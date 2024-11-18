@@ -20,13 +20,12 @@ const ContactHeader = () => {
       width: '100%',
       position: 'fixed',                
       top: 0,
-      left: 250,
       zIndex: 2000,
     },
     logo: {
       display: 'flex',
       alignItems: 'center',
-      marginLeft: '120px',              
+      marginLeft: '350px',              
     },
     logoImage: {
       width: '200px',
