@@ -15,7 +15,7 @@ const HeroSection = () => {
           </button>
         </div>
       </div>
-      <img src="public/asset/image/bali.jpg" alt="Bali" style={styles.heroImage} />
+      <img src="/assets/images/1.png" alt="Bali" style={styles.heroImage} />
     </div>
   );
 };
@@ -28,7 +28,7 @@ const styles = {
         backgroundColor: '#E6F0FA',
         borderRadius: '15px',
         margin: '60px',
-        height: '450px',
+        height: '600px',
         position: 'relative',
         borderTopLeftRadius: '10px', 
         borderTopRightRadius: '10px',
@@ -61,12 +61,14 @@ const styles = {
         fontFamily: 'Montserrat, sans-serif',
         fontWeight: 500,
         color: 'black',
+        textAlign: 'left'
       },
       textp: {
         fontSize: '1.25rem',
         fontFamily: 'Montserrat, sans-serif',
         fontWeight: 100,
         color: '#797A7B',
+        textAlign: 'left'
       },
     
       searchBar: {

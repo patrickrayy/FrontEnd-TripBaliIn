@@ -1,10 +1,10 @@
 import React from 'react';
-import RecommendationCard from './RecommendationCard.jsx';
+import RecommendationCard from './RecCard.jsx';
 
 const RecommendationList = ({ title, recommendations }) => {
   return (
     <div style={styles.listContainer}>
-      <h2>{title}</h2>
+      <h2 style={styles.title}>{title}</h2>
       <div style={styles.recommendations}>
         {recommendations.map(item => (
           <RecommendationCard key={item.id} item={item} />
@@ -15,6 +15,9 @@ const RecommendationList = ({ title, recommendations }) => {
 };
 
 const styles = {
+  title: {
+    textAlign: 'left'
+  },
   listContainer: {
     padding: '20px 40px',
     margin: '40px',  

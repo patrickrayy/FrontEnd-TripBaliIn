@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ContactHeader from '../components/ContactHeader';
 import { height, width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
-const ContactPage = () => {
+const ContacAfter = () => {
   return (
     <>
       <ContactHeader />
@@ -53,7 +53,7 @@ const ContactPage = () => {
         </div>
 
         {/* Back to Home Link */}
-        <Link to="/" style={styles.backButton}>
+        <Link to="/home" style={styles.backButton}>
           <span>Back to Home</span>
         </Link>
       </div>
@@ -153,5 +153,4 @@ const styles = {
   },
 };
 
-export default ContactPage;
-
+export default ContacAfter;

@@ -20,12 +20,20 @@ const ContactHeader = () => {
       width: '100%',
       position: 'fixed',                
       top: 0,
+<<<<<<< HEAD
+=======
+      left: 0,
+>>>>>>> a0ea9bf1957be56119d3702cc67b76a219dd108a
       zIndex: 2000,
     },
     logo: {
       display: 'flex',
       alignItems: 'center',
+<<<<<<< HEAD
       marginLeft: '350px',              
+=======
+      marginLeft: '310px',             
+>>>>>>> a0ea9bf1957be56119d3702cc67b76a219dd108a
     },
     logoImage: {
       width: '200px',

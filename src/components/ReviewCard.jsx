@@ -45,7 +45,7 @@ const styles = {
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
     backgroundColor: '#fff',
     fontFamily: 'Montserrat, sans-serif',
-    gap: '20px',
+    gap: '10px',
   },
   image: {
     width: '90px',
