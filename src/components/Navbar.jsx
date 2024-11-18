@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [hovered, setHovered] = useState(null);
+  const navigate = useNavigate();
 
   const handleMouseEnter = (index) => setHovered(index);
   const handleMouseLeave = () => setHovered(null);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigate('/login');
+  };
 
   const links = [
     { path: '/', label: 'Home' },
@@ -37,9 +43,29 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div style={styles.buttonContainer}>
-        <button style={styles.button}>Login</button>
-        <button style={styles.registerButton}>Register</button>
+      <div style={styles.rightContainer}>
+        {isLoggedIn ? (
+          <div style={styles.profileContainer}>
+            <img
+              src="/assets/images/profileimg.png" // Replace with your profile icon path
+              alt="Profile"
+              style={styles.profileIcon}
+              onClick={() => navigate('/profile')}
+            />
+            <button style={styles.logoutButton} onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <>
+            <button style={styles.button} onClick={() => navigate('/login')}>
+              Login
+            </button>
+            <button style={styles.registerButton} onClick={() => navigate('/register')}>
+              Register
+            </button>
+          </>
+        )}
       </div>
     </nav>
   );
@@ -86,7 +112,7 @@ const styles = {
     fontSize: '1em',
     transition: 'font-weight 0.3s ease',
   },
-  buttonContainer: {
+  rightContainer: {
     display: 'flex',
     alignItems: 'center',
     marginRight: '120px',
@@ -102,6 +128,27 @@ const styles = {
     fontFamily: 'Montserrat, sans-serif',
   },
   registerButton: {
+    padding: '5px 15px',
+    color: '#0F67B1',
+    backgroundColor: '#FFFFFF',
+    border: '1px solid white',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: '550',
+  },
+  profileContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  },
+  profileIcon: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    cursor: 'pointer',
+  },
+  logoutButton: {
     padding: '5px 15px',
     color: '#0F67B1',
     backgroundColor: '#FFFFFF',

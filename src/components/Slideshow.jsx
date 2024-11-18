@@ -76,7 +76,7 @@ const Slideshow = () => {
       </Carousel>
 
       {/* CSS inline */}
-      <style jsx>{`
+      <style>{`
         .carousel-container {
           position: relative;
           width: 100%;

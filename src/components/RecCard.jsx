@@ -34,7 +34,8 @@ const RecommendationCard = ({ item }) => {
 
 const styles = {
   card: {
-    width: '250px',
+    width: '268px',
+    height: '426px',
     padding: '15px',
     borderRadius: '10px',
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
@@ -43,12 +44,13 @@ const styles = {
   },
   cardImage: {
     width: '100%',
-    height: '150px',
+    height: '200px',
     borderRadius: '10px',
     objectFit: 'cover',
   },
   cardTitle: {
-    fontSize: '18px',
+    textAlign: 'left',
+    fontSize: '20px',
     fontWeight: 'bold',
     color: '#333',
     margin: '10px 0 5px',
@@ -86,7 +88,8 @@ const styles = {
   price: {
     fontSize: '16px',
     fontWeight: 'bold',
-    color: '#FF4500', // Red color for price
+    color: '#FF4500', 
+    textAlign: 'left'
   },
   perperson: {
     fontSize: '12px',

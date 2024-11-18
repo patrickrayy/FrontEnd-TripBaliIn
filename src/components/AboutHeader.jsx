@@ -5,11 +5,10 @@ import React from "react";
 const AboutHeader = ({ title, backgroundImage }) => {
   const styles = {
     header: {
-        width: '1440px',
-      textAlign: 'center',
-      padding: '40px 0',
-      fontFamily: 'Montserrat, sans-serif',
       width: '100%',
+      textAlign: 'center',
+      padding: '0px 0',
+      fontFamily: 'Montserrat, sans-serif',
       position: 'relative',
     },
     textContainer: {
