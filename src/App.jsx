@@ -7,11 +7,14 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-// import ProfilePage from './pages/Profile';
-// import TransportationPage from './pages/TransportationPage';
-// import AcomodationPage from './pages/AcomodationPage';
-// import DestinationPage from './pages/DestinationPage';
 import ItineraryPage from './pages/ItineraryPage';
+import Destinationpage from "./pages/DestinationPage";
+import AboutAfterLog from "./pages/aboutafterlog";
+import TransportationPage from "./pages/TransportationPage";
+import DetailVehicle from "./components/DetailVehicle";
+import ItineraryAfter from "./pages/ItinerarAfterLog";
+import ContacAfter from "./pages/CotactAfterLog";
+import ProfilePage from "./pages/ProfilPage";
 
 function App() {
   const location = useLocation();
@@ -31,6 +34,15 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/itinerary' element={<ItineraryPage />} />
         <Route path='/contact' element={<ContactPage />} />
+        <Route path='/destination' element={<Destinationpage />} />
+        <Route path='/aboutafter' element={<AboutAfterLog />} />
+        <Route path="/transportation" element={<TransportationPage />}>
+          <Route path=":id" element={<DetailVehicle />} />
+        </Route>
+        <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
+        <Route path='/contactafter' element={<ContacAfter/>} />
+        <Route path='/profile' element={<ProfilePage/>} />
+
         {/* <Route path='/acomodation' element={<AcomodationPage />} /> */}
         {/* <Route path='/destination' element={<DestinationPage />} /> */}
         {/* <Route path='/profile' element={<ProfilePage />} /> */}

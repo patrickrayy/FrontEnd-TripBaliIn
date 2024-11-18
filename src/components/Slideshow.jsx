@@ -1,11 +1,72 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap"; // Import Carousel dari react-bootstrap
 
 const Slideshow = () => {
-  return ( // Tambahkan return untuk memastikan JSX dikembalikan
+  return (
     <div className="carousel-container">
-      <Carousel>
+      {/* Filter tetap di depan carousel */}
+      <div className="filters">
+        <div className="filter-container">
+          {/* Location Filter */}
+          <div className="filter-option">
+            <div className="filter-icon">
+              <img src="/assets/images/Location.png" alt="Location Icon" className="icon-img" />
+            </div>
+            <div className="filter-text">
+              <span className="filter-label">Location</span>
+              <span className="filter-desc">
+                Where do you want to go?
+                <button className="arrow-button">
+                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
+                </button>
+              </span>
+            </div>
+          </div>
+
+          {/* Date Filter */}
+          <div className="filter-option">
+            <div className="filter-icon">
+              <img src="/assets/images/Calendar.png" alt="Calendar Icon" className="icon-img" />
+            </div>
+            <div className="filter-text">
+              <span className="filter-label">Date</span>
+              <span className="filter-desc">
+                Choose date
+                <button className="arrow-button">
+                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
+                </button>
+              </span>
+            </div>
+          </div>
+
+          {/* Filter Option */}
+          <div className="filter-option">
+            <div className="filter-icon">
+              <img src="/assets/images/Bill.png" alt="Filter Icon" className="icon-img" />
+            </div>
+            <div className="filter-text">
+              <span className="filter-label">Filter</span>
+              <span className="filter-desc">
+                Choose your budget
+                <button className="arrow-button">
+                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
+                </button>
+              </span>
+            </div>
+          </div>
+
+          {/* Explore Now Button */}
+          <button className="explore-button">
+            <img src="/assets/images/LocationOn.png" alt="Explore Icon" className="explore-icon" />
+            Explore Now
+          </button>
+        </div>
+      </div>
+
+      {/* Carousel */}
+      <Carousel interval={3000} pause="hover" indicators={true}>
+        {/* Slide Pertama */}
         <Carousel.Item>
           <div className="carousel-img-container">
             <img
@@ -13,65 +74,25 @@ const Slideshow = () => {
               src="/assets/images/showcase-1.png"
               alt="First slide"
             />
-            {/* Filters di dalam carousel */}
-            <div className="filters">
-              <div className="filter-container">
-                {/* Location Filter */}
-                <div className="filter-option">
-                  <div className="filter-icon">
-                    <img src="/assets/images/Location.png" alt="Location Icon" className="icon-img" />
-                  </div>
-                  <div className="filter-text">
-                    <span className="filter-label">Location</span>
-                    <span className="filter-desc">
-                      Where do you want to go?
-                      <button className="arrow-button">
-                        <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                      </button>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Date Filter */}
-                <div className="filter-option">
-                  <div className="filter-icon">
-                    <img src="/assets/images/Calendar.png" alt="Calendar Icon" className="icon-img" />
-                  </div>
-                  <div className="filter-text">
-                    <span className="filter-label">Date</span>
-                    <span className="filter-desc">
-                      Choose date
-                      <button className="arrow-button">
-                        <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                      </button>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Filter Option */}
-                <div className="filter-option">
-                  <div className="filter-icon">
-                    <img src="/assets/images/Bill.png" alt="Filter Icon" className="icon-img" />
-                  </div>
-                  <div className="filter-text">
-                    <span className="filter-label">Filter</span>
-                    <span className="filter-desc">
-                      Choose your budget
-                      <button className="arrow-button">
-                        <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                      </button>
-                    </span>
-                  </div>
-                </div>
-
-                {/* Explore Now Button */}
-                <button className="explore-button">
-                  <img src="/assets/images/LocationOn.png" alt="Explore Icon" className="explore-icon" />
-                  Explore Now
-                </button>
-              </div>
-            </div>
           </div>
+        </Carousel.Item>
+
+        {/* Slide Kedua */}
+        <Carousel.Item>
+          <img
+            className="d-block w-100 carousel-img"
+            src="/assets/images/showcase-2.png"
+            alt="Second slide"
+          />
+        </Carousel.Item>
+
+        {/* Slide Ketiga */}
+        <Carousel.Item>
+          <img
+            className="d-block w-100 carousel-img"
+            src="/assets/images/showcase-3.png"
+            alt="Third slide"
+          />
         </Carousel.Item>
       </Carousel>
 
@@ -94,6 +115,10 @@ const Slideshow = () => {
         }
 
         .filters {
+          position: absolute; /* Membuat filter tetap di depan carousel */
+          top: 90%;
+          left: 50%;
+          transform: translate(-50%, -50%);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -103,24 +128,20 @@ const Slideshow = () => {
           gap: 20px;
           width: 1440px;
           height: 75px;
-          margin: 0 auto;
-          position: relative;
-          top: -120px;
           box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-          pointer-events: none;
+          z-index: 10; /* Pastikan filter di depan carousel */
         }
 
         .filter-container {
           display: flex;
-          flex-direction: left;
-          gap: 190px;
-          pointer-events: auto;
+          flex-direction: row;
+          gap: 180px; /* Mengurangi gap agar lebih rapat */
         }
 
         .filter-option {
           display: flex;
           align-items: center; 
-          gap: 10px; 
+          gap: 30px; 
           text-align: left;
           color: #333;
           font-size: 16px;
@@ -161,7 +182,6 @@ const Slideshow = () => {
 
         .explore-button {
           margin-top: 2px;
-          margin-left: 90px;
           padding: 10px 20px;
           background-color: #0F67B1;
           border: none;
