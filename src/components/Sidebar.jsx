@@ -5,7 +5,7 @@ const SideBar = () => {
     <div style={styles.sidebar}>
       <div style={styles.profile}>
         <img
-          src="/assets/images/1.png" // Ganti dengan path gambar profil Anda
+          src="/assets/images/profileimg.png" 
           alt="Profile"
           style={styles.profileImage}
         />
@@ -57,6 +57,8 @@ const styles = {
     width: "100%",
   },
   button: {
+    textAlign: 'left',
+    color: '#000',
     width: "100%",
     padding: "10px",
     margin: "5px 0",
@@ -66,6 +68,7 @@ const styles = {
     cursor: "pointer",
   },
   activeButton: {
+    textAlign: 'left',
     width: "100%",
     padding: "10px",
     margin: "5px 0",

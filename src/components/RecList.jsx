@@ -21,8 +21,8 @@ const styles = {
   listContainer: {
     padding: '20px 40px',
     margin: '40px',  
-    fontFamily: 'Volkhov, serif',
-    fontWeight: 'bold',
+    fontFamily: 'Montserrat, sans-serif',
+    fontWeight: '650',
   },
   recommendations: {
     display: 'flex',

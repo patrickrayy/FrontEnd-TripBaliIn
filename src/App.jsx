@@ -9,12 +9,15 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ItineraryPage from './pages/ItineraryPage';
 import Destinationpage from "./pages/DestinationPage";
-import AboutAfterLog from "./pages/aboutafterlog";
+import AboutAfter from "./pages/AboutAfter";
 import TransportationPage from "./pages/TransportationPage";
 import DetailVehicle from "./components/DetailVehicle";
 import ItineraryAfter from "./pages/ItinerarAfterLog";
-import ContacAfter from "./pages/CotactAfterLog";
+import ContactAfter from "./pages/ContactAfterLog";
 import ProfilePage from "./pages/ProfilPage";
+import ItineraryCreator from "./pages/ItineraryCreator";
+import ItineraryPreview from "./pages/ItineraryPreview";
+import AccommodationPage from "./pages/AcomodationPage";
 
 function App() {
   const location = useLocation();
@@ -35,15 +38,17 @@ function App() {
         <Route path='/itinerary' element={<ItineraryPage />} />
         <Route path='/contact' element={<ContactPage />} />
         <Route path='/destination' element={<Destinationpage />} />
-        <Route path='/aboutafter' element={<AboutAfterLog />} />
+        <Route path='/aboutafter' element={<AboutAfter />} />
         <Route path="/transportation" element={<TransportationPage />}>
           <Route path=":id" element={<DetailVehicle />} />
         </Route>
         <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
-        <Route path='/contactafter' element={<ContacAfter/>} />
+        <Route path='/contactafter' element={<ContactAfter/>} />
         <Route path='/profile' element={<ProfilePage/>} />
+        <Route path='/itinerarycreator' element={<ItineraryCreator/>} />
+        <Route path="/itinerary-preview" element={<ItineraryPreview/>}/>
 
-        {/* <Route path='/acomodation' element={<AcomodationPage />} /> */}
+        <Route path='/accommodation' element={<AccommodationPage />} />
         {/* <Route path='/destination' element={<DestinationPage />} /> */}
         {/* <Route path='/profile' element={<ProfilePage />} /> */}
         {/* <Route path='/transportation' element={<TransportationPage />} /> */}

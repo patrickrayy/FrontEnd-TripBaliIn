@@ -1,6 +1,8 @@
 import React from 'react';
-
+import { useNavigate } from 'react-router-dom'; 
 const ItineraryContent = () => {
+  const navigate = useNavigate();
+
   const styles = {
     textContainer: {
       display: 'flex',
@@ -21,7 +23,7 @@ const ItineraryContent = () => {
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: 600,
       color: 'black',
-      textAlign :'left',
+      textAlign: 'left',
     },
     textp: {
       fontSize: '20px',
@@ -29,7 +31,7 @@ const ItineraryContent = () => {
       fontFamily: 'Montserrat, sans-serif',
       fontWeight: 400,
       color: 'black',
-      textAlign :'left',
+      textAlign: 'left',
     },
     button: {
       marginTop: '0px',
@@ -44,13 +46,19 @@ const ItineraryContent = () => {
     },
   };
 
+  const handleButtonClick = () => {
+    navigate('/itinerarycreator');
+  };
+
   return (
     <div style={styles.textContainer}>
       <h1 style={styles.textfront}>Ready to make your vacation more planned?</h1>
       <p style={styles.textp}>
         Plan your dream vacation! Arrange an itinerary now and enjoy a hassle-free trip!
       </p>
-      <button style={styles.button}>Create Your Itinerary !</button>
+      <button style={styles.button} onClick={handleButtonClick}>
+        Create Your Itinerary!
+      </button>
     </div>
   );
 };
