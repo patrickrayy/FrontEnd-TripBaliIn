@@ -15,6 +15,8 @@ import DetailVehicle from "./components/DetailVehicle";
 import ItineraryAfter from "./pages/ItinerarAfterLog";
 import ContacAfter from "./pages/CotactAfterLog";
 import ProfilePage from "./pages/ProfilPage";
+import SideBar from "./components/Sidebar"; 
+import HistoryBooking from "./pages/history"; 
 
 function App() {
   const location = useLocation();
@@ -42,7 +44,9 @@ function App() {
         <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
         <Route path='/contactafter' element={<ContacAfter/>} />
         <Route path='/profile' element={<ProfilePage/>} />
-
+        <Route path='/history' element={<HistoryBooking/>} />
+        <Route path='/Sidebar' element={<SideBar/>} />
+        
         {/* <Route path='/acomodation' element={<AcomodationPage />} /> */}
         {/* <Route path='/destination' element={<DestinationPage />} /> */}
         {/* <Route path='/profile' element={<ProfilePage />} /> */}

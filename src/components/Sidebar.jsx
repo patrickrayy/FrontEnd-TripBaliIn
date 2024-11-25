@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link
 
 const SideBar = () => {
   return (
@@ -16,7 +17,10 @@ const SideBar = () => {
       </div>
       <div style={styles.menu}>
         <button style={styles.activeButton}>Profile Informations</button>
-        <button style={styles.button}>History Booking</button>
+        {/* Gunakan Link untuk routing */}
+        <Link to="/history" style={{ textDecoration: "none" }}>
+          <button style={styles.button}>History Booking</button>
+        </Link>
       </div>
     </div>
   );
@@ -31,12 +35,12 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    top:"50px"
+    top: "50px",
   },
   profile: {
     textAlign: "center",
     marginBottom: "20px",
-    top:"150px"
+    top: "150px",
   },
   profileImage: {
     width: "100px",
