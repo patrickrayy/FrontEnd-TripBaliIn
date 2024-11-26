@@ -10,14 +10,22 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    navigate('/login');
+    localStorage.removeItem('isLoggedIn'); // Hapus status login dari localStorage
+    navigate('/login'); // Redirect ke halaman login
   };
 
-  const links = [
+  const loggedOutLinks = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
     { path: '/itinerary', label: 'Itinerary' },
     { path: '/contact', label: 'Contact' },
+  ];
+
+  const loggedInLinks = [
+    { path: '/home', label: 'Home' },
+    { path: '/aboutafter', label: 'About' },
+    { path: '/IteneraryAfter', label: 'Itinerary' },
+    { path: '/contactafter', label: 'Contact' },
   ];
 
   return (
@@ -27,7 +35,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
       </div>
       <div style={styles.navLinks}>
         <div style={styles.navLinksnav}>
-          {links.map((link, index) => (
+          {(isLoggedIn ? loggedInLinks : loggedOutLinks).map((link, index) => (
             <Link
               to={link.path}
               style={{
@@ -44,25 +52,22 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
         </div>
       </div>
       <div style={styles.rightContainer}>
-        {isLoggedIn ? (
-          <div style={styles.profileContainer}>
-            <img
-              src="/assets/images/profileimg.png" // Replace with your profile icon path
-              alt="Profile"
-              style={styles.profileIcon}
-              onClick={() => navigate('/profile')}
-            />
-            <button style={styles.logoutButton} onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
+        {!isLoggedIn ? (
+          <>
+            <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
+            <button style={styles.registerButton} onClick={() => navigate('/register')}>Register</button>
+          </>
         ) : (
           <>
-            <button style={styles.button} onClick={() => navigate('/login')}>
-              Login
-            </button>
-            <button style={styles.registerButton} onClick={() => navigate('/register')}>
-              Register
+            <Link to="/profile">
+              <img
+                src="/assets/images/profil.png"
+                alt="Profile"
+                style={styles.profileIcon}
+              />
+            </Link>
+            <button style={styles.logoutButton} onClick={handleLogout}>
+              Logout
             </button>
           </>
         )}
@@ -110,13 +115,18 @@ const styles = {
     color: 'white',
     textDecoration: 'none',
     fontSize: '1em',
-    transition: 'font-weight 0.3s ease',
   },
   rightContainer: {
     display: 'flex',
     alignItems: 'center',
     marginRight: '120px',
     gap: '10px',
+  },
+  profileIcon: {
+    width: '40px',
+    height: '40px',
+    borderRadius: '50%',
+    cursor: 'pointer',
   },
   button: {
     padding: '5px 15px',
@@ -136,17 +146,6 @@ const styles = {
     cursor: 'pointer',
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: '550',
-  },
-  profileContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  },
-  profileIcon: {
-    width: '40px',
-    height: '40px',
-    borderRadius: '50%',
-    cursor: 'pointer',
   },
   logoutButton: {
     padding: '5px 15px',

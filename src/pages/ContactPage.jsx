@@ -76,7 +76,7 @@ const styles = {
     textAlign: 'center',
     fontFamily: 'Montserrat, sans-serif',
     marginBottom: '10px',
-    marginLeft: '380px',
+    marginLeft: '500px',
   },
   subheading: {
     fontSize: '20px',
@@ -85,14 +85,14 @@ const styles = {
     fontWeight: '530',
     marginBottom: '30px',
     fontFamily: 'Montserrat, sans-serif',
-    marginLeft: '350px',
+    marginLeft: '500px',
     
   },
   contactOptions: {
     display: 'flex',
     justifyContent: 'center',
     gap: '20px',
-    marginLeft: '360px',
+    marginLeft: '500px',
     marginBottom: '30px',
   },
   contactCard: {
@@ -134,7 +134,7 @@ const styles = {
     color: '#666',
   },
   backButton: {
-    marginLeft: '350px',
+    marginLeft: '500px',
     padding: '10px 20px',
     width: '232px',
     height: '58px',

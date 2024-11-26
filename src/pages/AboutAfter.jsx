@@ -5,7 +5,7 @@ import AboutHeader from "../components/AboutHeader";
 import NavbarAfter from "../components/NavbarAfter";
 import FromGallery from "../components/Fromgallery";
 
-const AboutAfterLog = () => {
+const AboutAfter = () => {
     const leftContent = [
         {
             titlePart1: "Who",
@@ -38,4 +38,4 @@ const AboutAfterLog = () => {
     )
 }
 
-export default AboutAfterLog;
+export default AboutAfter;

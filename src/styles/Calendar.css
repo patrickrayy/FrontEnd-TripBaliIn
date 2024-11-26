@@ -1,0 +1,73 @@
+.react-calendar {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 10px;
+    width: 380px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .react-calendar__navigation button {
+    font-family: 'Montserrat', sans-serif;
+    background: #0f67b1;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: 550;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .react-calendar__navigation button:hover {
+    background: #094a83;
+  }
+
+    .react-calendar__navigation button.react-calendar__navigation__prev2,
+    .react-calendar__navigation button.react-calendar__navigation__next2,
+    .react-calendar__navigation button.react-calendar__navigation__prev,
+    .react-calendar__navigation button.react-calendar__navigation__next {
+    background: #0f67b1; 
+    }
+
+    .react-calendar__navigation button.react-calendar__navigation__prev2:hover,
+    .react-calendar__navigation button.react-calendar__navigation__next2:hover,
+    .react-calendar__navigation button.react-calendar__navigation__prev:hover,
+    .react-calendar__navigation button.react-calendar__navigation__next:hover {
+    background: #000 ; 
+    }
+
+  .react-calendar__month-view__weekdays {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    padding-bottom: 10px;
+  }
+
+  .react-calendar__tile {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background: #e6f0fa;
+    color: #333;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .react-calendar__tile:enabled:hover {
+    background: #094a83;
+    color: white;
+  }
+  
+  .react-calendar__tile--active {
+    background: #0f67b1;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .react-calendar__tile--now {
+    background: #0f67b1;
+    color: #fff;
+    font-weight: bold;
+  }
+  

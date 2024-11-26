@@ -10,6 +10,10 @@ const HistoryCard = ({
   image,
   address,
   roomDaysInfo,
+  checkinDate,
+  checkinTime,
+  checkoutDate,
+  checkoutTime,
 }) => {
   return (
     <div style={styles.container}>
@@ -50,14 +54,23 @@ const HistoryCard = ({
             </span>
           )}
         </div>
-        <div style={styles.dateInfo}>
-          <p>
-            Check-in
-          </p>
-          <p>
-            Check-out
-          </p>
+
+       {/* Date Section */}
+      <div style={styles.dateSection}>
+        <div style={styles.checkIn}>
+          <div style={styles.checkIn}>
+            <p style={styles.label}>Check-in</p>
+            <h1 style={styles.date}>{checkinDate}</h1>
+            <p style={styles.time}>From {checkinTime}</p>
+          </div>
+          <div style={styles.checkOut}>
+            <p style={styles.label}>Check-out</p>
+            <h1 style={styles.date}>{checkoutDate}</h1>
+            <p style={styles.time}>Until {checkoutTime}</p>
+          </div>
         </div>
+      </div>
+
       </div>
       <div style={styles.priceSection}>
         {roomDaysInfo && <p style={styles.roomDaysInfo}>{roomDaysInfo}</p>}
@@ -72,14 +85,15 @@ const styles = {
   container: {
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
     border: "1px solid #ddd",
     borderRadius: "8px",
     margin: "20px 0",
-    padding: "10px",
+    padding: "15px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     width: "100%",
-    height: "280px",
+    height: "240px",
     position: "relative",
   },
   image: {
@@ -116,11 +130,43 @@ const styles = {
     marginLeft: "5px",
     textAlign: "left",
   },
-  dateInfo: {
-    fontSize: "14px",
-    color: "#333",
-    marginBottom: "10px",
+  dateSection: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: "100%",
+    height: "5px", // Tetapkan tinggi tetap
+    marginTop: "20px",
+    alignItems: "flex-start",
+    position: "relative",
+  },
+  checkIn: {
     textAlign: "left",
+    flex: 1, // Membagi ruang secara proporsional
+    paddingRight: "10px",
+  },
+  checkOut: {
+    textAlign: "left",
+    flex: 1, // Membagi ruang secara proporsional
+    paddingLeft: "200px",
+    marginTop: "-90px",
+    justifyContent: "center",
+  },
+  dateLabel: {
+    fontSize: "14px",
+    fontWeight: "bold",
+    marginBottom: "5px",
+    color: "#333",
+  },
+  date: {
+    fontSize: "16px",
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: "5px",
+    marginTop: "-10px",
+  },
+  time: {
+    fontSize: "12px",
+    color: "#6F6F6F",
   },
   priceSection: {
     textAlign: "right",
@@ -131,23 +177,23 @@ const styles = {
     fontWeight: "bold",
     color: "#E83F3A",
     position: "absolute", // Agar berada di pojok kanan atas
-    top: "68px", // Jarak dari atas
+    top: "40px", // Jarak dari atas
     right: "10px",
   },
   taxesInfo: {
     fontSize: "12px",
     color: "#6F6F6F",
     position: "absolute", // Agar berada di pojok kanan atas
-    top: "95px", // Jarak dari atas
+    top: "68px", // Jarak dari atas
     right: "10px",
   },
   roomDaysInfo: {
     fontSize: "14px",
-    color:  "#6F6F6F",
+    color: "#6F6F6F",
     marginBottom: "10px",
     textAlign: "right",
     position: "absolute", // Agar berada di pojok kanan atas
-    top: "45px", // Jarak dari atas
+    top: "15px", // Jarak dari atas
     right: "10px", // Jarak dari kanan
   },
 };

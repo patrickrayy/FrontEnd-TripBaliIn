@@ -6,7 +6,7 @@ import { Container, Row, Col } from "react-bootstrap";
 const AboutContent = ({ leftContent, rightImage }) => {
   const styles = {
     container: {
-      marginTop: '30px',
+      marginTop: '100px',
       width: "100%",
       marginBottom: '90px',
     },

@@ -1,6 +1,6 @@
-import { height, width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { FaArrowLeft } from 'react-icons/fa'; // Import arrow icon
 
 const LoginPage = () => {
   const navigate = useNavigate(); 
@@ -10,8 +10,17 @@ const LoginPage = () => {
     navigate('/home'); 
   };
 
+  const goToLandingPage = () => {
+    navigate('/'); // Navigate back to the landing page
+  };
+
   return (
     <div style={styles.container}>
+      {/* Back Arrow Button with Icon */}
+      <button style={styles.backButton} onClick={goToLandingPage}>
+        <FaArrowLeft style={styles.icon} /> Continue as Guest
+      </button>
+
       <div style={styles.logoSection}>
         <img src="/assets/images/tripbaliin.png" alt="TripBaliin Logo" style={styles.logoImage} />
       </div>
@@ -53,6 +62,23 @@ const styles = {
     height: '100vh',
     fontFamily: 'Montserrat, sans-serif',
   },
+  backButton: {
+    position: 'absolute',
+    top: '20px',
+    left: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+    border: 'none',
+    fontSize: '16px',
+    fontWeight: '500',
+    cursor: 'pointer',
+    color: '#fff',
+    gap: '15px', 
+  },
+  icon: {
+    fontSize: '18px', 
+  },
   logoSection: {
     backgroundColor: '#0F67B1',
     color: '#fff',
@@ -76,7 +102,7 @@ const styles = {
   },
   formContainer: {
     width: '552px',
-    height:'695px',
+    height: '695px',
     padding: '20px',
     textAlign: 'center',
     boxShadow: '2px 0 8px 7px rgba(0, 0, 0, 0.2)',
@@ -108,7 +134,7 @@ const styles = {
     borderRadius: '10px',
     border: '1px solid #ccc',
     backgroundColor: '#fff',
-    color:'#000',
+    color: '#000',
   },
   button: {
     backgroundColor: '#0F67B1',
@@ -125,13 +151,23 @@ const styles = {
     marginTop: '20px',
   },
   link: {
-    fontWeight:'650',
+    fontWeight: '650',
     color: '#0F67B1',
     textDecoration: 'none',
   },
-  orText: {
+  orTextContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px', 
     color: '#666',
     margin: '20px 0',
+    fontSize: '14px',
+  },
+  line: {
+    width: '114.71px',
+    height: '1px',
+    backgroundColor: '#ccc', 
   },
   socialButtons: {
     display: 'flex',
@@ -152,43 +188,26 @@ const styles = {
     backgroundColor: '#fff',
     width: '142.97px',
     height: '49.4',
-    marginRight: '25px'
+    marginRight: '25px',
   },
   facebookButton: {
     backgroundColor: '#fff',
     width: '142.97px',
     height: '49.4',
-    marginLeft: '25px'
+    marginLeft: '25px',
   },
   socialIcon: {
     width: '20px',
     marginRight: '10px',
   },
   googleText: {
-    fontSize:'14px',
+    fontSize: '14px',
     color: '#000', 
   },
   facebookText: {
-    fontSize:'14px',
+    fontSize: '14px',
     color: '#3b5998', 
   },
-
-  orTextContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '10px', 
-    color: '#666',
-    margin: '20px 0',
-    fontSize: '14px',
-  },
-  
-  line: {
-    width: '114.71px',
-    height: '1px',
-    backgroundColor: '#ccc', 
-  },
-  
 };
 
 export default LoginPage;

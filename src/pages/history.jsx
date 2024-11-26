@@ -13,8 +13,10 @@ const HistoryPage = () => {
       image: "/assets/images/villa1.png", // Pastikan path ini benar
       address: " Jalan Dewi Saraswati III / 35, 80361 Seminyak, Indonesia",
       roomDaysInfo: "2 rooms 2 days", // Info Room & Days
-      checkInDate: "Wed, 13 Nov, 2024",
-      checkOutDate: "Sun, 17 Nov, 2024",
+      checkinDate: "Wed, 22 Nov, 2024",
+      checkoutDate: "Sun, 24 Nov, 2024",
+      checkinTime: "05.00 PM",
+      checkoutTime: "08.00 AM",
     },
     {
       companyName: "Nusa Dua Beach Hotel",
@@ -23,7 +25,11 @@ const HistoryPage = () => {
       totalPrice: "IDR 1,779,000",
       image: "/assets/images/villa2.png",
       address: " Jalan Dewi Saraswati III / 35, 80361 Seminyak, Indonesia",
-      roomDaysInfo: "2 rooms 2 days"
+      roomDaysInfo: "1 rooms 1 night",
+      checkinDate: "Sat, 26 Nov, 2024",
+      checkoutDate: "Sun, 27 Nov, 2024",
+      checkinTime: "07.00 PM",
+      checkoutTime: "07.00 AM",
     },
     {
       companyName: "Eden Hotel Kuta Bali",
@@ -32,7 +38,11 @@ const HistoryPage = () => {
       totalPrice: "IDR 2,180,890",
       image: "/assets/images/villa3.png", // Pastikan path ini benar
       address: " Jalan Dewi Saraswati III / 35, 80361 Seminyak, Indonesia",
-      roomDaysInfo: "2 rooms 2 days"
+      roomDaysInfo: "1 rooms 5 days",
+      checkinDate: "Wed, 16 Okt, 2024",
+      checkoutDate: "Sun, 20 Okt, 2024",
+      checkinTime: "02.00 PM",
+      checkoutTime: "07.00 AM",
     },
   ];
 
@@ -56,8 +66,10 @@ const HistoryPage = () => {
             image={provider.image}
             address={provider.address}
             roomDaysInfo={provider.roomDaysInfo}
-            checkInDate={provider.checkInDate}
-            checkOutDate={provider.checkOutDate}
+            checkinDate={provider.checkinDate}
+            checkoutDate={provider.checkoutDate}
+            checkinTime={provider.checkinTime}
+            checkoutTime={provider.checkoutTime}
           />
         ))}
 

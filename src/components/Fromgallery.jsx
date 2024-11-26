@@ -51,13 +51,15 @@ const styles = {
     padding: '20px 20px',
   },
   title: {
-    fontSize: '32px',
+    fontSize: '40px',
+    fontFamily: 'Montserrat, sans-serif',
     fontWeight: 'bold',
     marginBottom: '10px',
     textAlign: 'left',
   },
   description: {
     fontSize: '16px',
+    fontFamily: 'Montserrat, sans-serif',
     color: '#666',
     marginBottom: '40px',
     textAlign: 'left',
@@ -65,16 +67,16 @@ const styles = {
   gridContainer: {
     display: 'flex',
     flexDirection: 'column',
-    gap: '20px',
+    gap: '60px',
   },
   row: {
     display: 'flex',
-    justifyContent: 'space-between',
-    gap: '10px',
+    justifyContent: 'center',
+    gap: '50px',
   },
   image: {
-    width: '19%',
-    height: '250px',
+    width: '210px',
+    height: '326px',
     borderRadius: '5px',
     objectFit: 'cover',
   },

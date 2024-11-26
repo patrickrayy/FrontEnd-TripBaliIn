@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Slideshow from '../components/Slideshow';
 import Footer from '../components/Footer';
 import ExploreImage from '../components/ExploreImages';
@@ -49,30 +49,80 @@ const HomePage = () => {
       viewers: '432',
       rating: 4,
     },
-    // {
-    //   id: 5,
-    //   image: '/assets/images/homeimg-4.jpg',
-    //   title: 'Tirta Gangga',
-    //   duration: 'Duration 50 minute',
-    //   facility: 'Transport Facility',
-    //   price: 'IDR 572.000',
-    //   viewers: '509',
-    //   rating: 5,
-    // },
+    {
+      id: 5,
+      image: '/assets/images/homeimg-4.jpg',
+      title: 'Tirta Gangga',
+      duration: 'Duration 50 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 572.000',
+      viewers: '509',
+      rating: 5,
+    },
+    {
+      id: 6,
+      image: '/assets/images/homeimg-5.jpg', 
+      title: 'Sekumpul Waterfall',
+      duration: 'Duration 180 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 720.000',
+      viewers: '680',
+      rating: 4,
+    },
+    {
+      id: 7,
+      image: '/assets/images/homeimg-6.jpg',
+      title: 'Ubud Monkey Forest',
+      duration: 'Duration 120 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 450.000',
+      viewers: '950',
+      rating: 5,
+    },
+    {
+      id: 8,
+      image: '/assets/images/homeimg-7.jpg', 
+      title: 'Bali Swing',
+      duration: 'Duration 90 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 350.000',
+      viewers: '700',
+      rating: 4,
+    },
+    {
+      id: 9,
+      image: '/assets/images/homeimg-8.jpg', 
+      title: 'Tegenungan Waterfall',
+      duration: 'Duration 75 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 500.000',
+      viewers: '820',
+      rating: 4,
+    },
+    {
+      id: 10,
+      image: '/assets/images/homeimg-9.jpg', 
+      title: 'Lovina Beach',
+      duration: 'Duration 240 minute',
+      facility: 'Transport Facility',
+      price: 'IDR 650.000',
+      viewers: '400',
+      rating: 3,
+    },    
   ];
 
   const reviews = [
     {
         photo : '/assets/images/emily.png',
-        name: 'Emily Smith',
+        name: 'Tyrone Smith',
         rating: 5,
-        message: 'Good trip. The team of ON TRIP tours and travel was very supportive and maintained prompt communication with us . ',
+        message: 'TripBaliIn really helped me manage my travel expenses, thanks TripBaliIn! ',
     },
     {
         photo : '/assets/images/lord.png',
-        name: 'Lord Martin',
+        name: 'Martin Scorsese',
         rating: 5,
-        message: 'Good trip. The team of ON TRIP tours and travel was very supportive and maintained prompt communication with us . ',
+        message: 'Good trip. The team of TripBaliIn tours and travel was very supportive and maintained prompt communication with us . ',
     },
   ];
 
@@ -94,12 +144,47 @@ const HomePage = () => {
       fontWeight: 'bold',
       marginBottom: '50px',
     },
+    recommendationWrapper: {
+      position: 'relative',
+      maxWidth: '1200px',
+      margin: '0 auto',
+    },
     recommendationContainer: {
       display: 'flex',
-      flexWrap: 'wrap',
       gap: '20px',
-    //   justifyContent: 'center',
+      overflow: 'hidden', 
+      padding: '20px',
+      position: 'relative',
     },
+    cardContainer: {
+      display: 'flex',
+      gap: '20px',
+      transition: 'transform 0.3s ease-in-out',
+      transform: 'translateX(0)',
+    },
+    button: {
+      position: 'absolute',
+      top: '50%',
+      transform: 'translateY(-50%)',
+      backgroundColor: '#0F67B1',
+      color: '#fff',
+      border: 'none',
+      borderRadius: '50%',
+      width: '60px',
+      height: '60px',
+      cursor: 'pointer',
+      zIndex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    },
+    leftButton: {
+      left: '-15px',
+    },
+    rightButton: {
+      right: '-20px',
+    },
+
     viewButtonContainer:{
         display: 'flex',
         justifyContent: 'center',
@@ -137,6 +222,17 @@ const HomePage = () => {
         display: 'flex',
         gap: '101px',
         marginBottom: '50px',
+    },
+    scrollbutton: {
+      transform: 'rotate(180deg)',
+      width: '20px',
+      height: '20px',
+      objectFit: 'contain'
+    },
+    scrollbuttonright: {
+      width: '20px',
+      height: '20px',
+      objectFit: 'contain'
     }
     
   };
@@ -148,6 +244,22 @@ const HomePage = () => {
     small1: '/assets/images/exbali-4.png',
     small2: '/assets/images/exbali-5.png',
     small3: '/assets/images/exbali-6.png',
+  };
+
+  const containerRef = useRef(null);
+
+  const scrollLeft = () => {
+    containerRef.current.scrollBy({
+      left: -300, 
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollRight = () => {
+    containerRef.current.scrollBy({
+      left: 300, 
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -172,22 +284,42 @@ const HomePage = () => {
       </div>
 
       {/* Recommendations Section */}
-      <div style={styles.container}>
-        <h2 style={styles.title}>Most Popular Destinations In Bali</h2>
-        <div style={styles.recommendationContainer}>
-          {recommendations.map((item) => (
-            <RecommendationCard key={item.id} item={item} />
+      <div style={styles.recommendationWrapper}>
+      {/* Left Scroll Button */}
+      <button
+        style={{ ...styles.button, ...styles.leftButton }}
+        onClick={scrollLeft}
+      >
+        <img 
+        src="/assets/images/arrow.png"
+        alt="Left Arrow" 
+        style={styles.scrollbutton}
+        />
+      </button>
+      <div ref={containerRef} style={styles.recommendationContainer}>
+        <div style={styles.cardContainer}>
+          {recommendations.map((item, index) => (
+            <RecommendationCard key={index} item={item} />
           ))}
         </div>
-        <div style={styles.viewButtonContainer}>
-            <button style={styles.viewButton}>View All</button>
-        </div>
       </div>
+      {/* Right Scroll Button */}
+      <button
+        style={{ ...styles.button, ...styles.rightButton }}
+        onClick={scrollRight}
+      >
+        <img 
+        src="/assets/images/arrow.png"
+        alt="Right Arrow" 
+        style={styles.scrollbuttonright}
+        />
+      </button>
+    </div>
 
       {/* Reviews Section */}
       <div style={styles.container}>
         <h2 style={styles.titleReview}>What Travelers Are Saying</h2>
-        <p style={styles.quotes}>“I am a traveler and ON TRIP Travels helps me a lot in finding interesting tourist destinations and of course the price offers is very worth it”.</p>
+        <p style={styles.quotes}>“I am a traveler and TripBaliIn Travels helps me a lot in finding interesting tourist destinations and of course the price offers is very worth it”.</p>
         <div style={styles.reviewContainer}>
             {reviews.map((review, index) => (
                 <ReviewCard key={index} reviewer={review} />

@@ -49,9 +49,10 @@ const ExploreImage = ({ images }) => {
       justifyContent: 'center',
       color: 'white',
       fontSize: '1.5rem',
-      fontWeight: 'bold',
+      fontWeight: '550',
       textAlign: 'center',
       transition: 'opacity 0.3s ease',
+      fontFamily: 'Montserrat',
     },
     largeImage: {
       width: '98%',
@@ -90,18 +91,18 @@ const ExploreImage = ({ images }) => {
     <div style={styles.gridContainer}>
       {/* Left Column */}
       <div style={styles.leftColumn}>
-        {renderImageWithHoverEffect(images.large, 'Large', styles.largeImage, 'Bali')}
+        {renderImageWithHoverEffect(images.large, 'Large', styles.largeImage, 'Ubud')}
         <div style={styles.bottomRow}>
-          {renderImageWithHoverEffect(images.medium1, 'Medium 1', styles.mediumImage, 'Bali')}
-          {renderImageWithHoverEffect(images.medium2, 'Medium 2', styles.mediumImage, 'Bali')}
+          {renderImageWithHoverEffect(images.medium1, 'Medium 1', styles.mediumImage, 'Kuta')}
+          {renderImageWithHoverEffect(images.medium2, 'Medium 2', styles.mediumImage, 'Gianyar')}
         </div>
       </div>
 
       {/* Right Column */}
       <div style={styles.rightColumn}>
-        {renderImageWithHoverEffect(images.small1, 'Small 1', styles.smallImage, 'Bali')}
-        {renderImageWithHoverEffect(images.small2, 'Small 2', styles.smallImage, 'Bali')}
-        {renderImageWithHoverEffect(images.small3, 'Small 3', styles.smallImage, 'Bali')}
+        {renderImageWithHoverEffect(images.small1, 'Small 1', styles.smallImage, 'Seminyak')}
+        {renderImageWithHoverEffect(images.small2, 'Small 2', styles.smallImage, 'Nusa Dua')}
+        {renderImageWithHoverEffect(images.small3, 'Small 3', styles.smallImage, 'Nusa Penida')}
       </div>
     </div>
   );
