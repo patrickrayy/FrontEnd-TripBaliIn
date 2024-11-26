@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState }from 'react';
 
-const NavbarTransportation = () => {
+const FilterTransportation = () => {
+  
   return (
     <div style={styles.container}>
       <div style={styles.vehicleCategory} className="vehicle-categories">
@@ -88,6 +89,7 @@ const styles = {
     padding: "20px",
     borderRadius: "6px",
     boxShadow: "0px 2px 4px 2px rgba(0,0,0,0.27)",
+    fontFamily: "Montserrat, sans-serif"
   },
   vehicleCategory: {
     width: "100%",
@@ -139,4 +141,4 @@ const styles = {
   },
 };
 
-export default NavbarTransportation;
+export default FilterTransportation;

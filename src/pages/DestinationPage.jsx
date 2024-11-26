@@ -42,6 +42,42 @@ const DestinationPage = () => {
       viewers: "584",
       rating: 4,
     },
+    {
+      id: 2,
+      image: "/assets/images/3.png",
+      title: "Tirta Empul",
+      duration: "Duration 2 hours",
+      price: "IDR 50.000",
+      viewers: "584",
+      rating: 4,
+    },
+    {
+      id: 2,
+      image: "/assets/images/3.png",
+      title: "Tirta Empul",
+      duration: "Duration 2 hours",
+      price: "IDR 50.000",
+      viewers: "584",
+      rating: 4,
+    },
+    {
+      id: 2,
+      image: "/assets/images/3.png",
+      title: "Tirta Empul",
+      duration: "Duration 2 hours",
+      price: "IDR 50.000",
+      viewers: "584",
+      rating: 4,
+    },
+    {
+      id: 2,
+      image: "/assets/images/3.png",
+      title: "Tirta Empul",
+      duration: "Duration 2 hours",
+      price: "IDR 50.000",
+      viewers: "584",
+      rating: 4,
+    },
   ];
 
   const friendRecommendations = [
@@ -81,7 +117,35 @@ const DestinationPage = () => {
       viewers: "150",
       rating: 5,
     },
+    {
+      id: 8,
+      image: "/assets/images/9.png",
+      title: "Pantai Kelingking Penidai",
+      duration: "Duration 2 hours",
+      price: "IDR 35.000",
+      viewers: "150",
+      rating: 5,
+    },
+    {
+      id: 8,
+      image: "/assets/images/9.png",
+      title: "Pantai Kelingking Penidai",
+      duration: "Duration 2 hours",
+      price: "IDR 35.000",
+      viewers: "150",
+      rating: 5,
+    },
   ];
+    const styles = {
+    sectionTitle: {
+      marginTop: "100px", 
+      fontFamily: "Montserrat, sans-serif",
+      fontSize: "28px",
+      fontWeight: "bold",
+      textAlign: "left",
+      marginLeft: "75px",
+    },
+    };
 
   const soloRecommendations = [
     {
@@ -120,7 +184,44 @@ const DestinationPage = () => {
       viewers: "150",
       rating: 5,
     },
+    {
+      id: 11,
+      image: "/assets/images/12.png",
+      title: "Hidden Canyon Beji Guwang",
+      duration: "Duration 2 hours",
+      price: "IDR 40.000",
+      viewers: "200",
+      rating: 5,
+    },
+    {
+      id: 11,
+      image: "/assets/images/12.png",
+      title: "Hidden Canyon Beji Guwang",
+      duration: "Duration 2 hours",
+      price: "IDR 40.000",
+      viewers: "200",
+      rating: 5,
+    },
+    {
+      id: 11,
+      image: "/assets/images/12.png",
+      title: "Hidden Canyon Beji Guwang",
+      duration: "Duration 2 hours",
+      price: "IDR 40.000",
+      viewers: "200",
+      rating: 5,
+    },
+    {
+      id: 11,
+      image: "/assets/images/12.png",
+      title: "Hidden Canyon Beji Guwang",
+      duration: "Duration 2 hours",
+      price: "IDR 40.000",
+      viewers: "200",
+      rating: 5,
+    },
   ];
+  
 
   return (
     <div>
@@ -128,22 +229,16 @@ const DestinationPage = () => {
       <HeroSection />
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
         {/* Family Vacation */}
-        <ScrollableCard
-          title="Family Vacation"
-          recommendations={recommendations}
-        />
+        <h2 style={styles.sectionTitle}>Family Vacation</h2>
+        <ScrollableCard recommendations={recommendations} />
 
         {/* Friend Destination */}
-        <ScrollableCard
-          title="Friend Destination"
-          recommendations={friendRecommendations}
-        />
+        <h2 style={styles.sectionTitle}>Friend Destination</h2>
+        <ScrollableCard recommendations={friendRecommendations} />
 
         {/* Solo Travel */}
-        <ScrollableCard
-          title="Solo Travel Destination"
-          recommendations={soloRecommendations}
-        />
+        <h2 style={styles.sectionTitle}>Solo Travel Destination</h2>
+        <ScrollableCard recommendations={soloRecommendations} />
       </div>
       <Footer />
     </div>

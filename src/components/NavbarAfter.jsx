@@ -47,7 +47,7 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
         <div style={styles.profileContainer}>
           <Link to="/profile"> {/* Menggunakan Link untuk navigasi */}
             <img
-              src="/assets/images/profil.png" // Ganti dengan path gambar profil Anda
+              src="/assets/images/profil.png"
               alt="Profile"
               style={styles.profileIcon}
             />
@@ -89,6 +89,7 @@ const styles = {
   navLinksnav: {
     display: 'flex',
     alignItems: 'center',
+    marginRight: '85px',
     gap: '16px',
     fontFamily: 'Montserrat, sans-serif',
     fontSize: '20px',
@@ -112,7 +113,7 @@ const styles = {
   profileIcon: {
     width: '40px',
     height: '40px',
-    borderRadius: '50%', // Membuat gambar profil menjadi bulat
+    borderRadius: '50%', 
     cursor: 'pointer',
   },
   logoutButton: {

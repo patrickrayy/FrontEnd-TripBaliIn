@@ -149,6 +149,12 @@ const HomePage = () => {
       maxWidth: '1200px',
       margin: '0 auto',
     },
+    h1rec: {
+      fontFamily: "Montserrat, sans-serif",
+      fontWeight: "700",
+      marginBottom: "40px",
+      marginTop: "100px",
+    },
     recommendationContainer: {
       display: 'flex',
       gap: '20px',
@@ -285,6 +291,7 @@ const HomePage = () => {
 
       {/* Recommendations Section */}
       <div style={styles.recommendationWrapper}>
+        <h1 style={styles.h1rec}>Most Popular Destinations in Bali</h1>
       {/* Left Scroll Button */}
       <button
         style={{ ...styles.button, ...styles.leftButton }}

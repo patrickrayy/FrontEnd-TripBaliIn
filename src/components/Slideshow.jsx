@@ -1,8 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Carousel } from "react-bootstrap"; // Import Carousel dari react-bootstrap
 
 const Slideshow = () => {
+  const navigate = useNavigate();
+
+  const handleExploreNow = () => {
+    navigate("/destination");
+  };
+
   return (
     <div className="carousel-container">
       {/* Filter tetap di depan carousel */}
@@ -57,7 +64,7 @@ const Slideshow = () => {
           </div>
 
           {/* Explore Now Button */}
-          <button className="explore-button">
+          <button className="explore-button" onClick={handleExploreNow}>
             <img src="/assets/images/LocationOn.png" alt="Explore Icon" className="explore-icon" />
             Explore Now
           </button>

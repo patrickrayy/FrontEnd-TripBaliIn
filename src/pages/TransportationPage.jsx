@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavbarAfter from "../components/NavbarAfter";
-import NavbarTransportation from "../components/NavbarTransportation";
+import FilterTransportation from "../components/FilterTransportation";
 import VehicleCard from "../components/VehicleCard";
 
 const TransportationPage = () => {
@@ -63,7 +63,7 @@ const TransportationPage = () => {
     if (location.pathname === "/transportation") {
       return (
         <>
-          <NavbarTransportation />
+          <FilterTransportation />
           {vehicleData.map((item) => (
             <VehicleCard
               id={item.id}

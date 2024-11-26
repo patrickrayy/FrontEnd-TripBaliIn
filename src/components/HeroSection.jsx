@@ -28,7 +28,9 @@ const styles = {
         backgroundColor: '#E6F0FA',
         borderRadius: '15px',
         margin: '60px',
-        height: '600px',
+        marginLeft: '250px',
+        height: '566px',
+        width : '1220px',
         position: 'relative',
         borderTopLeftRadius: '10px', 
         borderTopRightRadius: '10px',
@@ -40,7 +42,6 @@ const styles = {
         fontWeight: 600,
         
       },
-      
       textContainer: {
         maxWidth: '50%',
         zIndex: 1, 
@@ -50,7 +51,6 @@ const styles = {
         padding: '40px',
         fontSize: '100px',  
       },
-
       heading: {
         fontSize: '200px',
         fontWeight: 'semibold',
@@ -70,7 +70,6 @@ const styles = {
         color: '#797A7B',
         textAlign: 'left'
       },
-    
       searchBar: {
         backgroundColor: 'white',
         position: 'absolute',
@@ -88,7 +87,6 @@ const styles = {
         overflow: 'hidden',    
         border: 'none'
       },
-      
       searchInput: {
         flex: 1,                         
         padding: '32px',
@@ -99,7 +97,6 @@ const styles = {
         color: '#000000',
         fontFamily: 'Open Sans, sans-serif'
       },
-      
       searchButton: {
         display: 'flex',
         alignItems: 'center',
@@ -117,7 +114,6 @@ const styles = {
         width: '176px',
         gap: '8px',
       },
-      
       heroImage: {
         position: 'flex',
         width: '50vw',
