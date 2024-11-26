@@ -50,42 +50,9 @@ const DestinationPage = () => {
       rating: 4,
     },
     {
-<<<<<<< HEAD
-      id: 2,
-      image: "/assets/images/3.png",
-      title: "Tirta Empul",
-      duration: "Duration 2 hours",
-      price: "IDR 50.000",
-      viewers: "584",
-      rating: 4,
-    },
-    {
-      id: 2,
-      image: "/assets/images/3.png",
-      title: "Tirta Empul",
-      duration: "Duration 2 hours",
-      price: "IDR 50.000",
-      viewers: "584",
-      rating: 4,
-    },
-    {
-      id: 2,
-      image: "/assets/images/3.png",
-      title: "Tirta Empul",
-      duration: "Duration 2 hours",
-      price: "IDR 50.000",
-      viewers: "584",
-      rating: 4,
-    },
-    {
-      id: 2,
-      image: "/assets/images/3.png",
-      title: "Tirta Empul",
-=======
       id: 5,
       image: "/assets/images/5.png",
       title: "Pura Ulun Danu Bratan",
->>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       duration: "Duration 2 hours",
       price: "IDR 50.000",
       viewers: "584",
@@ -271,18 +238,6 @@ const DestinationPage = () => {
       <HeroSection onSearch={handleSearch} />
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
         {/* Family Vacation */}
-<<<<<<< HEAD
-        <h2 style={styles.sectionTitle}>Family Vacation</h2>
-        <ScrollableCard recommendations={recommendations} />
-
-        {/* Friend Destination */}
-        <h2 style={styles.sectionTitle}>Friend Destination</h2>
-        <ScrollableCard recommendations={friendRecommendations} />
-
-        {/* Solo Travel */}
-        <h2 style={styles.sectionTitle}>Solo Travel Destination</h2>
-        <ScrollableCard recommendations={soloRecommendations} />
-=======
         <ScrollableCard
           title="Family Vacation"
           recommendations={dataToShow.recommendations}
@@ -299,7 +254,6 @@ const DestinationPage = () => {
           title="Solo Travel Destination"
           recommendations={dataToShow.soloRecommendations}
         />
->>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       </div>
       <Footer />
     </div>

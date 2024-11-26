@@ -12,68 +12,6 @@ const Slideshow = () => {
 
   return (
     <div className="carousel-container">
-<<<<<<< HEAD
-      {/* Filter tetap di depan carousel */}
-      <div className="filters">
-        <div className="filter-container">
-          {/* Location Filter */}
-          <div className="filter-option">
-            <div className="filter-icon">
-              <img src="/assets/images/Location.png" alt="Location Icon" className="icon-img" />
-            </div>
-            <div className="filter-text">
-              <span className="filter-label">Location</span>
-              <span className="filter-desc">
-                Where do you want to go?
-                <button className="arrow-button">
-                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                </button>
-              </span>
-            </div>
-          </div>
-
-          {/* Date Filter */}
-          <div className="filter-option">
-            <div className="filter-icon">
-              <img src="/assets/images/Calendar.png" alt="Calendar Icon" className="icon-img" />
-            </div>
-            <div className="filter-text">
-              <span className="filter-label">Date</span>
-              <span className="filter-desc">
-                Choose date
-                <button className="arrow-button">
-                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                </button>
-              </span>
-            </div>
-          </div>
-
-          {/* Filter Option */}
-          <div className="filter-option">
-            <div className="filter-icon">
-              <img src="/assets/images/Bill.png" alt="Filter Icon" className="icon-img" />
-            </div>
-            <div className="filter-text">
-              <span className="filter-label">Filter</span>
-              <span className="filter-desc">
-                Choose your budget
-                <button className="arrow-button">
-                  <img src="/assets/images/yellowarrow.png" alt="Arrow Icon" className="arrow-icon" />
-                </button>
-              </span>
-            </div>
-          </div>
-
-          {/* Explore Now Button */}
-          <button className="explore-button" onClick={handleExploreNow}>
-            <img src="/assets/images/LocationOn.png" alt="Explore Icon" className="explore-icon" />
-            Explore Now
-          </button>
-        </div>
-      </div>
-
-=======
->>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       {/* Carousel */}
       <Carousel interval={3000} pause="hover" indicators={true}>
         {/* Slide Pertama */}
