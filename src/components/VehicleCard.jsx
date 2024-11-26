@@ -25,7 +25,7 @@ const VehicleCard = ({
             <span style={styles.singleCapacity}>
               <img
                 style={styles.capacityIcon}
-                src="/asset/image/Suitcase.png"
+                src="/assets/images/Suitcase.png"
                 alt="luggage"
               />
               <p style={styles.capacityValue}>{luggageValue} Luggage</p>
@@ -33,7 +33,7 @@ const VehicleCard = ({
             <span style={styles.singleCapacity}>
               <img
                 style={styles.capacityIcon}
-                src="/asset/image/People.png"
+                src="/assets/images/People.png"
                 alt="people"
               />
               <p style={styles.capacityValue}>{peopleValue} People</p>

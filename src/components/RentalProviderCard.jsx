@@ -1,6 +1,7 @@
-import { faStar, height, width } from "@fortawesome/free-solid-svg-icons/faStar";
+import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from 'react';
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const RentalProviderCard = ({
   companyName,
@@ -26,37 +27,53 @@ const RentalProviderCard = ({
         </div>
         <h2 style={styles.reviewValue}>{reviewValue} Reviews</h2>
       </div>
+
       <h1 style={styles.titleHeader}>Which travelers like</h1>
-      <div style={styles.detailSection}
-      className="detail-section">
+
+      <div style={styles.detailSection} className="detail-section">
+        {/* Deskripsi */}
         <div style={styles.description} className="description">
           <div style={styles.benefits} className="benefits">
-              <p>Cleanless</p>
-              <p>Easy on-site pick-up and return process</p>
-              <p>Staff attitude is serving</p>
+            <p>Cleanliness</p>
+            <p>Easy on-site pick-up and return process</p>
+            <p>Staff attitude is serving</p>
           </div>
+
           <div style={styles.provision} className="provision">
             <span style={styles.singleProvision}>
-              <img style={styles.imageProvision} src="/asset/image/Clock.png" alt="clock" />
+              <img
+                style={styles.imageProvision}
+                src="/assets/images/Clock.png"
+                alt="clock"
+              />
               <p>1 day price for 24 hours use</p>
             </span>
             <span style={styles.singleProvision}>
-              <img style={styles.imageProvision} src="/asset/image/Checkmark.png" alt="checkmark" />
+              <img
+                style={styles.imageProvision}
+                src="/assets/images/Checkmark.png"
+                alt="checkmark"
+              />
               <p>Motorcycle insurance</p>
             </span>
             <span style={styles.singleProvision}>
-              <img style={styles.imageProvision} src="/asset/image/Checkmark.png" alt="checkmark" />
+              <img
+                style={styles.imageProvision}
+                src="/assets/images/Checkmark.png"
+                alt="checkmark"
+              />
               <p>Can be refunded</p>
             </span>
           </div>
         </div>
+
+        {/* Harga */}
         <div style={styles.price} className="price">
           <h1 style={styles.prices}>
-            <span style={styles.totalPrice} >{totalPrice}</span> total
+            <span style={styles.totalPrice}>{totalPrice}</span> total
             <br />
             {perDayPrice}/day
           </h1>
-          <button style={styles.chooseButton}>Choose</button>
         </div>
       </div>
     </div>
@@ -73,18 +90,22 @@ const styles = {
   companyName: {
     fontSize: "20px",
     fontWeight: "bold",
+    textAlign: "left",
   },
   rating: {
     margin: "-8px 0 0 0",
+    textAlign: "left",
   },
   reviewValue: {
     fontSize: "12px",
     fontWeight: "400",
+    textAlign: "left",
   },
   titleHeader: {
     fontSize: "17px",
     fontWeight: "bold",
-    margin: "30px 0 10px 0"
+    margin: "30px 0 10px 0",
+    textAlign: "left",
   },
   detailSection: {
     width: "100%",
@@ -95,6 +116,7 @@ const styles = {
   description: {
     width: "50%",
     display: "flex",
+    textAlign: "left",
   },
   benefits: {
     lineHeight: "10px",
@@ -124,19 +146,6 @@ const styles = {
     fontSize: "12px",
     fontWeight: "400"
   },
-  chooseButton: {
-    backgroundColor: "#0F67B1",
-    width: "150px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "10px",
-    height: "33px",
-    marginTop: "20px",
-    fontSize: "14px",
-    color: "white",
-    textDecoration: "none",
-  }
 };
 
 export default RentalProviderCard;
