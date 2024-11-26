@@ -6,7 +6,7 @@ const DetailVehicle = () => {
   const vehicleData = [
     {
       id: 1,
-      image: "/asset/image/vehicle/nmax.png",
+      image: "/assets/images/vehicle/nmax.png",
       type: "Motorcycle",
       vehicleName: "Yamaha N-Max",
       transmission: "Automatic",
@@ -26,7 +26,7 @@ const DetailVehicle = () => {
     },
     {
       id: 2,
-      image: "/asset/image/vehicle/vario.png",
+      image: "/assets/images/vehicle/vario.png",
       type: "Motorcycle",
       vehicleName: "Honda Vario",
       transmission: "Automatic",
@@ -46,7 +46,7 @@ const DetailVehicle = () => {
     },
     {
       id: 3,
-      image: "/asset/image/vehicle/fazio.png",
+      image: "/assets/images/vehicle/fazio.png",
       type: "Motorcycle",
       vehicleName: "Yamaha Fazzio",
       transmission: "Automatic",
@@ -66,7 +66,7 @@ const DetailVehicle = () => {
     },
     {
       id: 4,
-      image: "/asset/image/vehicle/scoopy.png",
+      image: "/assets/images/vehicle/scoopy.png",
       type: "Motorcycle",
       vehicleName: "Honda Scoopy",
       transmission: "Automatic",
@@ -86,7 +86,7 @@ const DetailVehicle = () => {
     },
     {
       id: 5,
-      image: "/asset/image/vehicle/beat.png",
+      image: "/assets/images/vehicle/beat.png",
       type: "Motorcycle",
       vehicleName: "Honda Beat",
       transmission: "Automatic",
@@ -139,7 +139,7 @@ const styles = {
     container: {
         width: "90%",
         margin: "140px auto",
-        padding: "20px"
+        padding: "20px",
     },
     vehicleHeaderSection: {
         display: "flex",
@@ -149,29 +149,30 @@ const styles = {
     typeVehicle: {
         fontSize: "15px",
         color: "#6F6F6F",
-        fontWeight: "500"
+        fontWeight: "500",
     },
     vehicleName: {
         fontSize: "15px",
         fontWeight: "700",
-        color: "black"
+        color: "black",
     },
     transmission: {
         fontSize: "15px",
         color: "#6F6F6F",
-        fontWeight: "500"
+        fontWeight: "500",
     },
     identity: {
         display: "flex",
         alignItems: "start",
         flexDirection: "column",
         justifyContent: "center",
-        margin: "0 0 0 18px"
+        margin: "0 0 0 18px",
     },
     rentalProvider: {
         fontSize: "24px",
         fontWeight: "bold",
-        margin: "6px 0 0 0"
+        margin: "6px 0 0 0",
+        textAlign: "left",
     }
 }
 

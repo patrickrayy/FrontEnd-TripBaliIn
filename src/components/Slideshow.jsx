@@ -12,6 +12,7 @@ const Slideshow = () => {
 
   return (
     <div className="carousel-container">
+<<<<<<< HEAD
       {/* Filter tetap di depan carousel */}
       <div className="filters">
         <div className="filter-container">
@@ -71,6 +72,8 @@ const Slideshow = () => {
         </div>
       </div>
 
+=======
+>>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       {/* Carousel */}
       <Carousel interval={3000} pause="hover" indicators={true}>
         {/* Slide Pertama */}

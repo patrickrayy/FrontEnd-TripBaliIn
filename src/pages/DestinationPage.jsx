@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import NavbarAfter from "../components/NavbarAfter";
-import ScrollableCard from "../components/ScrollableCard"; // Import the new ScrollableCard component
+import ScrollableCard from "../components/ScrollableCard";
 
 const DestinationPage = () => {
+  const [searchQuery, setSearchQuery] = useState(""); // State untuk query pencarian
+  const [filteredData, setFilteredData] = useState({
+    recommendations: [],
+    friendRecommendations: [],
+    soloRecommendations: [],
+  });
+
   const recommendations = [
     {
       id: 1,
@@ -43,6 +50,7 @@ const DestinationPage = () => {
       rating: 4,
     },
     {
+<<<<<<< HEAD
       id: 2,
       image: "/assets/images/3.png",
       title: "Tirta Empul",
@@ -73,6 +81,11 @@ const DestinationPage = () => {
       id: 2,
       image: "/assets/images/3.png",
       title: "Tirta Empul",
+=======
+      id: 5,
+      image: "/assets/images/5.png",
+      title: "Pura Ulun Danu Bratan",
+>>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       duration: "Duration 2 hours",
       price: "IDR 50.000",
       viewers: "584",
@@ -223,12 +236,42 @@ const DestinationPage = () => {
   ];
   
 
+   // Gabungkan semua data berdasarkan kategori
+   const allData = {
+    recommendations,
+    friendRecommendations,
+    soloRecommendations,
+  };
+
+  // Fungsi pencarian
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Set nilai pencarian
+    if (query) {
+      const lowercasedQuery = query.toLowerCase();
+      const filtered = Object.keys(allData).reduce((acc, key) => {
+        acc[key] = allData[key].filter(
+          (item) =>
+            item.title.toLowerCase().includes(lowercasedQuery) ||
+            item.price.toLowerCase().includes(lowercasedQuery)
+        );
+        return acc;
+      }, {});
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(allData); // Tampilkan semua data jika tidak ada pencarian
+    }
+  };
+
+  // Data untuk ditampilkan (hasil pencarian atau data asli)
+  const dataToShow = searchQuery ? filteredData : allData;
+
   return (
     <div>
       <NavbarAfter />
-      <HeroSection />
+      <HeroSection onSearch={handleSearch} />
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
         {/* Family Vacation */}
+<<<<<<< HEAD
         <h2 style={styles.sectionTitle}>Family Vacation</h2>
         <ScrollableCard recommendations={recommendations} />
 
@@ -239,6 +282,24 @@ const DestinationPage = () => {
         {/* Solo Travel */}
         <h2 style={styles.sectionTitle}>Solo Travel Destination</h2>
         <ScrollableCard recommendations={soloRecommendations} />
+=======
+        <ScrollableCard
+          title="Family Vacation"
+          recommendations={dataToShow.recommendations}
+        />
+
+        {/* Friend Destination */}
+        <ScrollableCard
+          title="Friend Destination"
+          recommendations={dataToShow.friendRecommendations}
+        />
+
+        {/* Solo Travel */}
+        <ScrollableCard
+          title="Solo Travel Destination"
+          recommendations={dataToShow.soloRecommendations}
+        />
+>>>>>>> 7dadbfdf5f8b093cead55c4f78d10c443f2debb4
       </div>
       <Footer />
     </div>

@@ -15,9 +15,15 @@ import DetailVehicle from "./components/DetailVehicle";
 import ItineraryAfter from "./pages/ItinerarAfterLog";
 import ContactAfter from "./pages/ContactAfterLog";
 import ProfilePage from "./pages/ProfilPage";
+import SideBar from "./components/Sidebar"; 
+import HistoryBooking from "./pages/history"; 
 import ItineraryCreator from "./pages/ItineraryCreator";
 import ItineraryPreview from "./pages/ItineraryPreview";
 import AccommodationPage from "./pages/AcomodationPage";
+import VillaDetailsPage from "./pages/VillaDetailsPage";
+import BookingPage from "./pages/BokingPage";
+import PaymentPage from "./pages/PaymentPage";
+import PaymentCompleted from "./pages/PaymentCompleted";
 
 function App() {
   const location = useLocation();
@@ -45,10 +51,17 @@ function App() {
         <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
         <Route path='/contactafter' element={<ContactAfter/>} />
         <Route path='/profile' element={<ProfilePage/>} />
+        <Route path='/history' element={<HistoryBooking/>} />
+        <Route path='/Sidebar' element={<SideBar/>} />
+        
+        {/* <Route path='/acomodation' element={<AcomodationPage />} /> */}
         <Route path='/itinerarycreator' element={<ItineraryCreator/>} />
         <Route path="/itinerary-preview" element={<ItineraryPreview/>}/>
-
         <Route path='/accommodation' element={<AccommodationPage />} />
+        <Route path='/villa-details/:id' element={<VillaDetailsPage />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment-completed" element={<PaymentCompleted />} />
         {/* <Route path='/destination' element={<DestinationPage />} /> */}
         {/* <Route path='/profile' element={<ProfilePage />} /> */}
         {/* <Route path='/transportation' element={<TransportationPage />} /> */}
