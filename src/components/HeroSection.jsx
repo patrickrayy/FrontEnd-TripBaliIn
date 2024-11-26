@@ -2,14 +2,26 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-const HeroSection = () => {
+const HeroSection = ({ onSearch }) => {
+  const handleInputChange = (event) => {
+    const query = event.target.value;
+    if (onSearch) onSearch(query); // Panggil fungsi pencarian dari parent
+  };
+
   return (
     <div style={styles.heroSection}>
       <div style={styles.textContainer}>
         <h1 style={styles.texbig}>In Bali, holidays become more meaningful!</h1>
-        <p style={styles.textp}>Find the best tourist attractions here, we will help you on your adventure!</p>
+        <p style={styles.textp}>
+          Find the best tourist attractions here, we will help you on your adventure!
+        </p>
         <div style={styles.searchBar}>
-          <input type="text" placeholder="Search destination, location, & price" style={styles.searchInput} />
+          <input
+            type="text"
+            placeholder="Search destination, location, & price"
+            style={styles.searchInput}
+            onChange={handleInputChange} // Panggil saat input berubah
+          />
           <button style={styles.searchButton}>
             <FontAwesomeIcon icon={faSearch} /> Search
           </button>

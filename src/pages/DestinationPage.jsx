@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "../components/Footer";
 import HeroSection from "../components/HeroSection";
 import NavbarAfter from "../components/NavbarAfter";
-import ScrollableCard from "../components/ScrollableCard"; // Import the new ScrollableCard component
+import ScrollableCard from "../components/ScrollableCard";
 
 const DestinationPage = () => {
+  const [searchQuery, setSearchQuery] = useState(""); // State untuk query pencarian
+  const [filteredData, setFilteredData] = useState({
+    recommendations: [],
+    friendRecommendations: [],
+    soloRecommendations: [],
+  });
+
   const recommendations = [
     {
       id: 1,
@@ -35,6 +42,15 @@ const DestinationPage = () => {
     },
     {
       id: 4,
+      image: "/assets/images/5.png",
+      title: "Pura Ulun Danu Bratan",
+      duration: "Duration 2 hours",
+      price: "IDR 50.000",
+      viewers: "584",
+      rating: 4,
+    },
+    {
+      id: 5,
       image: "/assets/images/5.png",
       title: "Pura Ulun Danu Bratan",
       duration: "Duration 2 hours",
@@ -122,27 +138,56 @@ const DestinationPage = () => {
     },
   ];
 
+   // Gabungkan semua data berdasarkan kategori
+   const allData = {
+    recommendations,
+    friendRecommendations,
+    soloRecommendations,
+  };
+
+  // Fungsi pencarian
+  const handleSearch = (query) => {
+    setSearchQuery(query); // Set nilai pencarian
+    if (query) {
+      const lowercasedQuery = query.toLowerCase();
+      const filtered = Object.keys(allData).reduce((acc, key) => {
+        acc[key] = allData[key].filter(
+          (item) =>
+            item.title.toLowerCase().includes(lowercasedQuery) ||
+            item.price.toLowerCase().includes(lowercasedQuery)
+        );
+        return acc;
+      }, {});
+      setFilteredData(filtered);
+    } else {
+      setFilteredData(allData); // Tampilkan semua data jika tidak ada pencarian
+    }
+  };
+
+  // Data untuk ditampilkan (hasil pencarian atau data asli)
+  const dataToShow = searchQuery ? filteredData : allData;
+
   return (
     <div>
       <NavbarAfter />
-      <HeroSection />
+      <HeroSection onSearch={handleSearch} />
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "20px" }}>
         {/* Family Vacation */}
         <ScrollableCard
           title="Family Vacation"
-          recommendations={recommendations}
+          recommendations={dataToShow.recommendations}
         />
 
         {/* Friend Destination */}
         <ScrollableCard
           title="Friend Destination"
-          recommendations={friendRecommendations}
+          recommendations={dataToShow.friendRecommendations}
         />
 
         {/* Solo Travel */}
         <ScrollableCard
           title="Solo Travel Destination"
-          recommendations={soloRecommendations}
+          recommendations={dataToShow.soloRecommendations}
         />
       </div>
       <Footer />

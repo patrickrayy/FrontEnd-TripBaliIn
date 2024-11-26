@@ -18,6 +18,10 @@ import ProfilePage from "./pages/ProfilPage";
 import ItineraryCreator from "./pages/ItineraryCreator";
 import ItineraryPreview from "./pages/ItineraryPreview";
 import AccommodationPage from "./pages/AcomodationPage";
+import VillaDetailsPage from "./pages/VillaDetailsPage";
+import BookingPage from "./pages/BokingPage";
+import PaymentPage from "./pages/PaymentPage";
+import PaymentCompleted from "./pages/PaymentCompleted";
 
 function App() {
   const location = useLocation();
@@ -49,6 +53,10 @@ function App() {
         <Route path="/itinerary-preview" element={<ItineraryPreview/>}/>
 
         <Route path='/accommodation' element={<AccommodationPage />} />
+        <Route path='/villa-details/:id' element={<VillaDetailsPage />} />
+        <Route path="/booking" element={<BookingPage />} />
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/payment-completed" element={<PaymentCompleted />} />
         {/* <Route path='/destination' element={<DestinationPage />} /> */}
         {/* <Route path='/profile' element={<ProfilePage />} /> */}
         {/* <Route path='/transportation' element={<TransportationPage />} /> */}
