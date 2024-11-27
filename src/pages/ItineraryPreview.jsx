@@ -142,7 +142,6 @@ const ItineraryPreview = () => {
       fontSize: '18px',
       fontWeight: '600',
     },
-
       calendar: {
         border: 'none',
         borderRadius: '10px',
