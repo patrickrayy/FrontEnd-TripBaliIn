@@ -1,6 +1,6 @@
 import React from "react";
 
-const VillaCard = ({ title, price, persons, bedrooms, hasPool, image }) => {
+const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image }) => {
   const styles = {
     card: {
       width: "357px",
@@ -95,4 +95,4 @@ const VillaCard = ({ title, price, persons, bedrooms, hasPool, image }) => {
   );
 };
 
-export default VillaCard;
+export default ScrollableVillaCards;

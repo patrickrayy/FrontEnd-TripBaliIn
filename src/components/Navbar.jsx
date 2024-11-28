@@ -10,8 +10,8 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn'); // Hapus status login dari localStorage
-    navigate('/login'); // Redirect ke halaman login
+    localStorage.removeItem('isLoggedIn');
+    navigate('/login');
   };
 
   const loggedOutLinks = [
@@ -41,10 +41,12 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
               style={{
                 ...styles.link,
                 fontWeight: hovered === index ? 'bold' : 'normal',
+                transition: 'font-weight 0.2s ease-in-out', // Smooth transition
               }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               key={link.label}
+              aria-label={link.label} // Accessibility improvement
             >
               {link.label}
             </Link>
@@ -54,19 +56,35 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
       <div style={styles.rightContainer}>
         {!isLoggedIn ? (
           <>
-            <button style={styles.button} onClick={() => navigate('/login')}>Login</button>
-            <button style={styles.registerButton} onClick={() => navigate('/register')}>Register</button>
+            <button
+              style={styles.button}
+              onClick={() => navigate('/login')}
+              aria-label="Login"
+            >
+              Login
+            </button>
+            <button
+              style={styles.registerButton}
+              onClick={() => navigate('/register')}
+              aria-label="Register"
+            >
+              Register
+            </button>
           </>
         ) : (
           <>
-            <Link to="/profile">
+            <Link to="/profile" aria-label="Profile">
               <img
                 src="/assets/images/profil.png"
                 alt="Profile"
                 style={styles.profileIcon}
               />
             </Link>
-            <button style={styles.logoutButton} onClick={handleLogout}>
+            <button
+              style={styles.logoutButton}
+              onClick={handleLogout}
+              aria-label="Logout"
+            >
               Logout
             </button>
           </>
@@ -81,7 +99,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '0',
+    padding: '0 20px', // Add padding to the left and right
     backgroundColor: '#0F67B1',
     color: 'white',
     width: '100%',
@@ -90,6 +108,7 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 1000,
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
   },
   logo: {
     display: 'flex',
@@ -115,6 +134,9 @@ const styles = {
     color: 'white',
     textDecoration: 'none',
     fontSize: '1em',
+    padding: '10px',
+    borderRadius: '5px',
+    transition: 'background-color 0.3s ease',
   },
   rightContainer: {
     display: 'flex',

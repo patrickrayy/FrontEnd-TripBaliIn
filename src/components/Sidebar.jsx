@@ -36,6 +36,7 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     top: "50px",
+    fontFamily: "Montserrat, sans-serif"
   },
   profile: {
     textAlign: "center",

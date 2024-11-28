@@ -1,4 +1,3 @@
-import { height, width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import React from "react";
 
 function Footer() {
@@ -8,69 +7,29 @@ function Footer() {
       color: "#fff",
       padding: "30px",
       width: "100vw",
-      height: "418px",
+      height: "auto", // Make the height dynamic to accommodate content
       display: "flex",
       justifyContent: "space-around",
       alignItems: "flex-start",
       flexWrap: "wrap",
       fontFamily: "Montserrat, sans-serif",
     },
-    // section: {
-    //   flex: "1 1 200px", 
-    //   margin: "0 20px",
-    //   paddingBottom: "20px",
-    // },
-    // title: {
-    //   fontWeight: "bold",
-    //   fontSize: "15px",
-    //   marginBottom: "20px",
-    // },
-    // listItem: {
-    //   fontWeight: "normal",
-    //   fontSize: "14px",
-    //   marginBottom: "8px",
-    // },
-    languageCurrency: {
-      display: "flex",
-      flexDirection: "column",
+    section: {
+      flex: "1 1 200px", // Allow sections to shrink and grow
+      margin: "0 20px",
+      marginTop: "70px",
     },
-    // dropdown: {
-    //   width: "150px",
-    //   padding: "8px",
-    //   marginBottom: "10px",
-    //   borderRadius: "4px",
-    //   border: "1px solid #ccc",
-    // },
-    paymentIcons: {
-      display: "grid",
-      gridTemplateColumns: "repeat(5, 0.01fr)",
-      gap: "5px",
-      marginTop: "10px",
+    title: {
+      fontSize: "15px",
+      fontWeight: "700",
+      marginBottom: "20px",
+      textAlign: "left",
     },
-    paymentIcon: {
-      width: "50px",
-      height: "25px",
-      objectFit: "contain",
-    },
-    // copyright: {
-    //   backgroundColor: "#054D89",
-    //   textAlign: "center",
-    //   padding: "10px",
-    //   color: "#fff",
-    //   fontFamily:'',
-    //   // marginTop: "20px",
-    //   fontSize: "14px",
-    // },
     listItem: {
       textAlign: "left",
       fontSize: "15px",
     },
     dropdown: {
-      // backgroundColor: "#0F67B1",
-      // width: "210px",
-      // height: "48px",
-      // borderColor: "#fff",
-      // borderRadius: "3px",
       backgroundColor: "#0F67B1",
       width: "210px",
       height: "48px",
@@ -81,38 +40,37 @@ function Footer() {
       fontSize: "14px",
       marginBottom: "10px",
     },
-    title: {
-      fontSize: "15px",
-      fontWeight: "700",
-      marginBottom: "20px",
-      textAlign: "left"
-    },
-
     dropdownTitle: {
       fontSize: "15px",
       fontWeight: "700",
       marginBottom: "10px",
       textAlign: "left",
-      marginLeft: "80px"
+      marginLeft: "80px",
     },
-    section: {
-      flex: "1 1 200px",
-      margin: "0 20px",
-      marginTop: "70px",
+    paymentIcons: {
+      display: "grid",
+      gridTemplateColumns: "repeat(5, 1fr)",
+      gap: "5px",
+      marginTop: "10px",
+    },
+    paymentIcon: {
+      width: "50px",
+      height: "25px",
+      objectFit: "contain",
     },
     copyright: {
       backgroundColor: "#0F67B1",
       color: "#fff",
       width: "100vw",
       height: "60px",
-      display: "flex", 
-      justifyContent: "center", 
-      alignItems: "center", 
-      textAlign: "center", 
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      textAlign: "center",
       fontFamily: "Montserrat, sans-serif",
       fontSize: "14px",
-      fontWeight: "650"
-    }
+      fontWeight: "650",
+    },
   };
 
   return (

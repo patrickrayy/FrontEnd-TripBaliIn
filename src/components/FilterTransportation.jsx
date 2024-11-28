@@ -1,7 +1,28 @@
-import React, { useState }from 'react';
+import React, { useState } from 'react';
 
 const FilterTransportation = () => {
-  
+  // State for form inputs
+  const [vehicle, setVehicle] = useState('motor');
+  const [location, setLocation] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+
+  // Handle form submissions
+  const handleSearch = () => {
+    const filterData = {
+      vehicle,
+      location,
+      startDate,
+      endDate,
+      startTime,
+      endTime,
+    };
+    console.log('Search with filters:', filterData);
+    // You can call an API or filter data here based on the form inputs
+  };
+
   return (
     <div style={styles.container}>
       <div style={styles.vehicleCategory} className="vehicle-categories">
@@ -9,22 +30,25 @@ const FilterTransportation = () => {
         <form style={styles.formVehicle}>
           <div>
             <input
-              defaultChecked
+              checked={vehicle === 'motor'}
               style={styles.radioInput}
               type="radio"
               id="motor"
               name="vehicle"
               value="motor"
+              onChange={(e) => setVehicle(e.target.value)}
             />
-            <label htmlFor="motor"/>Motor
+            <label htmlFor="motor">Motor</label>
           </div>
           <div>
             <input
+              checked={vehicle === 'mobil'}
               style={styles.radioInput}
               type="radio"
               id="mobil"
               name="vehicle"
               value="mobil"
+              onChange={(e) => setVehicle(e.target.value)}
             />
             <label htmlFor="mobil">Mobil</label>
           </div>
@@ -33,7 +57,13 @@ const FilterTransportation = () => {
       </div>
       <div style={styles.containerSection} className="location">
         <h1 style={styles.h1Font}>Lokasi</h1>
-        <select style={styles.containerInput} name="location" id="location">
+        <select
+          style={styles.containerInput}
+          name="location"
+          id="location"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+        >
           <option value="">Lokasi</option>
           <option value="depok">Depok</option>
           <option value="jakarta">Jakarta</option>
@@ -47,6 +77,8 @@ const FilterTransportation = () => {
             type="date"
             name="date-start"
             id="date-start"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
           />
         </div>
         <div>
@@ -56,6 +88,8 @@ const FilterTransportation = () => {
             type="date"
             name="date-end"
             id="date-end"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
         <div style={styles.containerSection}>
@@ -65,6 +99,8 @@ const FilterTransportation = () => {
             type="time"
             name="time-start"
             id="time-start"
+            value={startTime}
+            onChange={(e) => setStartTime(e.target.value)}
           />
         </div>
         <div>
@@ -74,9 +110,13 @@ const FilterTransportation = () => {
             type="time"
             name="time-end"
             id="time-end"
+            value={endTime}
+            onChange={(e) => setEndTime(e.target.value)}
           />
         </div>
-        <button style={styles.buttonSearch}>Search</button>
+        <button style={styles.buttonSearch} onClick={handleSearch}>
+          Search
+        </button>
       </div>
     </div>
   );
@@ -109,7 +149,6 @@ const styles = {
   containerSection: {
     margin: "10px 0",
   },
-  labelInput: {},
   formVehicle: {
     margin: "-4px 0 0 0",
     display: "flex",

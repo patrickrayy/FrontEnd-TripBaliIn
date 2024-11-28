@@ -135,14 +135,14 @@ const AccommodationPage = () => {
       {/* Search Bar */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginBottom: "20px" }}>
         <div>
-          <h1 style={{ fontSize: "32px", fontFamily: "Montserrat", fontWeight: "700", marginBottom: "20px", textAlign: "left" }}>
+          <h1 style={{ fontSize: "32px", fontFamily: "Montserrat", fontWeight: "700", marginBottom: "20px", textAlign: "left", marginLeft:"290px" }}>
             Good deals at Villas
           </h1>
-          <p style={{ fontSize: "18px", fontFamily: "Montserrat", fontWeight: "550", color: "#6f6f6f" }}>
+          <p style={{ fontSize: "18px", fontFamily: "Montserrat", fontWeight: "550", color: "#6f6f6f",marginLeft:"290px"  }}>
             Stay with your loved ones at deluxe villas at the best price!
           </p>
         </div>
-        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: "300px" }}>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: "300px", }}>
           <input
             type="text"
             placeholder="Search by title or location"
@@ -156,6 +156,8 @@ const AccommodationPage = () => {
               border: "1px solid #ccc",
               borderRadius: "5px",
               marginRight: "10px",
+              color:"#000",
+              backgroundColor: "#e9e9e9"
             }}
           />
           <button

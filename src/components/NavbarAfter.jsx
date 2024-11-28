@@ -9,7 +9,9 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
   const handleMouseLeave = () => setHovered(null);
 
   const handleLogout = () => {
-
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn'); // Clear login status from localStorage
+    navigate('/login'); // Redirect to login page
   };
 
   const links = [
@@ -32,10 +34,12 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
               style={{
                 ...styles.link,
                 fontWeight: hovered === index ? 'bold' : 'normal',
+                transition: 'font-weight 0.2s ease-in-out',
               }}
               onMouseEnter={() => handleMouseEnter(index)}
               onMouseLeave={handleMouseLeave}
               key={link.label}
+              aria-label={link.label} 
             >
               {link.label}
             </Link>
@@ -43,15 +47,22 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
         </div>
       </div>
       <div style={styles.rightContainer}>
-        {/* Foto Profil dan Tombol Logout */}
+        {/* Profile and Logout Button */}
         <div style={styles.profileContainer}>
-          <Link to="/profile"> {/* Menggunakan Link untuk navigasi */}
+          <Link to="/profile" aria-label="Go to Profile">
             <img
               src="/assets/images/profil.png"
               alt="Profile"
               style={styles.profileIcon}
             />
           </Link>
+          <button
+            style={styles.logoutButton}
+            onClick={handleLogout}
+            aria-label="Logout"
+          >
+            Logout
+          </button>
         </div>
       </div>
     </nav>
@@ -63,7 +74,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '0',
+    padding: '0 20px', 
     backgroundColor: '#0F67B1',
     color: 'white',
     width: '100%',
@@ -72,11 +83,11 @@ const styles = {
     top: 0,
     left: 0,
     zIndex: 1000,
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', 
   },
   logo: {
     display: 'flex',
     alignItems: 'center',
-    marginLeft: '120px',
   },
   logoImage: {
     width: '130px',
@@ -84,12 +95,11 @@ const styles = {
   navLinks: {
     display: 'flex',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center', 
   },
   navLinksnav: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '85px',
     gap: '16px',
     fontFamily: 'Montserrat, sans-serif',
     fontSize: '20px',
@@ -98,11 +108,13 @@ const styles = {
     color: 'white',
     textDecoration: 'none',
     fontSize: '1em',
+    padding: '10px',
+    borderRadius: '5px',
+    transition: 'background-color 0.3s ease',
   },
   rightContainer: {
     display: 'flex',
     alignItems: 'center',
-    marginRight: '120px',
     gap: '10px',
   },
   profileContainer: {
@@ -113,7 +125,7 @@ const styles = {
   profileIcon: {
     width: '40px',
     height: '40px',
-    borderRadius: '50%', 
+    borderRadius: '50%',
     cursor: 'pointer',
   },
   logoutButton: {

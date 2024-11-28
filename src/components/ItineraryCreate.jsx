@@ -8,14 +8,16 @@ const ItineraryCreate = ({ onCreate }) => {
   const [foodAttractions, setFoodAttractions] = useState([]);
   const [otherAttractions, setOtherAttractions] = useState([]);
   const [startDate, setStartDate] = useState(new Date());
-  const [activities, setActivities] = useState([
-    { day: 1, rundown: [{ time: '', description: '' }] },
-  ]);
+  const [activities, setActivities] = useState([{ day: 1, rundown: [{ time: '', description: '' }] }]);
   const [itineraryTitle, setItineraryTitle] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state for submit button
 
   const handleAddDay = () => {
-    setDays((prev) => prev + 1);
-    setActivities((prev) => [...prev, { day: days + 1, rundown: [{ time: '', description: '' }] }]);
+    setDays(prev => prev + 1);
+    setActivities(prev => [
+      ...prev,
+      { day: days + 1, rundown: [{ time: '', description: '' }] }
+    ]);
   };
 
   const handleActivityChange = (day, index, field, value) => {
@@ -34,11 +36,11 @@ const ItineraryCreate = ({ onCreate }) => {
     if (value.trim() === '') return;
 
     if (category === 'cultural') {
-      setCulturalAttractions((prev) => [...prev, value]);
+      setCulturalAttractions(prev => [...prev, value]);
     } else if (category === 'food') {
-      setFoodAttractions((prev) => [...prev, value]);
+      setFoodAttractions(prev => [...prev, value]);
     } else if (category === 'other') {
-      setOtherAttractions((prev) => [...prev, value]);
+      setOtherAttractions(prev => [...prev, value]);
     }
   };
 
@@ -49,6 +51,12 @@ const ItineraryCreate = ({ onCreate }) => {
   };
 
   const handleSubmit = () => {
+    if (!itineraryTitle || culturalAttractions.length === 0) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    setLoading(true); // Show loading indicator
     const itineraryData = {
       title: itineraryTitle,
       startDate,
@@ -59,7 +67,13 @@ const ItineraryCreate = ({ onCreate }) => {
       foodAttractions,
       otherAttractions,
     };
-    onCreate(itineraryData);
+
+    // Simulate delay (e.g., API call)
+    setTimeout(() => {
+      onCreate(itineraryData);
+      setLoading(false);
+      alert('Itinerary created successfully!');
+    }, 2000);
   };
 
   return (
@@ -129,17 +143,12 @@ const ItineraryCreate = ({ onCreate }) => {
                 type="text"
                 placeholder={`Activity ${index + 1}`}
                 value={item.description}
-                onChange={(e) =>
-                  handleActivityChange(activity.day, index, 'description', e.target.value)
-                }
+                onChange={(e) => handleActivityChange(activity.day, index, 'description', e.target.value)}
                 style={styles.input}
               />
             </div>
           ))}
-          <button
-            onClick={() => handleAddRundown(activity.day)}
-            style={styles.button}
-          >
+          <button onClick={() => handleAddRundown(activity.day)} style={styles.button}>
             + Add Activity
           </button>
         </div>
@@ -209,8 +218,8 @@ const ItineraryCreate = ({ onCreate }) => {
       </div>
 
       {/* Submit Button */}
-      <button onClick={handleSubmit} style={styles.submitButton}>
-        Create Itinerary
+      <button onClick={handleSubmit} style={styles.submitButton} disabled={loading}>
+        {loading ? 'Creating...' : 'Create Itinerary'}
       </button>
     </div>
   );
@@ -218,7 +227,7 @@ const ItineraryCreate = ({ onCreate }) => {
 
 const styles = {
   container: { padding: '20px', fontFamily: 'Montserrat, sans-serif' },
-  title: { fontSize: '32px', marginBottom: '10px', marginTop: '50px', fontWeight:'650' },
+  title: { fontSize: '32px', marginBottom: '10px', marginTop: '50px', fontWeight: '650' },
   subtitle: { fontSize: '18px', marginBottom: '10px' },
   field: { marginBottom: '20px' },
   rundownField: { marginBottom: '10px' },
@@ -230,8 +239,8 @@ const styles = {
     border: '1px solid #ccc',
     marginBottom: '10px',
     backgroundColor: '#f0f0f0',
-    color: '#000', 
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)', 
+    color: '#000',
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
   },
   button: {
     padding: '10px 15px',

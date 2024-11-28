@@ -4,7 +4,6 @@ import { faEnvelope, faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import ContactHeader from '../components/ContactHeader';
-import { height, width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 const ContactAfter = () => {
   return (

@@ -1,5 +1,4 @@
 // src/components/AboutContent.jsx
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
@@ -45,9 +44,10 @@ const AboutContent = ({ leftContent, rightImage }) => {
       padding: '20px',
     },
     rightImage: {
-      width: '544px',
-      height: '385px',
-      borderRadius: '10',
+      width: '100%',
+      maxWidth: '544px', // Keeps image size responsive but limits to a max width
+      height: 'auto',
+      borderRadius: '10px',
     },
   };
 
@@ -55,7 +55,7 @@ const AboutContent = ({ leftContent, rightImage }) => {
     <Container style={styles.container}>
       <Row>
         {/* Left Column */}
-        <Col md={6} style={styles.leftColumn}>
+        <Col xs={12} md={6} style={styles.leftColumn}>
           {leftContent.map((section, index) => (
             <div key={index}>
               <h3 style={styles.subTitle}>
@@ -68,7 +68,7 @@ const AboutContent = ({ leftContent, rightImage }) => {
         </Col>
 
         {/* Right Column */}
-        <Col md={6} style={styles.rightColumn}>
+        <Col xs={12} md={6} style={styles.rightColumn}>
           <img src={rightImage} alt="About Us" style={styles.rightImage} />
         </Col>
       </Row>

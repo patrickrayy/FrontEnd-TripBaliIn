@@ -2,7 +2,6 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faCarSide, faStar } from '@fortawesome/free-solid-svg-icons';
 
-
 const RecommendationCard = ({ item }) => {
   return (
     <div style={styles.card}>
@@ -41,6 +40,7 @@ const styles = {
     boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
     overflow: 'hidden',
     fontFamily: 'Montserrat, open-sans',
+    transition: 'transform 0.3s ease',
   },
   cardImage: {
     width: '100%',
@@ -94,6 +94,28 @@ const styles = {
   perperson: {
     fontSize: '12px',
     color: '#666',
+  },
+  '@media (max-width: 768px)': {
+    card: {
+      width: '100%',
+      height: 'auto',
+      marginBottom: '20px',
+    },
+    cardTitle: {
+      fontSize: '18px',
+    },
+    infoText: {
+      fontSize: '12px',
+    },
+    ratingSection: {
+      fontSize: '12px',
+    },
+    price: {
+      fontSize: '14px',
+    },
+    perperson: {
+      fontSize: '10px',
+    },
   },
 };
 

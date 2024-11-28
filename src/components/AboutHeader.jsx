@@ -1,8 +1,8 @@
 // src/components/AboutHeader.jsx
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import React from "react";
 
 const AboutHeader = ({ title, backgroundImage }) => {
+  
   const styles = {
     header: {
       width: '100%',
@@ -20,6 +20,7 @@ const AboutHeader = ({ title, backgroundImage }) => {
       color: '#fff',
       fontFamily: 'Montserrat, sans-serif',
       fontSize: '20px',
+      padding: '0 15px', 
     },
     title: {
       margin: 0,
@@ -27,9 +28,13 @@ const AboutHeader = ({ title, backgroundImage }) => {
       fontWeight: '650',
     },
     image: {
-      marginTop: '30px',
       width: '100%',
       height: 'auto',
+    },
+    '@media (max-width: 768px)': {
+      title: {
+        fontSize: '30px', 
+      },
     },
   };
 

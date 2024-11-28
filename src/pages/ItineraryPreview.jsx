@@ -268,7 +268,7 @@ const ItineraryPreview = () => {
               {/* Culture Attractions */}
               <div style={styles.cultureAttractions}>
                 <h3 style={styles.attractionstitle}>Culture Attractions</h3>
-                <ul>
+                <ul>  
                   {itineraryData.cultureAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
