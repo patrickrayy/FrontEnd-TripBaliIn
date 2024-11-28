@@ -22,7 +22,7 @@ const PaymentPage = () => {
   };
 
   return (
-    <div style={{ padding: "40px", maxWidth: "800px", margin: "0 auto" }}>
+    <div style={{ padding: "40px",fontFamily: "Montserrat, sans-serif", maxWidth: "800px", margin: "0 auto",marginTop:"70px",marginLeft: "calc((100vw - 800px) / 2 - 20px)",  }}>
       <NavbarAfter />
       <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Payment</h1>
       <p style={{ textAlign: "center", marginBottom: "30px", color: "#888" }}>
@@ -55,7 +55,7 @@ const PaymentPage = () => {
         </div>
 
         {/* Form Pembayaran */}
-        <div style={{ width: "50%" }}>
+        <div style={{ width: "50%",fontFamily: "Montserrat, sans-serif", }}>
           <input type="text" placeholder="Payment card number" style={inputStyle} />
           <select style={inputStyle}>
             <option value="">Select Bank</option>
@@ -73,11 +73,9 @@ const PaymentPage = () => {
       </div>
 
       {/* Tombol Pay Now dan Cancel */}
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <button onClick={handlePayNow} style={payNowStyle}>Pay Now</button>
-        <button onClick={handleCancel} style={cancelStyle}>
-          Cancel
-        </button>
+      <div style={{ textAlign: "center", marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px",fontFamily: "Montserrat, sans-serif", }}>
+  <button onClick={handlePayNow} style={payNowStyle}>Pay Now</button>
+  <button onClick={handleCancel} style={cancelStyle}>Cancel</button>
       </div>
     </div>
   );
@@ -101,6 +99,7 @@ const buttonStyle = {
   padding: "10px 20px",
   fontSize: "16px",
   cursor: "pointer",
+  fontFamily: "Montserrat, sans-serif",
 };
 
 const payNowStyle = { ...buttonStyle, width: "150px", marginRight: "10px" };

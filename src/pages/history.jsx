@@ -96,12 +96,13 @@ const styles = {
     fontWeight: "bold", // Teks tebal
     color: "#007BFF", // Warna abu-abu
     marginBottom: "20px", // Jarak bawah
-    fontFamily: "'Arial', sans-serif", // Font
+    fontFamily: "Montserrat, sans-serif", // Font
     textAlign: "left",
   },
   breadcrumbLink: {
     color: "#6F6F6F", // Warna biru untuk "Home"
     cursor: "pointer", // Tunjukkan sebagai link
+    fontFamily: "Montserrat, sans-serif",
   },
   backButton: {
     backgroundColor: "#007BFF",
@@ -114,6 +115,7 @@ const styles = {
     cursor: "pointer",
     marginTop: "20px",
     textAlign: "center",
+    fontFamily: "Montserrat, sans-serif",
   },
 };
 

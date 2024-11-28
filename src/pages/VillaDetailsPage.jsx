@@ -49,6 +49,8 @@ const VillaDetailsPage = () => {
             marginTop: "30px",
             flexWrap: "wrap", // Ensures that on small screens, the layout adjusts
             gap: "5px", // Space between the description and booking info
+            textAlign: "justify", // Makes text justified
+            fontFamily: "'Montserrat', sans-serif",
           }}
         >
           {/* Villa Description (Left Side) */}
@@ -69,6 +71,7 @@ const VillaDetailsPage = () => {
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              fontFamily: "Montserrat, sans-serif",
             }}
           >
            <div
@@ -85,6 +88,7 @@ const VillaDetailsPage = () => {
       fontSize: "18px", // Smaller font for the "Start Booking"
       fontWeight: "600", // Slightly lighter weight
       color: "#333", // Darker color for the "Start Booking"
+      fontFamily: "Montserrat, sans-serif",
     }}
   >
     Start Booking:
@@ -97,6 +101,7 @@ const VillaDetailsPage = () => {
       fontWeight: "300", // Bold weight for the price
       color: "red", // Red color for the price to make it stand out
       marginTop: "5px", // Small gap between "Start Booking" and price
+      fontFamily: "Montserrat, sans-serif",
     }}
   >
     IDR {villa.price} /per Night
@@ -115,6 +120,7 @@ const VillaDetailsPage = () => {
       cursor: "pointer",
       marginTop: "20px",
       width: "100%",
+      fontFamily: "Montserrat, sans-serif",
     }}
   >
     Book Now
@@ -130,6 +136,7 @@ const VillaDetailsPage = () => {
             justifyContent: "space-between",
             marginTop: "40px",
             flexWrap: "wrap",
+            fontFamily: "Montserrat, sans-serif",
           }}
         >
           <div style={{ textAlign: "center", width: "15%" }}>

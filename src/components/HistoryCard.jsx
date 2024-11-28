@@ -95,6 +95,7 @@ const styles = {
     width: "100%",
     height: "240px",
     position: "relative",
+    fontFamily: "Montserrat, sans-serif",
   },
   image: {
     width: "340px",
@@ -112,17 +113,20 @@ const styles = {
     fontWeight: "bold",
     margin: "0 0 5px 0",
     textAlign: "left",
+    fontFamily: "Montserrat, sans-serif",
   },
   address: {
     fontSize: "14px",
     color: "#6F6F6F",
     marginBottom: "10px",
     textAlign: "left",
+    fontFamily: "Montserrat, sans-serif",
   },
   rating: {
     display: "flex",
     alignItems: "center",
     marginBottom: "10px",
+    fontFamily: "Montserrat, sans-serif",
   },
   reviewValue: {
     fontSize: "12px",
@@ -138,11 +142,13 @@ const styles = {
     marginTop: "20px",
     alignItems: "flex-start",
     position: "relative",
+    fontFamily: "Montserrat, sans-serif",
   },
   checkIn: {
     textAlign: "left",
     flex: 1, // Membagi ruang secara proporsional
     paddingRight: "10px",
+    fontFamily: "Montserrat, sans-serif",
   },
   checkOut: {
     textAlign: "left",
@@ -150,12 +156,14 @@ const styles = {
     paddingLeft: "200px",
     marginTop: "-90px",
     justifyContent: "center",
+    fontFamily: "Montserrat, sans-serif",
   },
   dateLabel: {
     fontSize: "14px",
     fontWeight: "bold",
     marginBottom: "5px",
     color: "#333",
+    fontFamily: "Montserrat, sans-serif",
   },
   date: {
     fontSize: "16px",
@@ -163,14 +171,17 @@ const styles = {
     color: "#333",
     marginBottom: "5px",
     marginTop: "-10px",
+    fontFamily: "Montserrat, sans-serif",
   },
   time: {
     fontSize: "12px",
     color: "#6F6F6F",
+    fontFamily: "Montserrat, sans-serif",
   },
   priceSection: {
     textAlign: "right",
     marginLeft: "20px",
+    fontFamily: "Montserrat, sans-serif",
   },
   price: {
     fontSize: "20px",
@@ -179,6 +190,7 @@ const styles = {
     position: "absolute", // Agar berada di pojok kanan atas
     top: "40px", // Jarak dari atas
     right: "10px",
+    fontFamily: "Montserrat, sans-serif",
   },
   taxesInfo: {
     fontSize: "12px",
@@ -186,6 +198,7 @@ const styles = {
     position: "absolute", // Agar berada di pojok kanan atas
     top: "68px", // Jarak dari atas
     right: "10px",
+    fontFamily: "Montserrat, sans-serif",
   },
   roomDaysInfo: {
     fontSize: "14px",
@@ -195,6 +208,7 @@ const styles = {
     position: "absolute", // Agar berada di pojok kanan atas
     top: "15px", // Jarak dari atas
     right: "10px", // Jarak dari kanan
+    fontFamily: "Montserrat, sans-serif",
   },
 };
 

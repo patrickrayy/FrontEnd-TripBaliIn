@@ -34,12 +34,13 @@ const BookingPage = () => {
   };
 
   return (
-    <div style={{ padding: "40px", maxWidth: "1200px", margin: "0 auto" }}>
+    <div style={{ padding: "160px", maxWidth: "1200px", margin: "0 auto" }}>
       <NavbarAfter />
-      <h1 style={{ textAlign: "center", marginBottom: "5px" }}>Booking Information</h1>
+      <h1 style={{ textAlign: "center", marginLeft: "150px", marginBottom: "4px",fontFamily: "Montserrat, sans-serif"}}>Booking Information</h1>
+      <p style={{ textAlign: "center", marginLeft: "150px", marginBottom: "30px",fontFamily: "Montserrat, sans-serif"}}>Please fill up the blank fields below</p>
 
       {/* Konten Booking */}
-      <div style={{ display: "flex", justifyContent: "center", border: "1px solid #ddd", borderRadius: "8px", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", width: "1000px", margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", border: "1px solid #ddd", borderRadius: "8px", padding: "20px", boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)", width: "1000px", margin: "0 auto",fontFamily: "Montserrat, sans-serif" }}>
         <img src={villa.image} alt={villa.title} style={{ width: "45%", borderRadius: "8px" }} />
         <div style={{ width: "50%", paddingLeft: "20px" }}>
           <h2>{villa.title}</h2>
@@ -54,7 +55,7 @@ const BookingPage = () => {
 
           {/* Pilihan Tanggal */}
           <div style={{ marginTop: "20px" }}>
-            <label style={{ display: "block", marginBottom: "5px" }}>Pick a Date:</label>
+            <label style={{ display: "block", marginBottom: "5px",fontFamily: "Montserrat, sans-serif",}}>Pick a Date:</label>
             <input
               type="date"
               value={selectedDate}
@@ -71,10 +72,27 @@ const BookingPage = () => {
       </div>
 
       {/* Tombol Booking dan Cancel */}
-      <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <button onClick={handleBooking} style={bookNowStyle}>Book Now</button>
-        <button onClick={handleCancel} style={cancelStyle}>Cancel</button>
-      </div>
+      <div
+  style={{
+    textAlign: "center",
+    marginLeft: "140px",
+    marginTop: "30px",
+    fontFamily: "Montserrat, sans-serif",
+  }}
+>
+  <button
+    onClick={handleBooking}
+    style={{ ...bookNowStyle, marginLeft: "300px", display: "block", marginBottom: "10px",fontFamily: "Montserrat, sans-serif", }}
+  >
+    Book Now
+  </button>
+  <button
+    onClick={handleCancel}
+    style={{ ...cancelStyle, display: "block", marginLeft: "300px", fontFamily: "Montserrat, sans-serif", }}
+  >
+    Cancel
+  </button>
+</div>
     </div>
   );
 };
@@ -88,6 +106,7 @@ const buttonStyle = {
   padding: "10px 20px",
   fontSize: "16px",
   cursor: "pointer",
+  fontFamily: "Montserrat, sans-serif",
 };
 
 // Style untuk tombol Book Now dan Cancel
