@@ -68,8 +68,8 @@ const AcoContent = () => {
     },
     mainTitle: {
       marginTop: "100px",
-      position: "absolute", 
-      zIndex: 2, 
+      position: "relative",
+      zIndex: 2,
       color: "#fff",
     },
     mainTitleH1: {
@@ -77,33 +77,34 @@ const AcoContent = () => {
       fontWeight: "bold",
       marginBottom: "10px",
       marginLeft: "60px",
-      marginTop: "80px",
+      marginTop: "100px",
       color: "black",
-      textAlign: "center"
+      textAlign: "center",
     },
     mainTitleP: {
       fontSize: "18px",
-      color: "black"
+      color: "black",
     },
     imageSection: {
       position: "relative",
-      marginTop: "310px",
+      marginTop: "410px",
       marginBottom: "40px",
-      width: "1139px", 
-      height: "500px", 
-      overflow: "hidden", 
-      borderRadius: "10px"
+      width: "100%", // Updated for responsiveness
+      maxWidth: "1139px", // Limits max width
+      height: "auto", // Make image height responsive
+      // overflow: "hidden",
+      borderRadius: "10px",
     },
     mainImage: {
       width: "100%",
       height: "100%",
-      objectFit: "cover", 
+      objectFit: "cover",
+      marginTop:"-355px"
     },
-    offers : {
+    offers: {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      color: "",
       gap: "20px",
       margin: "50px auto",
       maxWidth: "1200px",
@@ -117,23 +118,23 @@ const AcoContent = () => {
       fontSize: "32px",
       fontWeight: "bold",
       marginBottom: "10px",
-      textAlign: "left"
+      marginRight: "150px",
     },
     description: {
       fontSize: "16px",
       color: "#666",
       textAlign: "left",
-      fontWeight: "550"
+      fontWeight: "550",
     },
     scrollableSection: {
       flex: 1,
       position: "relative",
-      overflow: "hidden", 
+      overflow: "hidden",
     },
     scrollableWrapper: {
       display: "flex",
       gap: "25px",
-      overflowX: "auto", 
+      overflowX: "auto",
       scrollBehavior: "smooth",
       padding: "10px 0",
     },
@@ -160,14 +161,12 @@ const AcoContent = () => {
       fontWeight: "bold",
       color: "#fff",
       marginBottom: "10px",
-      marginRight:"482px"
     },
     discount: {
       fontSize: "36px",
       fontWeight: "bold",
       color: "#fff",
       marginBottom: "10px",
-      marginRight:"500px"
     },
     codeContainer: {
       display: "flex",
@@ -179,7 +178,6 @@ const AcoContent = () => {
       borderRadius: "5px",
       fontSize: "8px",
       marginBottom: "5px",
-      marginLeft: "-5px",
       fontWeight: "550",
     },
     description: {
@@ -218,50 +216,49 @@ const AcoContent = () => {
 
   return (
     <div style={styles.container}>
-        <div style={styles.mainTitle}>
-          <h1 style={styles.mainTitleH1}>Chase Elegance. Reserve Your Dream Stay Now.</h1>
-          <p style={styles.mainTitleP}>
+      <div style={styles.mainTitle}>
+        <h1 style={styles.mainTitleH1}>Chase Elegance. Reserve Your Dream Stay Now.</h1>
+        <p style={styles.mainTitleP}>
           From classic, elegant to modern and minimalist, you can find it here
         </p>
-        </div>
-        <div style={styles.imageSection}>
-          <img
-            src="/assets/images/acocontent.png"
-            alt="Beautiful Accommodation"
-            style={styles.mainImage}
-          />
-        </div>
-    <div style={styles.offers}>
-      {/* Text Section */}
-      <div style={styles.textSection}>
-        <h2 style={styles.title}>Special offers for you</h2>
-        <p style={styles.description}>
-          Enjoy exclusive discounts and special offers for your holidays!
-        </p>
       </div>
+      <div style={styles.imageSection}>
+        <img
+          src="/assets/images/acocontent.png"
+          alt="Beautiful Accommodation"
+          style={styles.mainImage}
+        />
+      </div>
+      <div style={styles.offers}>
+        {/* Text Section */}
+        <div style={styles.textSection}>
+          <h2 style={styles.title}>Special offers for you</h2>
+          <p style={styles.description}>
+            Enjoy exclusive discounts and special offers for your holidays!
+          </p>
+        </div>
 
-      {/* Scrollable Section */}
-      <div style={styles.scrollableSection}>
-        {/* Scrollable Cards */}
-        <div style={styles.scrollableWrapper} ref={scrollContainer}>
-          {offers.map((offer, index) => (
-            <div key={index} style={{ flexShrink: 0 }}>
-              <div style={cardStyles.card}>
-                <div style={cardStyles.content}>
-                  <h3 style={cardStyles.title}>{offer.title}</h3>
-                  <p style={cardStyles.discount}>{offer.discount}</p>
-                  <div style={cardStyles.codeContainer}>Kode promo: {offer.code}</div>
-                  <p style={cardStyles.description}>{offer.description}</p>
+        {/* Scrollable Section */}
+        <div style={styles.scrollableSection}>
+          <div style={styles.scrollableWrapper} ref={scrollContainer}>
+            {offers.map((offer, index) => (
+              <div key={index} style={{ flexShrink: 0 }}>
+                <div style={cardStyles.card}>
+                  <div style={cardStyles.content}>
+                    <h3 style={cardStyles.title}>{offer.title}</h3>
+                    <p style={cardStyles.discount}>{offer.discount}</p>
+                    <div style={cardStyles.codeContainer}>Kode promo: {offer.code}</div>
+                    <p style={cardStyles.description}>{offer.description}</p>
+                  </div>
+                  <div style={cardStyles.shape}></div>
+                  <img src={offer.image} alt={offer.title} style={cardStyles.image} />
+                  <div style={cardStyles.overlay}></div>
                 </div>
-                <div style={cardStyles.shape}></div>
-                <img src={offer.image} alt={offer.title} style={cardStyles.image} />
-                <div style={cardStyles.overlay}></div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

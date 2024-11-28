@@ -7,22 +7,26 @@ const ExploreImage = ({ images }) => {
       justifyContent: 'center',
       gap: '10px',
       marginBottom: '30px',
+      flexWrap: 'wrap',  // Ensures the images wrap on small screens
     },
     leftColumn: {
       display: 'flex',
       flexDirection: 'column',
       gap: '10px',
       flex: '1',
+      width: '100%',
     },
     bottomRow: {
       display: 'flex',
       gap: '10px',
+      width: '100%',
     },
     rightColumn: {
       display: 'flex',
       flexDirection: 'column',
       gap: '10px',
       flex: '0.5',
+      width: '100%',
     },
     imageContainer: {
       position: 'relative',
@@ -65,6 +69,30 @@ const ExploreImage = ({ images }) => {
     mediumImage: {
       width: '48.5%',
       height: '400px',
+    },
+
+    // Responsive Styles
+    '@media (max-width: 768px)': {
+      gridContainer: {
+        flexDirection: 'column', // Stack columns vertically on mobile
+        alignItems: 'center',    // Center align on small screens
+      },
+      leftColumn: {
+        width: '100%',  // Full width for left column on smaller screens
+      },
+      rightColumn: {
+        width: '100%',  // Full width for right column on smaller screens
+      },
+      largeImage: {
+        height: '300px', // Adjust height of large image for mobile
+      },
+      mediumImage: {
+        width: '100%',  // Make medium images full width on mobile
+        height: '250px', // Adjust height for mobile
+      },
+      smallImage: {
+        height: '200px', // Adjust height for smaller images on mobile
+      },
     },
   };
 

@@ -7,7 +7,7 @@ const ScrollableCard = ({ title, recommendations }) => {
   const scrollLeft = () => {
     if (containerRef.current) {
       containerRef.current.scrollBy({
-        left: -300,
+        left: -200,
         behavior: "smooth",
       });
     }
@@ -16,7 +16,7 @@ const ScrollableCard = ({ title, recommendations }) => {
   const scrollRight = () => {
     if (containerRef.current) {
       containerRef.current.scrollBy({
-        left: 300,
+        left: 200,
         behavior: "smooth",
       });
     }
@@ -51,10 +51,10 @@ const ScrollableCard = ({ title, recommendations }) => {
       justifyContent: "center",
     },
     leftButton: {
-      left: "15px",
+      left: "-25px",
     },
     rightButton: {
-      right: "15px",
+      right: "-25px",
     },
     title: {
       fontFamily: "Montserrat, sans-serif",

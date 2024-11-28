@@ -142,7 +142,6 @@ const ItineraryPreview = () => {
       fontSize: '18px',
       fontWeight: '600',
     },
-
       calendar: {
         border: 'none',
         borderRadius: '10px',
@@ -269,7 +268,7 @@ const ItineraryPreview = () => {
               {/* Culture Attractions */}
               <div style={styles.cultureAttractions}>
                 <h3 style={styles.attractionstitle}>Culture Attractions</h3>
-                <ul>
+                <ul>  
                   {itineraryData.cultureAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}

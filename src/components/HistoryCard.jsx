@@ -55,9 +55,8 @@ const HistoryCard = ({
           )}
         </div>
 
-       {/* Date Section */}
-      <div style={styles.dateSection}>
-        <div style={styles.checkIn}>
+        {/* Date Section */}
+        <div style={styles.dateSection}>
           <div style={styles.checkIn}>
             <p style={styles.label}>Check-in</p>
             <h1 style={styles.date}>{checkinDate}</h1>
@@ -69,8 +68,6 @@ const HistoryCard = ({
             <p style={styles.time}>Until {checkoutTime}</p>
           </div>
         </div>
-      </div>
-
       </div>
       <div style={styles.priceSection}>
         {roomDaysInfo && <p style={styles.roomDaysInfo}>{roomDaysInfo}</p>}
@@ -95,7 +92,6 @@ const styles = {
     width: "100%",
     height: "240px",
     position: "relative",
-    fontFamily: "Montserrat, sans-serif",
   },
   image: {
     width: "340px",
@@ -103,7 +99,6 @@ const styles = {
     borderRadius: "8px",
     objectFit: "cover",
     marginRight: "15px",
-    objectFit: "cover",
   },
   content: {
     flex: 1,
@@ -113,20 +108,17 @@ const styles = {
     fontWeight: "bold",
     margin: "0 0 5px 0",
     textAlign: "left",
-    fontFamily: "Montserrat, sans-serif",
   },
   address: {
     fontSize: "14px",
     color: "#6F6F6F",
     marginBottom: "10px",
     textAlign: "left",
-    fontFamily: "Montserrat, sans-serif",
   },
   rating: {
     display: "flex",
     alignItems: "center",
     marginBottom: "10px",
-    fontFamily: "Montserrat, sans-serif",
   },
   reviewValue: {
     fontSize: "12px",
@@ -138,77 +130,102 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     width: "100%",
-    height: "5px", // Tetapkan tinggi tetap
     marginTop: "20px",
     alignItems: "flex-start",
-    position: "relative",
-    fontFamily: "Montserrat, sans-serif",
   },
   checkIn: {
     textAlign: "left",
-    flex: 1, // Membagi ruang secara proporsional
-    paddingRight: "10px",
-    fontFamily: "Montserrat, sans-serif",
+    flex: 1,
   },
   checkOut: {
     textAlign: "left",
-    flex: 1, // Membagi ruang secara proporsional
-    paddingLeft: "200px",
-    marginTop: "-90px",
-    justifyContent: "center",
-    fontFamily: "Montserrat, sans-serif",
+    flex: 1,
+    marginTop: "20px",
   },
-  dateLabel: {
+  label: {
     fontSize: "14px",
     fontWeight: "bold",
     marginBottom: "5px",
     color: "#333",
-    fontFamily: "Montserrat, sans-serif",
   },
   date: {
     fontSize: "16px",
     fontWeight: "bold",
     color: "#333",
     marginBottom: "5px",
-    marginTop: "-10px",
-    fontFamily: "Montserrat, sans-serif",
   },
   time: {
     fontSize: "12px",
     color: "#6F6F6F",
-    fontFamily: "Montserrat, sans-serif",
   },
   priceSection: {
     textAlign: "right",
     marginLeft: "20px",
-    fontFamily: "Montserrat, sans-serif",
   },
   price: {
     fontSize: "20px",
     fontWeight: "bold",
     color: "#E83F3A",
-    position: "absolute", // Agar berada di pojok kanan atas
-    top: "40px", // Jarak dari atas
+    position: "absolute",
+    top: "40px",
     right: "10px",
-    fontFamily: "Montserrat, sans-serif",
   },
   taxesInfo: {
     fontSize: "12px",
     color: "#6F6F6F",
-    position: "absolute", // Agar berada di pojok kanan atas
-    top: "68px", // Jarak dari atas
+    position: "absolute",
+    top: "68px",
     right: "10px",
-    fontFamily: "Montserrat, sans-serif",
   },
   roomDaysInfo: {
     fontSize: "14px",
     color: "#6F6F6F",
     marginBottom: "10px",
     textAlign: "right",
-    position: "absolute", // Agar berada di pojok kanan atas
-    top: "15px", // Jarak dari atas
-    right: "10px", // Jarak dari kanan
-    fontFamily: "Montserrat, sans-serif",
+    position: "absolute",
+    top: "15px",
+    right: "10px",
+  },
+
+  // Responsive design for small screens
+  "@media (max-width: 768px)": {
+    container: {
+      flexDirection: "column",
+      height: "auto",
+      padding: "10px",
+    },
+    image: {
+      width: "100%",
+      height: "200px",
+      marginRight: "0",
+      marginBottom: "15px",
+    },
+    content: {
+      paddingLeft: "0",
+    },
+    companyName: {
+      fontSize: "16px",
+    },
+    rating: {
+      marginBottom: "5px",
+    },
+    priceSection: {
+      textAlign: "center",
+      marginLeft: "0",
+    },
+    price: {
+      position: "relative",
+      fontSize: "18px",
+    },
+    dateSection: {
+      flexDirection: "column",
+    },
+    checkIn: {
+      marginBottom: "15px",
+    },
+    checkOut: {
+      marginTop: "0",
+    },
   },
 };
 

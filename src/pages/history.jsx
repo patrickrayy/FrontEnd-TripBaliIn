@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarAfter from "../components/NavbarAfter"; // Sesuaikan path
-import Footer from "../components/Footer"; // Sesuaikan path
-import HistoryCard from "../components/HistoryCard"; // Sesuaikan path
+import NavbarAfter from "../components/NavbarAfter";
+import Footer from "../components/Footer"; 
+import HistoryCard from "../components/HistoryCard"; 
 
 const HistoryPage = () => {
   const rentalProviders = [
@@ -10,9 +10,9 @@ const HistoryPage = () => {
       ratingStar: 5,
       reviewValue: 130,
       totalPrice: "IDR 1,812,880",
-      image: "/assets/images/villa1.png", // Pastikan path ini benar
+      image: "/assets/images/villa1.png",
       address: " Jalan Dewi Saraswati III / 35, 80361 Seminyak, Indonesia",
-      roomDaysInfo: "2 rooms 2 days", // Info Room & Days
+      roomDaysInfo: "2 rooms 2 days", 
       checkinDate: "Wed, 22 Nov, 2024",
       checkoutDate: "Sun, 24 Nov, 2024",
       checkinTime: "05.00 PM",
@@ -36,7 +36,7 @@ const HistoryPage = () => {
       ratingStar: 5,
       reviewValue: 150,
       totalPrice: "IDR 2,180,890",
-      image: "/assets/images/villa3.png", // Pastikan path ini benar
+      image: "/assets/images/villa3.png",
       address: " Jalan Dewi Saraswati III / 35, 80361 Seminyak, Indonesia",
       roomDaysInfo: "1 rooms 5 days",
       checkinDate: "Wed, 16 Okt, 2024",

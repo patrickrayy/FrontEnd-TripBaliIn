@@ -23,7 +23,7 @@ const VillaDetailsPage = () => {
   return (
     <>
       <NavbarAfter />
-      <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", marginTop: "120px" }}>
+      <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", marginTop: "120px", }}>
         {/* Villa Title */}
         <h1 style={{ fontSize: "36px", fontWeight: "700" }}>{villa.title}</h1>
         <p style={{ fontSize: "18px", color: "#888" }}>{villa.location}</p>

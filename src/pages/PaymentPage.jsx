@@ -24,7 +24,7 @@ const PaymentPage = () => {
   return (
     <div style={{ padding: "40px",fontFamily: "Montserrat, sans-serif", maxWidth: "800px", margin: "0 auto",marginTop:"70px",marginLeft: "calc((100vw - 800px) / 2 - 20px)",  }}>
       <NavbarAfter />
-      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Payment</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "20px",fontWeight: "bold" }}>Payment</h1>
       <p style={{ textAlign: "center", marginBottom: "30px", color: "#888" }}>
         Kindly follow the instructions below
       </p>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Untuk navigasi
+import { useNavigate } from "react-router-dom"; 
 import NavbarAfter from "../components/NavbarAfter";
 import Footer from "../components/Footer";
 import AcoContent from "../components/AccommodationContent";
@@ -10,9 +10,8 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 const AccommodationPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredVillas, setFilteredVillas] = useState([]);
-  const navigate = useNavigate(); // Hook untuk navigasi
+  const navigate = useNavigate();
 
-  // Data villa (satu saja untuk contoh)
   const villaData = [
     {
         id: 1,
@@ -125,7 +124,6 @@ const AccommodationPage = () => {
   };
 
   const handleVillaClick = (villa) => {
-    // Navigate ke halaman detail dengan data villa yang dipilih menggunakan state
     navigate(`/villa-details/${villa.id}`, { state: { villa } });
   };
 
@@ -133,27 +131,51 @@ const AccommodationPage = () => {
     <>
       <NavbarAfter />
       <AcoContent />
-      
-      {/* Search Bar */}
-      <div style={{ display: "flex", justifyContent: "center", margin: "20px 0" }}>
-        <input
-          type="text"
-          placeholder="Search by title or location"
-          value={searchQuery}
-          onChange={(e) => handleSearch(e.target.value)}
-          style={{ width: "300px", padding: "10px", fontSize: "16px", border: "1px solid #ccc", borderRadius: "5px", marginRight: "10px" }}
-        />
-        <button style={{ padding: "10px 15px", fontSize: "16px", color: "#fff", backgroundColor: "#0F67B1", border: "none", borderRadius: "5px", cursor: "pointer" }}>
-          <FontAwesomeIcon icon={faSearch} /> Search
-        </button>
-      </div>
 
-      <h1 style={{ fontSize: "32px", fontWeight: "700", marginBottom: "20px", textAlign: "left", marginLeft: "270px" }}>
-        Good deals at Villas
-      </h1>
-      <p style={{ fontSize: "18px", fontWeight: "550", color: "#6f6f6f", marginBottom: "30px" }}>
-        Stay with your loved ones at deluxe villas at the best price!
-      </p>
+      {/* Search Bar */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "20px", marginBottom: "20px" }}>
+        <div>
+          <h1 style={{ fontSize: "32px", fontFamily: "Montserrat", fontWeight: "700", marginBottom: "20px", textAlign: "left", marginLeft:"290px" }}>
+            Good deals at Villas
+          </h1>
+          <p style={{ fontSize: "18px", fontFamily: "Montserrat", fontWeight: "550", color: "#6f6f6f",marginLeft:"290px"  }}>
+            Stay with your loved ones at deluxe villas at the best price!
+          </p>
+        </div>
+        <div style={{ display: "flex", justifyContent: "flex-end", marginRight: "300px", }}>
+          <input
+            type="text"
+            placeholder="Search by title or location"
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+            style={{
+              width: "300px",
+              padding: "10px",
+              fontSize: "16px",
+              fontFamily: "Montserrat",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+              marginRight: "10px",
+              color:"#000",
+              backgroundColor: "#e9e9e9"
+            }}
+          />
+          <button
+            style={{
+              padding: "10px 15px",
+              fontSize: "16px",
+              fontFamily: "Montserrat",
+              color: "#fff",
+              backgroundColor: "#0F67B1",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            <FontAwesomeIcon icon={faSearch} /> Search
+          </button>
+        </div>
+      </div>
 
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around", padding: "20px" }}>
         {(searchQuery ? filteredVillas : villaData).map((villa) => (
