@@ -53,7 +53,7 @@ const styles = {
     margin: "20px",
     borderRadius: "10px",
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
-    maxWidth: "800px",
+    // maxWidth: "800px",
     marginLeft: "auto",
     marginRight: "auto",
   },
@@ -120,27 +120,6 @@ const styles = {
     cursor: "pointer",
     width: "120px",
     fontWeight: "bold",
-  },
-  "@media (max-width: 768px)": {
-    container: {
-      padding: "20px",
-      margin: "10px",
-    },
-    heading1: {
-      fontSize: "20px",
-    },
-    heading2: {
-      fontSize: "20px",
-    },
-    input: {
-      fontSize: "12px",
-    },
-    saveButton: {
-      width: "100%",
-    },
-    cancelButton: {
-      width: "100%",
-    },
   },
 };
 

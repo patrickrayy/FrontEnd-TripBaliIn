@@ -29,12 +29,14 @@ const PopularCategories = () => {
             onMouseLeave={handleMouseLeave}
           >
             <div style={styles.iconContainer}>
-              <img
-                src={category.icon}
-                alt={category.label}
-                style={styles.icon}
-                loading="lazy"
-              />
+              <div style={styles.circle}>
+                <img
+                  src={category.icon}
+                  alt={category.label}
+                  style={styles.icon}
+                  loading="lazy"
+                />
+              </div>
             </div>
             <p style={styles.categoryText}>{category.label}</p>
           </Link>
@@ -65,7 +67,7 @@ const styles = {
   category: {
     textAlign: 'center',
     transition: 'transform 0.3s ease, background-color 0.3s ease',
-    width: '150px', 
+    width: '150px',
     padding: '10px',
     display: 'flex',
     marginTop: '60px',
@@ -77,29 +79,40 @@ const styles = {
     fontSize: '24px'
   },
   categoryHover: {
-    transform: 'scale(1.1)', 
+    transform: 'scale(1.1)',
   },
   iconContainer: {
-    width: '60px',
-    height: '60px',
+    width: '100px',
+    height: '100px',
     marginBottom: '10px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  circle: {
+    width: '150px',
+    height: '100px',
+    backgroundColor: '#e9e9e9',
+    borderRadius: '50%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   icon: {
-    maxWidth: '100%',
-    maxHeight: '100%',
+    maxWidth: '60%',
+    maxHeight: '60%',
   },
   categoryText: {
-    fontSize: '16px',
+    fontSize: '20px',
+    marginTop: '30px',
     fontWeight: '600',
   },
   '@media (max-width: 768px)': {
     categoryContainer: {
-      flexDirection: 'column', 
+      flexDirection: 'column',
       gap: '20px',
-    }
+    },
   }
 };
 
