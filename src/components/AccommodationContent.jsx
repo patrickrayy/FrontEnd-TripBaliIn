@@ -89,10 +89,8 @@ const AcoContent = () => {
       position: "relative",
       marginTop: "410px",
       marginBottom: "40px",
-      width: "100%", // Updated for responsiveness
-      maxWidth: "1139px", // Limits max width
-      height: "auto", // Make image height responsive
-      // overflow: "hidden",
+      maxWidth: "1139px",
+      height: "auto", 
       borderRadius: "10px",
     },
     mainImage: {

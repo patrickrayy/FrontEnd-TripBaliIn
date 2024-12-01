@@ -10,8 +10,8 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn'); // Clear login status from localStorage
-    navigate('/login'); // Redirect to login page
+    localStorage.removeItem('isLoggedIn'); 
+    navigate('/login'); 
   };
 
   const links = [
