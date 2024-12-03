@@ -4,10 +4,9 @@ import NavbarAfter from "../components/NavbarAfter";
 
 const BookingPage = () => {
   const { state } = useLocation();
-  const navigate = useNavigate(); // Gunakan useNavigate
+  const navigate = useNavigate(); 
   const villa = state?.villa;
 
-  // State untuk durasi dan tanggal
   const [days, setDays] = useState(1);
   const [selectedDate, setSelectedDate] = useState("");
 
@@ -15,22 +14,19 @@ const BookingPage = () => {
     return <div>Villa not found</div>;
   }
 
-  // Fungsi untuk menambah atau mengurangi jumlah hari
   const handleDaysChange = (increment) => {
     setDays((prevDays) => Math.max(1, prevDays + increment));
   };
 
-  // Hitung total harga berdasarkan jumlah hari
   const totalPrice = villa.price * days;
 
-  // Navigasi ke halaman pembayaran
   const handleBooking = () => {
-    navigate("/payment", { state: { villa, days, selectedDate, totalPrice } }); // Kirim data ke halaman pembayaran
+    navigate("/payment", { state: { villa, days, selectedDate, totalPrice } }); 
   };
 
-  // Navigasi ke halaman detail villa saat Cancel
+
   const handleCancel = () => {
-    navigate("/accommodation", { state: { villa } }); // Sesuaikan route dengan halaman detail villa Anda
+    navigate("/accommodation", { state: { villa } }); 
   };
 
   return (
@@ -97,7 +93,7 @@ const BookingPage = () => {
   );
 };
 
-// Style untuk tombol
+
 const buttonStyle = {
   backgroundColor: "#0F67B1",
   color: "white",
@@ -109,7 +105,7 @@ const buttonStyle = {
   fontFamily: "Montserrat, sans-serif",
 };
 
-// Style untuk tombol Book Now dan Cancel
+
 const bookNowStyle = { ...buttonStyle, width: "150px", marginRight: "10px" };
 const cancelStyle = { ...buttonStyle, backgroundColor: "#ccc", color: "#333", width: "150px" };
 

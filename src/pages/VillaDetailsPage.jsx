@@ -25,8 +25,8 @@ const VillaDetailsPage = () => {
       <NavbarAfter />
       <div style={{ padding: "20px", maxWidth: "1200px", margin: "0 auto", marginTop: "120px", }}>
         {/* Villa Title */}
-        <h1 style={{ fontSize: "36px", fontWeight: "700" }}>{villa.title}</h1>
-        <p style={{ fontSize: "18px", color: "#888" }}>{villa.location}</p>
+        <h1 style={{ fontSize: "36px", fontWeight: "700", fontFamily: "Montserrat, sans-serif", color:"#152C5B"}}>{villa.title}</h1>
+        <p style={{ fontSize: "18px", color: "#888", fontFamily: "Montserrat, sans-serif",marginBottom:"20px" }}>{villa.location}</p>
 
         {/* Villa Image */}
         <div>
@@ -34,9 +34,10 @@ const VillaDetailsPage = () => {
             src={villa.image}
             alt={villa.title}
             style={{
-              width: "50%",
-              height: "auto",
-              borderRadius: "8px",
+              width: "659.92px",
+              height: "500px",
+              borderRadius: "10px",
+              justifyContent:'center',
             }}
           />
         </div>
@@ -54,7 +55,7 @@ const VillaDetailsPage = () => {
           }}
         >
           {/* Villa Description (Left Side) */}
-          <div style={{ flex: "1", maxWidth: "50%" }}>
+          <div style={{ flex: "1", maxWidth: "55%",marginLeft:"60px",marginTop:"40px" }}>
             <h2 style={{ fontSize: "24px", fontWeight: "600" }}>About the place:</h2>
             <p>{villa.description}</p>
           </div>

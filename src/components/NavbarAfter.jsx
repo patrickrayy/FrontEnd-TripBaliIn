@@ -87,7 +87,7 @@ const styles = {
   },
   logo: {
     display: 'flex',
-    alignItems: 'center',
+    marginLeft: '100px'
   },
   logoImage: {
     width: '130px',
@@ -127,6 +127,7 @@ const styles = {
     height: '40px',
     borderRadius: '50%',
     cursor: 'pointer',
+    marginRight:''
   },
   logoutButton: {
     padding: '5px 15px',

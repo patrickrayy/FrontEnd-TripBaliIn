@@ -10,43 +10,81 @@ const ItineraryCreate = ({ onCreate }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [activities, setActivities] = useState([{ day: 1, rundown: [{ time: '', description: '' }] }]);
   const [itineraryTitle, setItineraryTitle] = useState('');
-  const [loading, setLoading] = useState(false); // Loading state for submit button
+  const [loading, setLoading] = useState(false);
 
   const handleAddDay = () => {
-    setDays(prev => prev + 1);
     setActivities(prev => [
       ...prev,
-      { day: days + 1, rundown: [{ time: '', description: '' }] }
+      { day: prev.length + 1, rundown: [{ time: '', description: '' }] }
     ]);
+    setDays(prev => prev + 1);
+  };
+
+  const handleRemoveDay = (day) => {
+    const updatedActivities = activities.filter(activity => activity.day !== day);
+    setActivities(updatedActivities);
+    setDays(prev => prev - 1);
   };
 
   const handleActivityChange = (day, index, field, value) => {
-    const updatedActivities = [...activities];
-    updatedActivities[day - 1].rundown[index][field] = value;
+    const updatedActivities = activities.map(activity => 
+      activity.day === day ? {
+        ...activity,
+        rundown: activity.rundown.map((item, idx) => 
+          idx === index ? { ...item, [field]: value } : item
+        )
+      } : activity
+    );
     setActivities(updatedActivities);
   };
 
   const handleAddRundown = (day) => {
-    const updatedActivities = [...activities];
-    updatedActivities[day - 1].rundown.push({ time: '', description: '' });
+    const updatedActivities = activities.map(activity => 
+      activity.day === day ? {
+        ...activity,
+        rundown: [...activity.rundown, { time: '', description: '' }]
+      } : activity
+    );
+    setActivities(updatedActivities);
+  };
+
+  const handleRemoveRundown = (day, index) => {
+    const updatedActivities = activities.map(activity => 
+      activity.day === day ? {
+        ...activity,
+        rundown: activity.rundown.filter((_, idx) => idx !== index)
+      } : activity
+    );
     setActivities(updatedActivities);
   };
 
   const handleAttractionChange = (category, value) => {
     if (value.trim() === '') return;
+    if (category === 'cultural') setCulturalAttractions(prev => [...prev, value]);
+    else if (category === 'food') setFoodAttractions(prev => [...prev, value]);
+    else if (category === 'other') setOtherAttractions(prev => [...prev, value]);
+  };
 
-    if (category === 'cultural') {
-      setCulturalAttractions(prev => [...prev, value]);
-    } else if (category === 'food') {
-      setFoodAttractions(prev => [...prev, value]);
-    } else if (category === 'other') {
-      setOtherAttractions(prev => [...prev, value]);
+  const handleRemoveAttraction = (category, value) => {
+    if (category === 'cultural') setCulturalAttractions(prev => prev.filter(item => item !== value));
+    else if (category === 'food') setFoodAttractions(prev => prev.filter(item => item !== value));
+    else if (category === 'other') setOtherAttractions(prev => prev.filter(item => item !== value));
+  };
+
+  const handleKeyDown = (e, category) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const value = e.target.value.trim();
+      if (value) {
+        handleAttractionChange(category, value);
+        e.target.value = ''; // Clear input
+      }
     }
   };
 
   const calculateEndDate = (startDate, days) => {
     const endDate = new Date(startDate);
-    endDate.setDate(endDate.getDate() + (days - 1));
+    endDate.setDate(endDate.getDate() + days - 1);
     return endDate.toISOString().split('T')[0];
   };
 
@@ -56,7 +94,7 @@ const ItineraryCreate = ({ onCreate }) => {
       return;
     }
 
-    setLoading(true); // Show loading indicator
+    setLoading(true);
     const itineraryData = {
       title: itineraryTitle,
       startDate,
@@ -109,7 +147,7 @@ const ItineraryCreate = ({ onCreate }) => {
           type="text"
           value={calculateEndDate(startDate, days)}
           readOnly
-          style={{ ...styles.input, backgroundColor: '#f5f5f5' }}
+          style={{ ...styles.input, backgroundColor: '#e9e9e9', color: '#000' }}
         />
       </div>
 
@@ -121,10 +159,16 @@ const ItineraryCreate = ({ onCreate }) => {
         </button>
       </div>
 
-      {/* Rundown */}
+      {/* Days and Rundown */}
       {activities.map((activity, dayIndex) => (
         <div key={dayIndex} style={styles.field}>
           <h2 style={styles.subtitle}>Day {activity.day} Rundown</h2>
+          <button
+            onClick={() => handleRemoveDay(activity.day)}
+            style={{ ...styles.button, backgroundColor: '#D9534F', marginBottom:'15px' }}
+          >
+            - Remove Day
+          </button>
           {activity.rundown.map((item, index) => (
             <div key={index} style={styles.rundownField}>
               <label style={styles.label}>Time:</label>
@@ -134,18 +178,23 @@ const ItineraryCreate = ({ onCreate }) => {
                 showTimeSelect
                 showTimeSelectOnly
                 timeIntervals={30}
-                timeCaption="Time"
                 dateFormat="h:mm aa"
                 style={styles.input}
               />
-              <label style={styles.label}>Activity:</label>
+              <label style={styles.label}>Description:</label>
               <input
                 type="text"
-                placeholder={`Activity ${index + 1}`}
                 value={item.description}
                 onChange={(e) => handleActivityChange(activity.day, index, 'description', e.target.value)}
+                placeholder="Enter activity description"
                 style={styles.input}
               />
+              <button
+                onClick={() => handleRemoveRundown(activity.day, index)}
+                style={{ ...styles.button, backgroundColor: '#D9534F', marginLeft: '10px', marginTop:'15px' }}
+              >
+                - Remove Activity
+              </button>
             </div>
           ))}
           <button onClick={() => handleAddRundown(activity.day)} style={styles.button}>
@@ -154,65 +203,72 @@ const ItineraryCreate = ({ onCreate }) => {
         </div>
       ))}
 
-      {/* Cultural Attractions */}
+      {/* Attractions */}
       <div style={styles.field}>
         <label style={styles.label}>Cultural Attractions:</label>
         <input
           type="text"
-          placeholder="Add cultural attraction"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleAttractionChange('cultural', e.target.value);
-              e.target.value = '';
-            }
-          }}
+          placeholder="Add cultural attractions and press Enter"
+          onKeyDown={(e) => handleKeyDown(e, 'cultural')}
           style={styles.input}
         />
         <ul>
           {culturalAttractions.map((attraction, index) => (
-            <li key={index} style={styles.listItem}>{attraction}</li>
+            <li key={index} style={styles.listItem}>
+              {attraction}
+              <button
+                onClick={() => handleRemoveAttraction('cultural', attraction)}
+                style={styles.removeButton}
+              >
+                -
+              </button>
+            </li>
           ))}
         </ul>
       </div>
 
-      {/* Food Attractions */}
       <div style={styles.field}>
         <label style={styles.label}>Food Attractions:</label>
         <input
           type="text"
-          placeholder="Add food attraction"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleAttractionChange('food', e.target.value);
-              e.target.value = '';
-            }
-          }}
+          placeholder="Add food attractions and press Enter"
+          onKeyDown={(e) => handleKeyDown(e, 'food')}
           style={styles.input}
         />
         <ul>
           {foodAttractions.map((attraction, index) => (
-            <li key={index} style={styles.listItem}>{attraction}</li>
+            <li key={index} style={styles.listItem}>
+              {attraction}
+              <button
+                onClick={() => handleRemoveAttraction('food', attraction)}
+                style={styles.removeButton}
+              >
+                -
+              </button>
+            </li>
           ))}
         </ul>
       </div>
 
-      {/* Other Attractions */}
       <div style={styles.field}>
         <label style={styles.label}>Other Attractions:</label>
         <input
           type="text"
-          placeholder="Add other attraction"
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleAttractionChange('other', e.target.value);
-              e.target.value = '';
-            }
-          }}
+          placeholder="Add other attractions and press Enter"
+          onKeyDown={(e) => handleKeyDown(e, 'other')}
           style={styles.input}
         />
         <ul>
           {otherAttractions.map((attraction, index) => (
-            <li key={index} style={styles.listItem}>{attraction}</li>
+            <li key={index} style={styles.listItem}>
+              {attraction}
+              <button
+                onClick={() => handleRemoveAttraction('other', attraction)}
+                style={styles.removeButton}
+              >
+                -
+              </button>
+            </li>
           ))}
         </ul>
       </div>
@@ -226,40 +282,86 @@ const ItineraryCreate = ({ onCreate }) => {
 };
 
 const styles = {
-  container: { padding: '20px', fontFamily: 'Montserrat, sans-serif' },
-  title: { fontSize: '32px', marginBottom: '10px', marginTop: '50px', fontWeight: '650' },
-  subtitle: { fontSize: '18px', marginBottom: '10px' },
-  field: { marginBottom: '20px' },
-  rundownField: { marginBottom: '10px' },
-  label: { display: 'block', marginBottom: '5px' },
+  container: {
+    padding: '20px',
+    display: 'block',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: '10px',
+    width: '1077px',
+    height: '1230px',
+    alignItems:'center',
+    marginTop: '70px',
+    marginLeft:'40px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    fontFamily: 'Montserrat, sans-serif',
+  },
+  title: {
+    fontSize: '40px',
+    marginBottom: '20px',
+    textAlign: 'center',
+    fontWeight: '650'
+  },
+  field: {
+    marginBottom: '15px',
+  },
+  label: {
+    display:'block',
+    fontSize: '18px',
+    fontWeight: '550',
+    marginBottom:'10px'
+  },
   input: {
     width: '100%',
-    padding: '10px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-    marginBottom: '10px',
-    backgroundColor: '#f0f0f0',
-    color: '#000',
-    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+    backgroundColor: '#e9e9e9',
+    color: 'black',
+    padding: '8px',
+    fontSize: '16px',
+    borderRadius: '10px',
+    border: '2px solid #ccc',
   },
   button: {
-    padding: '10px 15px',
+    padding: '8px 16px',
     backgroundColor: '#0F67B1',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '4px',
     cursor: 'pointer',
   },
   submitButton: {
-    padding: '10px 15px',
+    padding: '10px 20px',
     backgroundColor: '#0F67B1',
     color: '#fff',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '4px',
     cursor: 'pointer',
     width: '100%',
+    marginTop:'15px',
+    fontSize: '18px',
   },
-  listItem: { marginBottom: '5px', fontSize: '16px' },
+  subtitle: {
+    fontSize: '18px',
+    marginBottom: '10px',
+  },
+  rundownField: {
+    marginBottom: '10px',
+  },
+  listItem: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    margin: '8px 10px 0',
+  },
+  removeButton: {
+    backgroundColor: '#D9534F',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    padding: '5px 10px',
+    marginLeft: '10px',
+    cursor: 'pointer',
+  },
 };
 
 export default ItineraryCreate;
