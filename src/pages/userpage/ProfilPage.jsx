@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import SideBar from "../components/Sidebar";
-import Profiledetails from "../components/ProfileDetails";
-import NavbarAfter from "../components/NavbarAfter";
-import Footer from "../components/Footer";
+import SideBar from "../../components/Sidebar";
+import Profiledetails from "../../components/ProfileDetails";
+import NavbarAfter from "../../components/NavbarAfter";
+import Footer from "../../components/Footer";
+import axios from 'axios';
 
 const ProfilePage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [profile, setProfile] = useState({});
   const navigate = useNavigate();
 
+  useEffect(() => {
+  const fetchProfile = async () =>{
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+
+    try{
+      const response = await axios.get('http://localhost:5000/api/auth/profile', { headers:{Authorization:'Bearer ${token}'},
+    });
+    setProfile(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    
+  };
+
+  fetchProfile();
+}, [navigate]);
+  
   const handleLogout = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn"); 
+    localStorage.removeItem("authToken"); 
     navigate("/login"); 
   };
 

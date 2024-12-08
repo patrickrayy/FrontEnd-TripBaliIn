@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import NavbarAfter from "../components/NavbarAfter";
+import NavbarAfter from "../../components/NavbarAfter";
 
 const PaymentPage = () => {
   const { state } = useLocation();

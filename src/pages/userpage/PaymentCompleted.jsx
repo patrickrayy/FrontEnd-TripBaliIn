@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import NavbarAfter from "../components/NavbarAfter"; // Import NavbarAfter
+import NavbarAfter from "../../components/NavbarAfter"; // Import NavbarAfter
 
 const PaymentCompleted = () => {
   const navigate = useNavigate();

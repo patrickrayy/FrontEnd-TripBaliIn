@@ -1,9 +1,9 @@
-import Footer from "../components/Footer";
+import Footer from "../../components/Footer";
 import React from 'react';
-import AboutContent from "../components/AboutContent";
-import AboutHeader from "../components/AboutHeader";
-import NavbarAfter from "../components/NavbarAfter";
-import FromGallery from "../components/Fromgallery";
+import AboutContent from "../../components/AboutContent";
+import AboutHeader from "../../components/AboutHeader";
+import NavbarAfter from "../../components/NavbarAfter";
+import FromGallery from "../../components/Fromgallery";
 
 const AboutAfter = () => {
     const leftContent = [

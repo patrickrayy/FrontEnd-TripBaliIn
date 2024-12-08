@@ -2,8 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBed, faShower, faUtensils, faWifi, faTv, faBox } from "@fortawesome/free-solid-svg-icons";
-import NavbarAfter from "../components/NavbarAfter";
-import Footer from "../components/Footer";
+import NavbarAfter from "../../components/NavbarAfter";
+import Footer from "../../components/Footer";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const VillaDetailsPage = () => {

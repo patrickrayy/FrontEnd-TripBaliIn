@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import NavbarAfter from '../components/NavbarAfter';
-import Footer from '../components/Footer';
+import NavbarAfter from '../../components/NavbarAfter';
+import Footer from '../../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../styles/Calendar.css'
 
 const ItineraryPreview = () => {
   const location = useLocation();
@@ -56,8 +55,7 @@ const ItineraryPreview = () => {
       padding: '20px',
       backgroundColor: '#0F67B1',
       borderRadius: '10px',
-      margin: '20px auto',
-      marginTop: '200px',
+      margin: '200px auto 20px auto',
       width: '1077.16px',
       height: '1252px',
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
@@ -96,14 +94,14 @@ const ItineraryPreview = () => {
       marginBottom: '20px',
       marginTop: '40px',
     },
-    calendar: {
-      width: '348px',
-      height: '340px',
-      backgroundColor: '#fff',
-      borderRadius: '10px',
-      padding: '10px',
-      marginBottom: '20px',
-    },
+    // calendar: {
+    //   width: '348px',
+    //   height: '340px',
+    //   backgroundColor: '#fff',
+    //   borderRadius: '10px',
+    //   padding: '10px',
+    //   marginBottom: '20px',
+    // },
     cultureAttractions: {
       width: '380px',
       height: '198px',
@@ -142,14 +140,14 @@ const ItineraryPreview = () => {
       fontSize: '18px',
       fontWeight: '600',
     },
-      calendar: {
-        border: 'none',
-        borderRadius: '10px',
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-        padding: '10px',
-        backgroundColor: '#ffffff',
-        fontFamily: "'Montserrat', sans-serif",
-      },
+      // calendar: {
+      //   border: 'none',
+      //   borderRadius: '10px',
+      //   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+      //   padding: '10px',
+      //   backgroundColor: '#ffffff',
+      //   fontFamily: "'Montserrat', sans-serif",
+      // },
       navigation: {
         display: 'flex',
         justifyContent: 'space-between',

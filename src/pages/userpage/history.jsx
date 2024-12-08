@@ -1,7 +1,7 @@
 import React from "react";
-import NavbarAfter from "../components/NavbarAfter";
-import Footer from "../components/Footer"; 
-import HistoryCard from "../components/HistoryCard"; 
+import NavbarAfter from "../../components/NavbarAfter";
+import Footer from "../../components/Footer"; 
+import HistoryCard from "../../components/HistoryCard"; 
 
 const HistoryPage = () => {
   const rentalProviders = [

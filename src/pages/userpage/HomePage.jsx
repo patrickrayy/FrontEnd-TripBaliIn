@@ -1,11 +1,11 @@
 import React, {useRef} from 'react';
-import Slideshow from '../components/Slideshow';
-import Footer from '../components/Footer';
-import ExploreImage from '../components/ExploreImages';
-import PopularCategories from '../components/PopularCategories';
-import RecommendationCard from '../components/RecCard';
-import ReviewCard from '../components/ReviewCard';
-import NavbarAfter from '../components/NavbarAfter';
+import Slideshow from '../../components/Slideshow';
+import Footer from '../../components/Footer';
+import ExploreImage from '../../components/ExploreImages';
+import PopularCategories from '../../components/PopularCategories';
+import RecommendationCard from '../../components/RecCard';
+import ReviewCard from '../../components/ReviewCard';
+import NavbarAfter from '../../components/NavbarAfter';
 
 const HomePage = () => {
   const recommendations = [

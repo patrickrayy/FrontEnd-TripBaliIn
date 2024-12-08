@@ -1,8 +1,8 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
 import React from 'react';
-import AboutContent from "../components/AboutContent";
-import AboutHeader from "../components/AboutHeader";
+import AboutContent from "../../components/AboutContent";
+import AboutHeader from "../../components/AboutHeader";
 
 const AboutPage = () => {
     const leftContent = [

@@ -9,7 +9,6 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
   const handleMouseLeave = () => setHovered(null);
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
     localStorage.removeItem('isLoggedIn'); 
     navigate('/login'); 
   };

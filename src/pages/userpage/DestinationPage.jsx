@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer";
-import HeroSection from "../components/HeroSection";
-import NavbarAfter from "../components/NavbarAfter";
-import ScrollableCard from "../components/ScrollableCard";
+import Footer from "../../components/Footer";
+import HeroSection from "../../components/HeroSection";
+import NavbarAfter from "../../components/NavbarAfter";
+import ScrollableCard from "../../components/ScrollableCard";
 
 const DestinationPage = () => {
   const [searchQuery, setSearchQuery] = useState(""); // State untuk query pencarian

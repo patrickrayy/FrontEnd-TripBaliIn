@@ -1,14 +1,14 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import ItineraryContent from '../components/ItineraryContent';
-import ExploreImage from '../components/ExploreImages';
-import NavbarAfter from '../components/NavbarAfter';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import ItineraryContent from '../../components/ItineraryContent';
+import ExploreImage from '../../components/ExploreImages';
 
-const ItineraryAfter = () => {
+const ItineraryPage = () => {
   const styles = {
     itenerarySection: {
       display: 'flex',
-      flexDirection: 'row', 
+      flexDirection: 'row', // Ensures the image and content are side-by-side
       justifyContent: 'space-between',
       padding: '0px',
       backgroundColor: '#E6F0FA',
@@ -67,7 +67,7 @@ const ItineraryAfter = () => {
 
   return (
     <>
-      <NavbarAfter/>
+      <Navbar />
       <div>
         {/* Hero Section */}
         <div style={styles.itenerarySection}>
@@ -93,4 +93,4 @@ const ItineraryAfter = () => {
   );
 };
 
-export default ItineraryAfter;
+export default ItineraryPage;

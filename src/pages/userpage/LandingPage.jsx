@@ -6,10 +6,10 @@ import React, { useEffect } from 'react';
 // import 'swiper/css/navigation';
 // import 'swiper/css/pagination';
 // import HeroSection from '../components/HeroSection';
-import Slideshow from'../components/Slideshow';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-import PopularCategories from '../components/PopularCategories';
+import Slideshow from'../../components/Slideshow';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
+import PopularCategories from '../../components/PopularCategories';
 
 const LandingPage = () => {
   return (

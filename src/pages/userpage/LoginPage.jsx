@@ -1,22 +1,40 @@
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
-import { FaArrowLeft } from 'react-icons/fa'; // Import arrow icon
+import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'; 
+import axios from 'axios';
+import React, { useState } from 'react';
 
 const LoginPage = () => {
-  const navigate = useNavigate(); 
-
-  const handleLogin = (e) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState(''); 
+  const [showPassword, setShowPassword] = useState(false); 
+  
+  const handleLogin = async (e) => {
     e.preventDefault();
-    navigate('/home'); 
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
+      });
+      localStorage.setItem('authToken', response.data.token);
+      console.log('Login successful:', response.data);
+      navigate('/home'); 
+    } catch (error) {
+      console.error('Login error:', error);
+    }
   };
 
   const goToLandingPage = () => {
-    navigate('/'); // Navigate back to the landing page
+    navigate('/'); 
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword); 
   };
 
   return (
     <div style={styles.container}>
-      {/* Back Arrow Button with Icon */}
       <button style={styles.backButton} onClick={goToLandingPage}>
         <FaArrowLeft style={styles.icon} /> Continue as Guest
       </button>
@@ -24,27 +42,46 @@ const LoginPage = () => {
       <div style={styles.logoSection}>
         <img src="/assets/images/tripbaliin.png" alt="TripBaliin Logo" style={styles.logoImage} />
       </div>
+
       <div style={styles.formSection}>
         <div style={styles.formContainer}>
           <h2 style={styles.title}>Welcome back</h2>
           <p style={styles.subtitle}>Enter your details below</p>
           <form style={styles.form} onSubmit={handleLogin}>
-            <input type="email" placeholder="Email" style={styles.input} required />
-            <input type="password" placeholder="Password" style={styles.input} required />
+            <input 
+              type="email" 
+              placeholder="Email" 
+              style={styles.input} 
+              required 
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <div style={styles.passwordContainer}>
+              <input 
+                type={showPassword ? "text" : "password"} // Toggle input type based on showPassword state
+                placeholder="Password" 
+                style={styles.input} 
+                required 
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button type="button" style={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                {showPassword ? <FaEyeSlash style={{ color: 'black' }} /> : <FaEye style={{ color: 'black' }} />}
+              </button>
+            </div>
             <button type="submit" style={styles.button}>Login</button>
           </form>
+
           <p style={styles.footerText}>
             Do not have an account? <a href="/register" style={styles.link}>Sign Up</a>
           </p>
-          <p style={styles.orTextContainer}><span style={styles.line}></span>Or sign in with<span style={styles.line}></span></p>
+
+          <p style={styles.orTextContainer}>
+            <span style={styles.line}></span>Or sign in with<span style={styles.line}></span>
+          </p>
           <div style={styles.socialButtons}>
-            {/* Google Button */}
             <button style={{ ...styles.socialButton, ...styles.googleButton }}>
               <img src="/assets/images/google.png" alt="Google" style={styles.socialIcon} />
               <span style={styles.googleText}>Google</span>
             </button>
-
-            {/* Facebook Button */}
             <button style={{ ...styles.socialButton, ...styles.facebookButton }}>
               <img src="/assets/images/facebook.png" alt="Facebook" style={styles.socialIcon} />
               <span style={styles.facebookText}>Facebook</span>
@@ -207,6 +244,18 @@ const styles = {
   facebookText: {
     fontSize: '14px',
     color: '#3b5998', 
+  },
+  passwordContainer: {
+    position: 'relative',
+  },
+  eyeIcon: {
+    position: 'absolute',
+    top: '2px',
+    right: '1px',
+    background: 'transparent',
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: '18px',
   },
 };
 

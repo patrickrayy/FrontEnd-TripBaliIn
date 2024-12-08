@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
-import ContactHeader from '../components/ContactHeader';
+import ContactHeader from '../../components/ContactHeader';
 
-const ContactAfter = () => {
+const ContactPage = () => {
   return (
     <>
       <ContactHeader />
@@ -15,7 +15,7 @@ const ContactAfter = () => {
         <div style={styles.contactOptions}>
           {/* WhatsApp */}
           <a
-            href="https://wa.me/628957723456"
+            href="https://wa.me/6281283019965"
             target="_blank"
             rel="noopener noreferrer"
             style={styles.contactCard}
@@ -24,7 +24,7 @@ const ContactAfter = () => {
               <FontAwesomeIcon icon={faWhatsapp} style={styles.icon} />
             </div>
             <h3 style={styles.contactTitle}>WhatsApp</h3>
-            <p style={styles.contactInfo}>+62 895 7723 456</p>
+            <p style={styles.contactInfo}>+62 812 8301 9965</p>
           </a>
 
           {/* Email */}
@@ -52,7 +52,7 @@ const ContactAfter = () => {
         </div>
 
         {/* Back to Home Link */}
-        <Link to="/home" style={styles.backButton}>
+        <Link to="/" style={styles.backButton}>
           <span>Back to Home</span>
         </Link>
       </div>
@@ -152,4 +152,5 @@ const styles = {
   },
 };
 
-export default ContactAfter;
+export default ContactPage;
+

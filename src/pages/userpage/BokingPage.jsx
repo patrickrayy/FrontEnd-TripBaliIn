@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
-import NavbarAfter from "../components/NavbarAfter";
+import NavbarAfter from "../../components/NavbarAfter";
 
 const BookingPage = () => {
   const { state } = useLocation();

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import NavbarAfter from '../components/NavbarAfter';
-import Footer from '../components/Footer';
-import ItineraryCreate from '../components/ItineraryCreate';
+import NavbarAfter from '../../components/NavbarAfter';
+import Footer from '../../components/Footer';
+import ItineraryCreate from '../../components/ItineraryCreate';
 import { useNavigate } from 'react-router-dom';
 
 const ItineraryCreator = () => {

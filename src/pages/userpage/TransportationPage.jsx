@@ -1,8 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
-import Footer from "../components/Footer";
-import NavbarAfter from "../components/NavbarAfter";
-import FilterTransportation from "../components/FilterTransportation";
-import VehicleCard from "../components/VehicleCard";
+import Footer from "../../components/Footer";
+import NavbarAfter from "../../components/NavbarAfter";
+import FilterTransportation from "../../components/FilterTransportation";
+import VehicleCard from "../../components/VehicleCard";
 
 const TransportationPage = () => {
   const location = useLocation();
