@@ -29,7 +29,7 @@ const AboutHeader = ({ title, backgroundImage }) => {
     },
     image: {
       width: '100%',
-      height: 'auto',
+      height: '486px',
     },
     '@media (max-width: 768px)': {
       title: {

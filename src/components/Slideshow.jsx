@@ -78,7 +78,7 @@ const Slideshow = () => {
           <div className="carousel-img-container">
             <img
               className="d-block w-100 carousel-img"
-              src="/assets/images/showcase-1.png"
+              src="/assets/images/bali-7969001.jpg"
               alt="First slide"
             />
           </div>
@@ -88,7 +88,7 @@ const Slideshow = () => {
         <Carousel.Item>
           <img
             className="d-block w-100 carousel-img"
-            src="/assets/images/showcase-2.png"
+            src="/assets/images/bali-2975787.jpg"
             alt="Second slide"
           />
         </Carousel.Item>
@@ -97,7 +97,7 @@ const Slideshow = () => {
         <Carousel.Item>
           <img
             className="d-block w-100 carousel-img"
-            src="/assets/images/showcase-3.png"
+            src="/assets/images/bali-5111131.jpg"
             alt="Third slide"
           />
         </Carousel.Item>

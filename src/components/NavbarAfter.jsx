@@ -9,8 +9,9 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
   const handleMouseLeave = () => setHovered(null);
 
   const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn'); 
-    navigate('/login'); 
+    localStorage.removeItem('authToken');
+    window.location.reload();
+    navigate('/login');
   };
 
   const links = [

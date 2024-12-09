@@ -25,7 +25,7 @@ const AboutPage = () => {
         <Navbar/>
         <AboutHeader
             title="About Us"
-            backgroundImage="/assets/images/aboutus.png"
+            backgroundImage="/assets/images/beach-5548446.jpg"
         />
         <AboutContent
             leftContent={leftContent}

@@ -13,7 +13,6 @@ const PaymentCompleted = () => {
     <div>
       {/* Navbar */}
       <NavbarAfter />
-
       {/* Konten Utama */}
       <div
         style={{

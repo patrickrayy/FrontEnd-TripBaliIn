@@ -14,12 +14,13 @@ const RegisterPage = () => {
     password: '',
     confirmPassword: '',
     phone: '',
+    location: '', 
     tanggal_lahir : '',
   });
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false); 
-  const [showPassword, setShowPassword] = useState();
-  const [showConfirmPassword, setShowConfirmPassword] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -65,12 +66,13 @@ const RegisterPage = () => {
         password: formData.password,
         phone: formData.phone,
         location: formData.location,
-        tanggal_lahir : formData.tanggal_lahir,
+        tanggal_lahir: formData.tanggal_lahir,
       });
       if (response.data.token) {
         localStorage.setItem('authToken', response.data.token); 
         console.log('Registration successful:', response.data);
         setShowSuccessMessage(true);
+
         setTimeout(() => {
           setShowSuccessMessage(false);
           navigate('/login');
@@ -100,7 +102,6 @@ const RegisterPage = () => {
 
   return (
     <div style={styles.container}>
-      {/* Back Arrow Button with Icon */}
       <button style={styles.backButton} onClick={goToLandingPage}>
         <FaArrowLeft style={styles.icon} /> Continue as Guest
       </button>
@@ -160,7 +161,7 @@ const RegisterPage = () => {
               </button>
             </div>
             <input
-              type="location"
+              type="text"
               name="location"
               placeholder="Location"
               style={styles.input}
@@ -171,7 +172,7 @@ const RegisterPage = () => {
             <DatePicker
               selected={formData.tanggal_lahir}
               onChange={handleDateChange}
-              dateFormat="dd/MM/yyyy" // Ensure full date format (DD/MM/YYYY)
+              dateFormat="yyyy-MM-dd"  // Standard date format
               placeholderText="Select Birth Date"
               style={styles.dateInput}
               required
@@ -194,7 +195,6 @@ const RegisterPage = () => {
               {loading ? 'Signing Up...' : 'Sign Up'}
             </button>
           </form>
-          {/* Show success or error message */}
           {showSuccessMessage && <p style={{ color: 'green' }}>Registration successful! Redirecting...</p>}
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           <p style={styles.footerText}>

@@ -17,9 +17,17 @@ const LoginPage = () => {
         email,
         password,
       });
-      localStorage.setItem('authToken', response.data.token);
-      console.log('Login successful:', response.data);
-      navigate('/home'); 
+
+      const token = response.data.token;
+      console.log('Login response:', response.data);
+
+      if (token) {
+        localStorage.setItem('authToken', token); 
+        console.log('Login successful, token stored:', token);
+        navigate('/home'); 
+      } else {
+        console.error('No token returned from server');
+      }
     } catch (error) {
       console.error('Login error:', error);
     }
@@ -57,7 +65,7 @@ const LoginPage = () => {
             />
             <div style={styles.passwordContainer}>
               <input 
-                type={showPassword ? "text" : "password"} // Toggle input type based on showPassword state
+                type={showPassword ? "text" : "password"} 
                 placeholder="Password" 
                 style={styles.input} 
                 required 

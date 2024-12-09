@@ -8,7 +8,7 @@ const ItineraryPage = () => {
   const styles = {
     itenerarySection: {
       display: 'flex',
-      flexDirection: 'row', // Ensures the image and content are side-by-side
+      flexDirection: 'row', 
       justifyContent: 'space-between',
       padding: '0px',
       backgroundColor: '#E6F0FA',

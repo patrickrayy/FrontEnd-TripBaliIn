@@ -1,40 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
+import axios from 'axios';
 import SideBar from "../../components/Sidebar";
 import Profiledetails from "../../components/ProfileDetails";
 import NavbarAfter from "../../components/NavbarAfter";
 import Footer from "../../components/Footer";
-import axios from 'axios';
 
 const ProfilePage = () => {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-  const fetchProfile = async () =>{
-    const token = localStorage.getItem('authToken');
-    if (!token) {
-      navigate('/login');
-      return;
-    }
+    const fetchProfile = async () => {
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        navigate('/login');
+        return;
+      }
+      try {
+        const response = await axios.get('http://localhost:5000/api/profile/profile', { 
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setProfile(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-    try{
-      const response = await axios.get('http://localhost:5000/api/auth/profile', { headers:{Authorization:'Bearer ${token}'},
-    });
-    setProfile(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-    
+    fetchProfile();
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login"); 
   };
 
-  fetchProfile();
-}, [navigate]);
-  
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem("authToken"); 
-    navigate("/login"); 
+  const handleEditClick = () => {
+    setIsEditing(true);
   };
 
   return (
@@ -45,11 +48,14 @@ const ProfilePage = () => {
       <div style={styles.mainContent}>
         <SideBar style={styles.sidebar} />
         <div style={styles.content}>
-          {/* Komponen Profil */}
-          <Profiledetails />
-          <button style={styles.logoutButton} onClick={handleLogout}>
-            Logout
-          </button>
+          <Profiledetails 
+            profile={profile} 
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
+            setProfile={setProfile}
+          />
+          <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
+          {!isEditing && <button onClick={handleEditClick}>Edit Profile</button>}
         </div>
       </div>
       {/* Footer di bagian bawah */}

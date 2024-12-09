@@ -134,7 +134,6 @@ const ItineraryPreview = () => {
       border: 'none',
       borderRadius: '10px',
       margin: '20px',
-      marginTop: '55px',
       // padding: '10px 20px',
       cursor: 'pointer',
       fontSize: '18px',
