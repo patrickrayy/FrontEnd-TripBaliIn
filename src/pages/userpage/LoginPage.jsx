@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'; 
-import axios from 'axios';
 import React, { useState } from 'react';
+import { login } from '../../api/apiInstance.js';
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -13,17 +13,16 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', {
-        email,
-        password,
-      });
-
+      const data = await login(email, password);
       const token = response.data.token;
+      const user = response.data.user;
       console.log('Login response:', response.data);
 
       if (token) {
         localStorage.setItem('authToken', token); 
+        localStorage.setItem('user', JSON.stringify(user))
         console.log('Login successful, token stored:', token);
+        
         navigate('/home'); 
       } else {
         console.error('No token returned from server');

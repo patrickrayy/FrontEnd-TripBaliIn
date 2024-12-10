@@ -37,5 +37,4 @@ const AboutAfter = () => {
         </>
     )
 }
-
 export default AboutAfter;

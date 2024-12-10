@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
-import axios from 'axios';
 import SideBar from "../../components/Sidebar";
 import Profiledetails from "../../components/ProfileDetails";
 import NavbarAfter from "../../components/NavbarAfter";
 import Footer from "../../components/Footer";
+import { useUser } from "../../contexts/useAuth";
+import apiInstance from "../../api/apiInstance.js";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
+  const { user, isAuthenticated }=useUser();
 
   useEffect(() => {
+    if(!isAuthenticated){
+      navigate('/login');
+      return;
+    }
+
     const fetchProfile = async () => {
       const token = localStorage.getItem('authToken');
       if (!token) {
@@ -19,17 +26,17 @@ const ProfilePage = () => {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:5000/api/profile/profile', { 
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await apiInstance.get('/profile/profile');
         setProfile(response.data);
-      } catch (error) {
-        console.error(error);
+      }catch(error){
+        console.error("Error fetching user's profile",error);
       }
-    };
+    }
 
-    fetchProfile();
-  }, [navigate]);
+    if(isAuthenticated){
+      fetchProfile();
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -37,7 +44,7 @@ const ProfilePage = () => {
   };
 
   const handleEditClick = () => {
-    setIsEditing(true);
+    setIsEditing(prev => !prev);  // Toggle the editing state
   };
 
   return (
@@ -55,7 +62,13 @@ const ProfilePage = () => {
             setProfile={setProfile}
           />
           <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
-          {!isEditing && <button onClick={handleEditClick}>Edit Profile</button>}
+          {/* Edit Profile Button */}
+          <button 
+            style={isEditing ? styles.cancelButton : styles.editButton} 
+            onClick={handleEditClick}
+          >
+            {isEditing ? "Cancel Edit" : "Edit Profile"}
+          </button>
         </div>
       </div>
       {/* Footer di bagian bawah */}
@@ -98,9 +111,34 @@ const styles = {
     backgroundColor: "#DC3545",
     color: "#FFFFFF",
     border: "none",
+    borderRadius: "10px",
+    fontFamily:'Montserrat, sans-serif',
+    cursor: "pointer",
+    fontSize: "16px",
+  },
+  editButton: {
+    marginTop: "20px",
+    marginLeft:'50px',
+    fontFamily:'Montserrat, sans-serif',
+    padding: "10px 20px",
+    backgroundColor: "#0F67B1", 
+    color: "#fff",
+    border: "none",
+    borderRadius: "10px",
+    cursor: "pointer",
+    fontSize: "16px",
+    transition: "background-color 0.3s ease",
+  },
+  cancelButton: {
+    marginTop: "20px",
+    padding: "10px 20px",
+    backgroundColor: "#e0e0e0", 
+    color: "#333",
+    border: "1px solid #ddd",
     borderRadius: "5px",
     cursor: "pointer",
     fontSize: "16px",
+    transition: "background-color 0.3s ease",
   },
 };
 

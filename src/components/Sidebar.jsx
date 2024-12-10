@@ -1,7 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Import Link
+import axios from 'axios';
 
 const SideBar = () => {
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("authToken");
+      if (!token) return;
+      try{
+        const response = await axios.get("http://localhost:5000/api/profile/profile", { headers: {Authorization: `Bearer ${token}`},
+        });
+        setProfile(response.data);
+      }catch(error){
+        console.error("Error fetching profile", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
   return (
     <div style={styles.sidebar}>
       <div style={styles.profile}>
@@ -10,9 +29,15 @@ const SideBar = () => {
           alt="Profile"
           style={styles.profileImage}
         />
-        <h3 style={styles.name}>Alif Yasiz</h3>
+        <h3 style={styles.name}>{profile ? profile.name : 'Loading...'}</h3>
         <p style={styles.info}>
-          <span>📍 Jakarta </span> | <span>🎂 20th December</span>
+          {profile ? (
+            <>
+              <span>📍 {profile.location} </span> | <span>🎂 {profile.tanggal_lahir} </span>
+            </>
+          ) : ( 
+            'Loading...'
+          )}
         </p>
       </div>
       <div style={styles.menu}>

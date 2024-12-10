@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
+import useLocalStorageState from './hooks/useLocalStorage.js';
 import { useEffect, useState } from "react";
 import LandingPage from './pages/userpage/LandingPage';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -26,9 +27,12 @@ import BookingPage from "./pages/userpage/BokingPage";
 import PaymentPage from "./pages/userpage/PaymentPage";
 import PaymentCompleted from "./pages/userpage/PaymentCompleted";
 import { AuthProvider } from "./contexts/useAuth";
+import AdminPage from "./pages/adminpage/adminpage";
 
 
 function App() {
+  const [token] = useLocalStorageState(null, 'token');
+  const isToken = token !== null;
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -60,18 +64,26 @@ function App() {
               <DestinationPage />
             </ProtectedRoute>
             }/>
-          <Route path='/aboutafter' element={<AboutAfter />} />
+          <Route path='/aboutafter' element={
+            <ProtectedRoute>
+              <AboutAfter />
+              </ProtectedRoute>
+            }/>
           <Route path="/transportation" element={
             <ProtectedRoute>
               <TransportationPage />
             </ProtectedRoute>
             }>
-            <Route path=":id" element={<DetailVehicle />} />
+            <Route path=":id" element={
+              <ProtectedRoute>
+                <DetailVehicle />
+              </ProtectedRoute>
+            }/>
           </Route>
           <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
           <Route path='/contactafter' element={<ContactAfter/>} />
           <Route path='/profile' element={
-            <ProtectedRoute>
+            <ProtectedRoute>  
               <ProfilePage />
             </ProtectedRoute>
           }/>
@@ -81,21 +93,43 @@ function App() {
           </ProtectedRoute>
           }/>
           <Route path='/Sidebar' element={<SideBar/>} />
-          
+          <Route path="/adminpage" element={<AdminPage/>}/>
           {/* <Route path='/acomodation' element={<AcomodationPage />} /> */}
-          <Route path='/itinerarycreator' element={<ProtectedRoute element={<ItineraryCreator />}/>}/>
-          <Route path="/itinerary-preview" element={<ProtectedRoute element={<ItineraryPreview />}/>}/>
-          <Route path='/accommodation' element={<ProtectedRoute element={<AccommodationPage />}/>}/>
-          <Route path='/villa-details/:id' element={<ProtectedRoute element={<VillaDetailsPage />}/>}/>
-          <Route path="/booking" element={<ProtectedRoute element={<BookingPage />}/>}/>
-          <Route path="/payment" element= {<ProtectedRoute element={<PaymentPage />}/>}/>
+          <Route path='/itinerarycreator' element={
+            <ProtectedRoute>
+              <ItineraryCreator />
+            </ProtectedRoute>
+          }/>
+          <Route path="/itinerary-preview" element={
+            <ProtectedRoute>
+              <ItineraryPreview />
+            </ProtectedRoute>
+          }/>
+          <Route path='/accommodation' element={
+            <ProtectedRoute>
+              <AccommodationPage />
+            </ProtectedRoute>
+          }/>
+          <Route path='/villa-details/:id' element={
+            <ProtectedRoute>
+              <VillaDetailsPage />
+            </ProtectedRoute>
+          }/>
+          <Route path="/booking" element={
+            <ProtectedRoute>
+              <BookingPage />
+            </ProtectedRoute>
+          }/>
+          <Route path="/payment" element={
+            <ProtectedRoute>
+              <PaymentPage />
+            </ProtectedRoute>
+          }/>
           <Route path="/payment-completed" element={<PaymentCompleted />} />
         </Routes>
       </AuthProvider>
     </>
-
-
-  )
+  );
 }
 
 export default function AppWrapper() {

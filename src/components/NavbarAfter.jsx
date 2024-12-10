@@ -10,7 +10,6 @@ const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
 
   const handleLogout = () => {
     localStorage.removeItem('authToken');
-    window.location.reload();
     navigate('/login');
   };
 

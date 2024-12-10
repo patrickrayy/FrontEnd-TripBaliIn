@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { updateProfile } from '../api/apiInstance.js';
 
 const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
   const [updatedProfile, setUpdatedProfile] = useState(profile || {});
@@ -23,7 +23,7 @@ const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
   };
 
   const handleSaveChanges = async () => {
-    const token = localStorage.getItem('authToken');
+    // const token = localStorage.getItem('authToken');  // Ambil token dari localStorage
     try {
       if (newPassword && newPassword !== confirmPassword) {
         setErrorMessage('Passwords do not match');
@@ -32,14 +32,11 @@ const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
 
       const profileToUpdate = {
         ...updatedProfile,
-        password: newPassword || undefined, 
+        password: newPassword || undefined,  // Update password hanya jika ada
       };
 
-      const response = await axios.put('http://localhost:5000/api/profile/profile', profileToUpdate, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setProfile(response.data); 
+      const response = await updateProfile(profileToUpdate);
+      setProfile(response.data);  
       setSuccessMessage('Profile updated successfully!');
       setErrorMessage('');
       setIsEditing(false);
@@ -74,59 +71,7 @@ const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
               onChange={handleInputChange}
             />
           </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Phone:</label>
-            <input 
-              name="phone"
-              style={styles.input} 
-              type="text" 
-              value={updatedProfile.phone}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Location:</label>
-            <input 
-              name="location"
-              style={styles.input} 
-              type="text"
-              value={updatedProfile.location}
-              onChange={handleInputChange}
-            />
-          </div>
-
-          <h2 style={styles.heading2}>Security</h2>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Email Address:</label>
-            <input 
-              name="email"
-              style={styles.input} 
-              type="email" 
-              value={updatedProfile.email}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>New Password:</label>
-            <input 
-              name="newPassword"
-              style={styles.input} 
-              type="password" 
-              value={newPassword}
-              onChange={(e) => setNewPassword(e.target.value)}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Confirm New Password:</label>
-            <input 
-              name="confirmPassword"
-              style={styles.input} 
-              type="password" 
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-
+          {/* Other fields here */}
           <div style={styles.buttonGroup}>
             <button style={styles.saveButton} onClick={handleSaveChanges}>Save Changes</button>
             <button style={styles.cancelButton} onClick={() => setIsEditing(false)}>Cancel</button>
@@ -134,11 +79,11 @@ const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
         </form>
       ) : (
         <div>
-          <p><strong>Name:</strong> {updatedProfile.name}</p>
-          <p><strong>Email:</strong> {updatedProfile.email}</p>
-          <p><strong>Phone:</strong> {updatedProfile.phone}</p>
-          <p><strong>Location:</strong> {updatedProfile.location}</p>
-          <p><strong>Date of Birth:</strong> {updatedProfile.tanggal_lahir}</p>
+          <div style={styles.inputGroup}>
+            <label style={styles.label}>Name:</label>
+            <p style={styles.viewText}>{updatedProfile.name}</p>
+          </div>
+          {/* Display other fields here */}
         </div>
       )}
       {errorMessage && <div style={styles.error}>{errorMessage}</div>}
@@ -177,11 +122,13 @@ const styles = {
   },
   inputGroup: {
     marginBottom: "15px",
+    textAlign: 'left'
   },
   label: {
     fontSize: "16px",
     color: "#555",
     marginBottom: "5px",
+
   },
   input: {
     width: "100%",
@@ -190,6 +137,15 @@ const styles = {
     borderRadius: "5px",
     fontSize: "14px",
     backgroundColor: "#e9e9e9",
+  },
+  viewText: {
+    fontSize: "14px",
+    height: '45px',
+    color: "#555",
+    padding: "10px",
+    backgroundColor: "#e9e9e9",
+    border: "1px solid #ddd",
+    borderRadius: "5px",
   },
   buttonGroup: {
     display: "flex",
