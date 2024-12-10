@@ -4,17 +4,18 @@ import SideBar from "../../components/Sidebar";
 import Profiledetails from "../../components/ProfileDetails";
 import NavbarAfter from "../../components/NavbarAfter";
 import Footer from "../../components/Footer";
-import { useUser } from "../../contexts/useAuth";
 import apiInstance from "../../api/apiInstance.js";
+import useLocalStorageState from "../../hooks/useLocalStorage.js";
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const { user, isAuthenticated }=useUser();
+  const [token] = useLocalStorageState(null, 'authToken');
+  const isToken = token !== null;
 
   useEffect(() => {
-    if(!isAuthenticated){
+    if(!isToken){
       navigate('/login');
       return;
     }
@@ -33,10 +34,10 @@ const ProfilePage = () => {
       }
     }
 
-    if(isAuthenticated){
+    if(isToken){
       fetchProfile();
     }
-  }, [isAuthenticated, navigate]);
+  }, [isToken, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");

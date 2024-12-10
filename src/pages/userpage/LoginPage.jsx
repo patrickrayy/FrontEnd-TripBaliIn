@@ -9,14 +9,13 @@ const LoginPage = () => {
   const [password, setPassword] = useState(''); 
   const [showPassword, setShowPassword] = useState(false); 
   
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
       const data = await login(email, password);
-      const token = response.data.token;
-      const user = response.data.user;
-      console.log('Login response:', response.data);
+      const { token, user } = data;
 
       if (token) {
         localStorage.setItem('authToken', token); 
@@ -233,6 +232,7 @@ const styles = {
     width: '142.97px',
     height: '49.4',
     marginRight: '25px',
+    animation: 'fadeSlideUp 1s ease forwards'
   },
   facebookButton: {
     backgroundColor: '#fff',
@@ -263,6 +263,16 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
     fontSize: '18px',
+  },
+  '@keyframes fadeSlideUp': {
+    from: {
+      opacity: 0,
+      transform: 'translateY(30px)', // Geser ke bawah
+    },
+    to: {
+      opacity: 1,
+      transform: 'translateY(0)', // Kembali ke posisi semula
+    },
   },
 };
 

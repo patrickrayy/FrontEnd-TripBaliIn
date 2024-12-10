@@ -1,11 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useLocalStorageState from "../hooks/useLocalStorage";
 
 const PopularCategories = () => {
+  const navigate = useNavigate();
+  const [token] = useLocalStorageState(null, "authToken");
+  const isToken = token !== null; 
   const [hovered, setHovered] = useState(null);
 
   const handleMouseEnter = (index) => setHovered(index);
   const handleMouseLeave = () => setHovered(null);
+
+  const handleNavigation = (path) => {
+    if (isToken) {
+      navigate(path); 
+    } else {
+      navigate("/login"); 
+    }
+  };
 
   const categories = [
     { path: "/accommodation", label: "Accommodation", icon: "/assets/images/icon1.png" },
@@ -27,6 +39,7 @@ const PopularCategories = () => {
             }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
+            onClick={() => handleNavigation(category.path)}
           >
             <div style={styles.iconContainer}>
               <div style={styles.circle}>

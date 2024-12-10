@@ -12,6 +12,7 @@ const ItineraryCreate = ({ onCreate }) => {
   const [itineraryTitle, setItineraryTitle] = useState('');
   const [loading, setLoading] = useState(false);
 
+  
   const handleAddDay = () => {
     setActivities(prev => [
       ...prev,
@@ -290,12 +291,13 @@ const styles = {
     backgroundColor: '#fff',
     borderRadius: '10px',
     width: '1077px',
-    height: '1230px',
+    minHeight: '1230px',
     alignItems:'center',
     marginTop: '70px',
     marginLeft:'40px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
     fontFamily: 'Montserrat, sans-serif',
+    overflow: 'visible'
   },
   title: {
     fontSize: '40px',

@@ -6,12 +6,20 @@ import NavbarAfter from '../../components/NavbarAfter';
 import Footer from '../../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import useLocalStorageState from '../../hooks/useLocalStorage.js';
 
 const ItineraryPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const itineraryData = location.state || {};
+  const [token] = useLocalStorageState(null, 'authToken');
+  const isToken = token !== null;
   const [selectedDate, setSelectedDate] = useState(new Date(itineraryData.startDate || ''));
+
+  if (!isToken || !itineraryData){
+    navigate('/login');
+    return null;
+  }
 
   const downloadItineraryAsJSON = () => {
     const element = document.createElement('a');
@@ -84,6 +92,7 @@ const ItineraryPreview = () => {
       borderRadius: '10px',
       padding: '20px',
       boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+      textAlign: 'left', 
     },
     attractions: {
       width: '380px',
@@ -93,6 +102,7 @@ const ItineraryPreview = () => {
       padding: '10px',
       marginBottom: '20px',
       marginTop: '40px',
+      textAlign: 'left', 
     },
     // calendar: {
     //   width: '348px',
@@ -122,10 +132,12 @@ const ItineraryPreview = () => {
       fontSize: '18px',
       fontWeight: 'bold',
       marginBottom: '10px',
+      textAlign: 'left', 
     },
     listItem: {
       fontSize: '16px',
       marginBottom: '8px',
+      textAlign: 'left', 
     },
     downloadButton: {
       marginTop: '60px',
