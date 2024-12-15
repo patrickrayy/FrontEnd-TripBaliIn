@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #FF6B6B;
+  --secondary: #4ECDC4;
+  --accent: #FFE66D;
+  --background: #2A363B;
+  --text: #333333;
+  --teal-500: #14b8a6;
+  --teal-600: #0d9488;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+}
+
+.bg-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-opacity='0.1'%3E%3Cpath d='M50,0L50,80M0,30L80,30M0,50L80,50M30,0L30,80' stroke='%23FFFFFF' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 30px 30px;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff5252;
+}
+
+/* Login specific styles */
+.login-gradient-bg {
+    @apply bg-gradient-to-br from-teal-500 to-blue-500;
+}
+
+.login-card {
+    @apply bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl p-8;
+}
+
+.login-input {
+    @apply pl-10 appearance-none rounded-lg block w-full px-3 py-3 border border-gray-300 
+    hover:border-teal-500 placeholder-gray-400 focus:outline-none focus:ring-2 
+    focus:ring-teal-500 focus:border-transparent text-gray-900 transition-all;
+}
+
+.login-button {
+    @apply w-full flex justify-center py-3 px-4 border border-transparent rounded-lg 
+    text-sm font-medium text-white bg-gradient-to-r from-teal-500 to-blue-500 
+    hover:from-teal-600 hover:to-blue-600 focus:outline-none focus:ring-2 
+    focus:ring-offset-2 focus:ring-teal-500 disabled:opacity-50 
+    disabled:cursor-not-allowed transform hover:scale-[1.02] transition-all 
+    duration-200 shadow-lg hover:shadow-xl;
+}
+
+.login-link {
+    @apply font-medium text-teal-600 hover:text-teal-500 transition duration-150 hover:underline;
+}
+
+/* Custom input styles */
+.travel-input {
+    @apply pl-10 appearance-none rounded-lg block w-full px-3 py-3 border border-gray-300 
+    hover:border-[#FF6B6B] placeholder-gray-400 focus:outline-none focus:ring-2 
+    focus:ring-[#FF6B6B] focus:border-transparent text-gray-900 transition-all;
+}
+
+/* Custom button styles */
+.travel-button {
+    @apply bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] hover:from-[#FF5252] hover:to-[#FF7676]
+    text-white font-medium py-3 px-6 rounded-lg transform hover:scale-[1.02] transition-all
+    duration-200 shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2
+    focus:ring-[#FF6B6B] disabled:opacity-50 disabled:cursor-not-allowed;
+}
