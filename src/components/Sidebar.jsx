@@ -1,32 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom"; // Import Link
-import { useAuth } from "../contexts/AuthContext"; // Import useAuth
+import axios from 'axios';
 
 const SideBar = () => {
-  const { user } = useAuth(); // Ambil data user dari AuthContext
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const token = localStorage.getItem("authToken");
+      if (!token) return;
+      try{
+        const response = await axios.get("http://localhost:5000/api/profile/profile", { headers: {Authorization: `Bearer ${token}`},
+        });
+        setProfile(response.data);
+      }catch(error){
+        console.error("Error fetching profile", error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   return (
     <div style={styles.sidebar}>
       <div style={styles.profile}>
         <img
-          src="/assets/images/profileimg.png"
+          src="/assets/images/profileimg.png" 
           alt="Profile"
           style={styles.profileImage}
         />
-        <h3 style={styles.name}>{user ? user.name : "Loading..."}</h3>
+        <h3 style={styles.name}>{profile ? profile.name : 'Loading...'}</h3>
         <p style={styles.info}>
-          {user ? (
+          {profile ? (
             <>
-              <span>📍 {user.location || "No location"} </span> |{" "}
-              <span>🎂 {user.tanggal_lahir || "No birthdate"} </span>
+              <span>📍 {profile.location} </span> | <span>🎂 {profile.tanggal_lahir} </span>
             </>
-          ) : (
-            "Loading..."
+          ) : ( 
+            'Loading...'
           )}
         </p>
       </div>
       <div style={styles.menu}>
         <button style={styles.activeButton}>Profile Informations</button>
+        {/* Gunakan Link untuk routing */}
         <Link to="/history" style={{ textDecoration: "none" }}>
           <button style={styles.button}>History Booking</button>
         </Link>
@@ -37,53 +53,60 @@ const SideBar = () => {
 
 const styles = {
   sidebar: {
-    width: "250px",
-    backgroundColor: "#f7f7f7",
+    width: "300px",
+    backgroundColor: "#fff",
     padding: "20px",
-    borderRight: "1px solid #ddd",
-    minHeight: "100vh",
+    boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    top: "50px",
+    fontFamily: "Montserrat, sans-serif"
   },
   profile: {
     textAlign: "center",
-    marginBottom: "30px",
+    marginBottom: "20px",
+    top: "150px",
   },
   profileImage: {
     width: "100px",
     height: "100px",
     borderRadius: "50%",
-    marginBottom: "10px",
+    objectFit: "cover",
   },
   name: {
     fontSize: "18px",
     fontWeight: "bold",
-    marginBottom: "5px",
+    margin: "10px 0",
   },
   info: {
     fontSize: "14px",
-    color: "#666",
+    color: "#555",
   },
   menu: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
+    width: "100%",
+  },
+  button: {
+    textAlign: 'left',
+    color: '#000',
+    width: "100%",
+    padding: "10px",
+    margin: "5px 0",
+    backgroundColor: "#fff",
+    border: "1px solid #ddd",
+    borderRadius: "5px",
+    cursor: "pointer",
   },
   activeButton: {
+    textAlign: 'left',
+    width: "100%",
     padding: "10px",
+    margin: "5px 0",
     backgroundColor: "#0F67B1",
     color: "#fff",
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-    fontSize: "14px",
-  },
-  button: {
-    padding: "10px",
-    backgroundColor: "#fff",
-    color: "#333",
-    border: "1px solid #ddd",
-    borderRadius: "5px",
-    cursor: "pointer",
-    fontSize: "14px",
   },
 };
 

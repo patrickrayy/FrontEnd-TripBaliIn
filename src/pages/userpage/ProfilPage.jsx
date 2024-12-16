@@ -4,60 +4,72 @@ import SideBar from "../../components/Sidebar";
 import Profiledetails from "../../components/ProfileDetails";
 import NavbarAfter from "../../components/NavbarAfter";
 import Footer from "../../components/Footer";
-import { useAuth } from "../../contexts/AuthContext";
+import apiInstance from "../../api/apiInstance.js";
+import useLocalStorageState from "../../hooks/useLocalStorage.js";
 
 const ProfilePage = () => {
-  const { token, user, logout } = useAuth();
   const [profile, setProfile] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  
+  const [token] = useLocalStorageState(null, 'authToken');
+  const isToken = token !== null;
 
   useEffect(() => {
-    if (!token) {
-      navigate("/login");
+    if(!isToken){
+      navigate('/login');
+      return;
     }
-  }, [token, navigate]);
 
-  useEffect(() => {
     const fetchProfile = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/auth/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const data = await response.json();
-        if (data.status === "success") {
-          setProfile(data.data);
-        } else {
-          console.error("Failed to fetch profile");
-        }
-      } catch (error) {
-        console.error("Error fetching user's profile:", error);
+      const token = localStorage.getItem('authToken');
+      if (!token) {
+        navigate('/login');
+        return;
       }
-    };
+      try {
+        const response = await apiInstance.get('/profile/profile');
+        setProfile(response.data);
+      }catch(error){
+        console.error("Error fetching user's profile",error);
+      }
+    }
 
-    if (token) {
+    if(isToken){
       fetchProfile();
     }
-  }, [token]);
+  }, [isToken, navigate]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    navigate("/login");
+    navigate("/login"); 
+  };
+
+  const handleEditClick = () => {
+    setIsEditing(prev => !prev);  // Toggle the editing state
   };
 
   return (
     <div style={styles.pageContainer}>
+      {/* Navbar di atas */}
       <NavbarAfter />
+      {/* Sidebar dan ProfileDetails di bawah Navbar */}
       <div style={styles.mainContent}>
         <SideBar style={styles.sidebar} />
         <div style={styles.content}>
           <Profiledetails 
             profile={profile} 
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
             setProfile={setProfile}
-            onLogout={handleLogout}
           />
+          <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
+          {/* Edit Profile Button */}
+          <button 
+            style={isEditing ? styles.cancelButton : styles.editButton} 
+            onClick={handleEditClick}
+          >
+            {isEditing ? "Cancel Edit" : "Edit Profile"}
+          </button>
         </div>
       </div>
       {/* Footer di bagian bawah */}

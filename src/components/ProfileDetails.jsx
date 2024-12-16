@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { useAuth } from "../contexts/AuthContext"; // Import useAuth
+import React, { useState, useEffect } from "react";
+import { updateProfile } from '../api/apiInstance.js';
 
-const Profiledetails = () => {
-  const { user, token, updateUser } = useAuth(); // Ambil data user, token, dan fungsi updateUser dari AuthContext
-  const [updatedProfile, setUpdatedProfile] = useState(user || {}); // Mulai dengan data user
-  const [isEditing, setIsEditing] = useState(false);
+const Profiledetails = ({ profile, isEditing, setIsEditing, setProfile }) => {
+  const [updatedProfile, setUpdatedProfile] = useState(profile || {});
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
+
+  useEffect(() => {
+    if (profile) {
+      setUpdatedProfile(profile);
+    }
+  }, [profile]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,30 +23,26 @@ const Profiledetails = () => {
   };
 
   const handleSaveChanges = async () => {
+    // const token = localStorage.getItem('authToken');  // Ambil token dari localStorage
     try {
-      const response = await fetch("http://localhost:3000/api/profile/profile", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(updatedProfile),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUpdatedProfile(data);
-        updateUser(data); // Perbarui data di AuthContext
-        setSuccessMessage("Profile updated successfully!");
-        setErrorMessage(null);
-        setIsEditing(false);
-      } else {
-        setErrorMessage("Failed to update profile. Please try again.");
-        setSuccessMessage(null);
+      if (newPassword && newPassword !== confirmPassword) {
+        setErrorMessage('Passwords do not match');
+        return;
       }
+
+      const profileToUpdate = {
+        ...updatedProfile,
+        password: newPassword || undefined,  // Update password hanya jika ada
+      };
+
+      const response = await updateProfile(profileToUpdate);
+      setProfile(response.data);  
+      setSuccessMessage('Profile updated successfully!');
+      setErrorMessage('');
+      setIsEditing(false);
     } catch (error) {
-      setErrorMessage("An error occurred while updating your profile.");
-      setSuccessMessage(null);
+      setErrorMessage('Failed to update profile');
+      setSuccessMessage('');
     }
   };
 
@@ -51,96 +53,37 @@ const Profiledetails = () => {
         <form style={styles.form}>
           <div style={styles.inputGroup}>
             <label style={styles.label}>Name:</label>
-            <input
+            <input 
               name="name"
-              style={styles.input}
-              type="text"
-              value={updatedProfile.name || ""}
+              style={styles.input} 
+              type="text" 
+              value={updatedProfile.name}
               onChange={handleInputChange}
             />
           </div>
           <div style={styles.inputGroup}>
             <label style={styles.label}>Date Of Birth:</label>
-            <input
+            <input 
               name="tanggal_lahir"
-              style={styles.input}
-              type="date"
-              value={updatedProfile.tanggal_lahir || ""}
+              style={styles.input} 
+              type="date" 
+              value={updatedProfile.tanggal_lahir}
               onChange={handleInputChange}
             />
           </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Location:</label>
-            <input
-              name="location"
-              style={styles.input}
-              type="text"
-              value={updatedProfile.location || ""}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Phone Number:</label>
-            <input
-              name="phone"
-              style={styles.input}
-              type="text"
-              value={updatedProfile.phone || ""}
-              onChange={handleInputChange}
-            />
-          </div>
-          <h2 style={styles.heading2}>Security</h2>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Email:</label>
-            <input
-              name="email"
-              style={styles.input}
-              type="email"
-              value={updatedProfile.email || ""}
-              onChange={handleInputChange}
-            />
-          </div>
+          {/* Other fields here */}
           <div style={styles.buttonGroup}>
-            <button style={styles.saveButton} type="button" onClick={handleSaveChanges}>
-              Save Changes
-            </button>
-            <button
-              style={styles.cancelButton}
-              type="button"
-              onClick={() => {
-                setIsEditing(false);
-                setUpdatedProfile(user); // Reset ke data asli jika dibatalkan
-              }}
-            >
-              Cancel
-            </button>
+            <button style={styles.saveButton} onClick={handleSaveChanges}>Save Changes</button>
+            <button style={styles.cancelButton} onClick={() => setIsEditing(false)}>Cancel</button>
           </div>
         </form>
       ) : (
         <div>
           <div style={styles.inputGroup}>
             <label style={styles.label}>Name:</label>
-            <p style={styles.viewText}>{user?.name || "N/A"}</p>
+            <p style={styles.viewText}>{updatedProfile.name}</p>
           </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Date of Birth:</label>
-            <p style={styles.viewText}>{user?.tanggal_lahir || "N/A"}</p>
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Location:</label>
-            <p style={styles.viewText}>{user?.location || "N/A"}</p>
-          </div>
-          <div style={styles.inputGroup}>
-            <label style={styles.label}>Phone Number:</label>
-            <p style={styles.viewText}>{user?.phone || "N/A"}</p>
-          </div>
-          <button
-            style={styles.editButton}
-            type="button"
-            onClick={() => setIsEditing(true)}
-          >
-            Edit Profile
-          </button>
+          {/* Display other fields here */}
         </div>
       )}
       {errorMessage && <div style={styles.error}>{errorMessage}</div>}
@@ -159,19 +102,18 @@ const styles = {
     boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
   },
   heading1: {
-    fontSize: "20px",
+    fontSize: "24px",
     fontWeight: "bold",
-    marginBottom: "30px",
+    marginBottom: "20px",
     color: "#333",
-    textAlign: "left",
+    textAlign: "center",
   },
   heading2: {
-    fontSize: "20px",
+    fontSize: "24px",
     fontWeight: "bold",
-    marginTop: "20px",
-    marginBottom: "25px",
+    marginTop: "40px",
     color: "#333",
-    textAlign: "left",
+    textAlign: "center",
   },
   form: {
     display: "flex",

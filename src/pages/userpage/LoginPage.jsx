@@ -1,32 +1,47 @@
 import { useNavigate } from 'react-router-dom';
-import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'; 
 import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
+import { login } from '../../api/apiInstance.js';
 
 const LoginPage = () => {
-  const { login, loading, error } = useAuth(); // Ambil fungsi login, loading, dan error dari AuthContext
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState(''); 
+  const [password, setPassword] = useState(''); 
+  const [showPassword, setShowPassword] = useState(false); 
+  
 
-  // Handle Login
   const handleLogin = async (e) => {
     e.preventDefault();
-    const success = await login(email, password); // Gunakan fungsi login dari AuthContext
-    if (success) {
-      navigate('/home'); // Redirect ke halaman home jika login berhasil
+
+    try {
+      const data = await login(email, password);
+      const { token, user } = data;
+
+      if (token) {
+        localStorage.setItem('authToken', token); 
+        localStorage.setItem('user', JSON.stringify(user))
+        console.log('Login successful, token stored:', token);
+        
+        navigate('/home'); 
+      } else {
+        console.error('No token returned from server');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
     }
   };
 
-  // Toggle Password Visibility
+  const goToLandingPage = () => {
+    navigate('/'); 
+  };
+
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword); 
   };
 
   return (
     <div style={styles.container}>
-      <button style={styles.backButton} onClick={() => navigate('/')}>
+      <button style={styles.backButton} onClick={goToLandingPage}>
         <FaArrowLeft style={styles.icon} /> Continue as Guest
       </button>
 
@@ -39,32 +54,27 @@ const LoginPage = () => {
           <h2 style={styles.title}>Welcome back</h2>
           <p style={styles.subtitle}>Enter your details below</p>
           <form style={styles.form} onSubmit={handleLogin}>
-            <input
-              type="email"
-              placeholder="Email"
-              style={styles.input}
-              required
+            <input 
+              type="email" 
+              placeholder="Email" 
+              style={styles.input} 
+              required 
               onChange={(e) => setEmail(e.target.value)}
             />
             <div style={styles.passwordContainer}>
-              <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Password"
-                style={styles.input}
-                required
+              <input 
+                type={showPassword ? "text" : "password"} 
+                placeholder="Password" 
+                style={styles.input} 
+                required 
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button type="button" style={styles.eyeIcon} onClick={togglePasswordVisibility}>
                 {showPassword ? <FaEyeSlash style={{ color: 'black' }} /> : <FaEye style={{ color: 'black' }} />}
               </button>
             </div>
-            <button type="submit" style={styles.button} disabled={loading}>
-              {loading ? 'Logging in...' : 'Login'}
-            </button>
+            <button type="submit" style={styles.button}>Login</button>
           </form>
-
-          {/* Display error message if login fails */}
-          {error && <p style={{ color: 'red' }}>{error}</p>}
 
           <p style={styles.footerText}>
             Do not have an account? <a href="/register" style={styles.link}>Sign Up</a>

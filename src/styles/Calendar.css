@@ -1,0 +1,78 @@
+/* Custom DatePicker Input */
+.custom-datepicker-input {
+  width: 200px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  color: #333;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.custom-datepicker-input:focus {
+  border-color: #0F67B1;
+  outline: none;
+}
+
+/* Custom DatePicker Popper (Calendar) */
+.custom-datepicker-popover {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: auto;
+  min-width: 300px;
+}
+
+.react-datepicker__header {
+  background-color: #0F67B1;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+}
+
+.react-datepicker__current-month {
+  font-weight: bold;
+}
+
+/* Style the days (change selected and hover states) */
+.react-datepicker__day {
+  font-size: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-datepicker__day:hover {
+  background-color: #e0e0e0;
+  cursor: pointer;
+}
+
+/* Style the selected day */
+.react-datepicker__day--selected {
+  background-color: #0F67B1;
+  color: white;
+}
+
+/* Disabled Days */
+.react-datepicker__day--disabled {
+  background-color: #f0f0f0;
+  color: #ccc;
+}
+
+/* Customize month dropdown */
+.react-datepicker__month-dropdown {
+  background-color: #0F67B1;
+  border-radius: 8px;
+}
+
+.react-datepicker__year-dropdown {
+  background-color: #0F67B1;
+  border-radius: 8px;
+}

@@ -94,6 +94,8 @@ const ItineraryCreate = ({ onCreate }) => {
       alert('Please fill in all required fields.');
       return;
     }
+
+    setLoading(true);
     const itineraryData = {
       title: itineraryTitle,
       startDate,
@@ -111,8 +113,6 @@ const ItineraryCreate = ({ onCreate }) => {
       setLoading(false);
       alert('Itinerary created successfully!');
     }, 2000);
-
-    navigate('/itinerarypreview', { state: itineraryData });
   };
 
   return (
