@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'; 
+import { useAuth } from '../../contexts/AuthContext';
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const { register, loading, error } = useAuth(); 
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +19,6 @@ const RegisterPage = () => {
     tanggal_lahir : '',
   });
   const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false); 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -34,57 +34,47 @@ const RegisterPage = () => {
     const value = e.target.value.replace(/\D/g, '');
     setFormData({
       ...formData,
-      phone : value,
+      phone: value,
     });
   };
 
   const handleDateChange = (date) => {
     setFormData({
       ...formData,
-      tanggal_lahir : date,
+      tanggal_lahir: date,
     });
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setErrorMessage('');
+
     if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
       setErrorMessage('Please fill in all fields.');
-      setLoading(false);
       return;
     }
     if (formData.password !== formData.confirmPassword) {
       setErrorMessage('Passwords do not match.');
-      setLoading(false);
       return;
     }
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phone,
-        location: formData.location,
-        tanggal_lahir: formData.tanggal_lahir,
-      });
-      if (response.data.token) {
-        localStorage.setItem('authToken', response.data.token); 
-        console.log('Registration successful:', response.data);
-        setShowSuccessMessage(true);
 
-        setTimeout(() => {
-          setShowSuccessMessage(false);
-          navigate('/login');
-        }, 2000);
-      } else {
-        setErrorMessage('Registration failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      setErrorMessage('Registration failed. Please try again.');
-    } finally {
-      setLoading(false); 
+    const success = await register({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      phone: formData.phone,
+      location: formData.location,
+      tanggal_lahir: formData.tanggal_lahir,
+    });
+
+    if (success) {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        navigate('/login'); 
+      }, 2000);
+    } else {
+      setErrorMessage(error || 'Registration failed. Please try again.');
     }
   };
 
@@ -99,6 +89,7 @@ const RegisterPage = () => {
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
 
   return (
     <div style={styles.container}>
@@ -172,7 +163,7 @@ const RegisterPage = () => {
             <DatePicker
               selected={formData.tanggal_lahir}
               onChange={handleDateChange}
-              dateFormat="yyyy-MM-dd"  // Standard date format
+              dateFormat="yyyy-MM-dd"  
               placeholderText="Select Birth Date"
               style={styles.dateInput}
               required
