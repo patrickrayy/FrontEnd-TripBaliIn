@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useLocalStorageState from "../hooks/useLocalStorage";
+import { useAuth } from "../contexts/AuthContext";
 
 const PopularCategories = () => {
   const navigate = useNavigate();
-  const [token] = useLocalStorageState(null, "authToken");
-  const isToken = token !== null; 
+  const { token } = useAuth();
   const [hovered, setHovered] = useState(null);
 
   const handleMouseEnter = (index) => setHovered(index);
   const handleMouseLeave = () => setHovered(null);
 
   const handleNavigation = (path) => {
-    if (isToken) {
+    if (token) {
       navigate(path); 
     } else {
       navigate("/login"); 

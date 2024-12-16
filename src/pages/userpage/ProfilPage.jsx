@@ -4,72 +4,61 @@ import SideBar from "../../components/Sidebar";
 import Profiledetails from "../../components/ProfileDetails";
 import NavbarAfter from "../../components/NavbarAfter";
 import Footer from "../../components/Footer";
-import apiInstance from "../../api/apiInstance.js";
-import useLocalStorageState from "../../hooks/useLocalStorage.js";
+import { useAuth } from "../../contexts/AuthContext";
 
 const ProfilePage = () => {
+  const { token, user, logout } = useAuth();
   const [profile, setProfile] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
-  const [token] = useLocalStorageState(null, 'authToken');
-  const isToken = token !== null;
 
   useEffect(() => {
-    if(!isToken){
-      navigate('/login');
-      return;
+    if (!token) {
+      navigate("/login");
     }
+  }, [token, navigate]);
 
+  // Ambil data profile dari server jika user login
+  useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem('authToken');
-      if (!token) {
-        navigate('/login');
-        return;
-      }
       try {
-        const response = await apiInstance.get('/profile/profile');
-        setProfile(response.data);
-      }catch(error){
-        console.error("Error fetching user's profile",error);
+        // Anda bisa mengganti ini sesuai dengan fungsi GET Profile dari useAuth atau API
+        const response = await fetch("http://localhost:3000/api/auth/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (data.status === "success") {
+          setProfile(data.data);
+        } else {
+          console.error("Failed to fetch profile");
+        }
+      } catch (error) {
+        console.error("Error fetching user's profile:", error);
       }
-    }
+    };
 
-    if(isToken){
+    if (token) {
       fetchProfile();
     }
-  }, [isToken, navigate]);
+  }, [token]);
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
-    navigate("/login"); 
-  };
-
-  const handleEditClick = () => {
-    setIsEditing(prev => !prev);  // Toggle the editing state
+    navigate("/login");
   };
 
   return (
     <div style={styles.pageContainer}>
-      {/* Navbar di atas */}
       <NavbarAfter />
-      {/* Sidebar dan ProfileDetails di bawah Navbar */}
       <div style={styles.mainContent}>
         <SideBar style={styles.sidebar} />
         <div style={styles.content}>
           <Profiledetails 
             profile={profile} 
-            isEditing={isEditing}
-            setIsEditing={setIsEditing}
             setProfile={setProfile}
+            onLogout={handleLogout}
           />
-          <button style={styles.logoutButton} onClick={handleLogout}>Logout</button>
-          {/* Edit Profile Button */}
-          <button 
-            style={isEditing ? styles.cancelButton : styles.editButton} 
-            onClick={handleEditClick}
-          >
-            {isEditing ? "Cancel Edit" : "Edit Profile"}
-          </button>
         </div>
       </div>
       {/* Footer di bagian bawah */}

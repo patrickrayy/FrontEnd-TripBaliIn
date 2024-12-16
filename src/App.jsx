@@ -65,7 +65,6 @@ const App = () => {
           <Route path='/villadetails' element={<VillaDetailsPage />} />
           <Route path='/contactafter' element={<ContactAfter />} />
         </Route>
-
       </Routes>
     </>
   );
