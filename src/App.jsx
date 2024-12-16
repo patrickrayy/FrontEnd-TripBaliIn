@@ -92,6 +92,7 @@ function App() {
           <Route path="/payment-completed" element={<PaymentCompleted />} />
         </Routes>
     </>
+<<<<<<< HEAD
 =======
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -104,9 +105,14 @@ const PrivateRoute = ({ children }) => {
   const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;
 };
+=======
+  );
+}
+>>>>>>> parent of 1412f71 (contexts)
 
 function App() {
   return (
+<<<<<<< HEAD
     <AuthProvider>
       <BrowserRouter>
         <Routes>
@@ -131,14 +137,19 @@ function App() {
 <<<<<<< HEAD
 export default function AppWrapper() {
   return (
+=======
+>>>>>>> parent of 1412f71 (contexts)
     <Router>
       <App />
     </Router>
   );
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 export default App;
 >>>>>>> f5f7df2628560a1b982456fafbff6bfba910e946
+=======
+>>>>>>> parent of 1412f71 (contexts)
 =======
 >>>>>>> parent of 1412f71 (contexts)
