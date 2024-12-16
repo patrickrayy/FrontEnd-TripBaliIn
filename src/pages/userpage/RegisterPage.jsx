@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; 
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
-import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa'; 
+import { FaArrowLeft, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useAuth } from '../../contexts/AuthContext'; // Import useAuth
 
 const RegisterPage = () => {
+  const { register, loading, error } = useAuth(); // Ambil fungsi register, loading, dan error dari AuthContext
   const navigate = useNavigate();
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [formData, setFormData] = useState({
@@ -14,11 +15,9 @@ const RegisterPage = () => {
     password: '',
     confirmPassword: '',
     phone: '',
-    location: '', 
-    tanggal_lahir : '',
+    location: '',
+    tanggal_lahir: '',
   });
-  const [errorMessage, setErrorMessage] = useState('');
-  const [loading, setLoading] = useState(false); 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -34,57 +33,45 @@ const RegisterPage = () => {
     const value = e.target.value.replace(/\D/g, '');
     setFormData({
       ...formData,
-      phone : value,
+      phone: value,
     });
   };
 
   const handleDateChange = (date) => {
     setFormData({
       ...formData,
-      tanggal_lahir : date,
+      tanggal_lahir: date,
     });
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setErrorMessage('');
-    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-      setErrorMessage('Please fill in all fields.');
-      setLoading(false);
-      return;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      setErrorMessage('Passwords do not match.');
-      setLoading(false);
-      return;
-    }
-    try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        phone: formData.phone,
-        location: formData.location,
-        tanggal_lahir: formData.tanggal_lahir,
-      });
-      if (response.data.token) {
-        localStorage.setItem('authToken', response.data.token); 
-        console.log('Registration successful:', response.data);
-        setShowSuccessMessage(true);
 
-        setTimeout(() => {
-          setShowSuccessMessage(false);
-          navigate('/login');
-        }, 2000);
-      } else {
-        setErrorMessage('Registration failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      setErrorMessage('Registration failed. Please try again.');
-    } finally {
-      setLoading(false); 
+    if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      alert('Passwords do not match.');
+      return;
+    }
+
+    const success = await register({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      phone: formData.phone,
+      location: formData.location,
+      tanggal_lahir: formData.tanggal_lahir,
+    });
+
+    if (success) {
+      setShowSuccessMessage(true);
+      setTimeout(() => {
+        setShowSuccessMessage(false);
+        navigate('/login'); // Redirect ke halaman login setelah berhasil register
+      }, 2000);
     }
   };
 
@@ -134,7 +121,7 @@ const RegisterPage = () => {
             />
             <div style={styles.passwordContainer}>
               <input
-                type={showPassword ? "text" : "password"}
+                type={showPassword ? 'text' : 'password'}
                 name="password"
                 placeholder="Password"
                 style={styles.input}
@@ -148,7 +135,7 @@ const RegisterPage = () => {
             </div>
             <div style={styles.passwordContainer}>
               <input
-                type={showConfirmPassword ? "text" : "password"}
+                type={showConfirmPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 placeholder="Confirm Password"
                 style={styles.input}
@@ -172,14 +159,13 @@ const RegisterPage = () => {
             <DatePicker
               selected={formData.tanggal_lahir}
               onChange={handleDateChange}
-              dateFormat="yyyy-MM-dd"  // Standard date format
+              dateFormat="yyyy-MM-dd"
               placeholderText="Select Birth Date"
-              style={styles.dateInput}
-              required
               customInput={<input className="custom-datepicker" style={styles.input} />}
               showMonthDropdown
               showYearDropdown
               dropdownMode="select"
+              required
             />
             <input
               type="text"
@@ -189,14 +175,13 @@ const RegisterPage = () => {
               value={formData.phone}
               onChange={handlePhoneNumberChange}
               required
-              pattern='\d*'
             />
             <button type="submit" style={styles.button} disabled={loading}>
               {loading ? 'Signing Up...' : 'Sign Up'}
             </button>
           </form>
           {showSuccessMessage && <p style={{ color: 'green' }}>Registration successful! Redirecting...</p>}
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
           <p style={styles.footerText}>
             Already have an account? <a href="/login" style={styles.link}>Login</a>
           </p>
@@ -205,6 +190,7 @@ const RegisterPage = () => {
     </div>
   );
 };
+
 
 const styles = {
   container: {

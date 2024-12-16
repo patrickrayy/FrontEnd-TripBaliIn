@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorageState from '../hooks/useLocalStorage';
+import { useAuth } from '../contexts/AuthContext';
 
 const NavbarAfter = ({ isLoggedIn, setIsLoggedIn }) => {
   const [hovered, setHovered] = useState(null);
   const navigate = useNavigate();
-  const [token] = useLocalStorageState(null, 'authToken');
-  const isToken = token !== null;
+  const { token, logout } = useAuth();
 
   const handleMouseEnter = (index) => setHovered(index);
   const handleMouseLeave = () => setHovered(null);
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
+    logout();
     navigate('/login');
   };
 

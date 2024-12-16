@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
-import useLocalStorageState from './hooks/useLocalStorage.js';
 import { useEffect, useState } from "react";
 import LandingPage from './pages/userpage/LandingPage';
 import Navbar from './components/Navbar';
@@ -16,7 +15,6 @@ import DetailVehicle from "./components/DetailVehicle";
 import ItineraryAfter from "./pages/userpage/ItineraryAfterLog";
 import ContactAfter from "./pages/userpage/ContactAfterLog";
 import ProfilePage from "./pages/userpage/ProfilPage";
-import SideBar from "./components/Sidebar"; 
 import HistoryBooking from "./pages/userpage/history"; 
 import ItineraryCreator from "./pages/userpage/ItineraryCreator";
 import ItineraryPreview from "./pages/userpage/ItineraryPreview";
@@ -25,79 +23,60 @@ import VillaDetailsPage from "./pages/userpage/VillaDetailsPage";
 import BookingPage from "./pages/userpage/BokingPage";
 import PaymentPage from "./pages/userpage/PaymentPage";
 import PaymentCompleted from "./pages/userpage/PaymentCompleted";
-// import { AuthProvider } from "./contexts/useAuth";
 import AdminPage from "./pages/adminpage/adminpage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { useAuth, AuthProvider } from "./contexts/AuthContext.jsx";
 
-
-function App() {
-  const [token] = useLocalStorageState(null, 'authToken');
-  const isToken = token !== null;
-  const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [location]);
-
+const App = () => {
+  const { token } = useAuth();
   const hideNavbarPaths = ['/login', '/register', '/contact'];
 
   return (
     <>
-      {!hideNavbarPaths.includes(location.pathname) && <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}
-        <Routes>
-          <Route path='/home' element={isToken ? <HomePage /> : <Navigate to="/" replace/>} />
-          <Route path='/about' element={isToken ? <AboutPage />:<Navigate to="/aboutafter" replace/>} />
-          <Route path='/home' element={ <HomePage/>} />
-          <Route path='/' element={ <LandingPage/>} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/register' element={<RegisterPage />} />
-          <Route path='/itinerary' element={<ItineraryPage />} />
-          <Route path='/contact' element={<ContactPage />} />
-          <Route path='/destination' element={<DestinationPage />}/>
+      {/* Navbar hanya tampil di halaman tertentu */}
+      {!hideNavbarPaths.includes(location.pathname) && <Navbar />}
+
+      <Routes>
+        {/* Rute Public */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/itinerary" element={<ItineraryPage/>}/>
+        <Route path="/login" element={!token ? <LoginPage /> : <Navigate to="/home" />} />
+        <Route path="/register" element={!token ? <RegisterPage /> : <Navigate to="/home" />} />
+
+        {/* Rute Terproteksi */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/history" element={<HistoryBooking />} />
+          <Route path="/transportation" element={<TransportationPage />} />
+          <Route path="/destination" element={<DestinationPage />} />
+          <Route path="/transportation/:id" element={<DetailVehicle />} />
+          <Route path="/adminpage" element={<AdminPage />} />
           <Route path='/aboutafter' element={<AboutAfter /> }/>
-          <Route path="/transportation" element={<TransportationPage />}>
-            <Route path=":id" element={<DetailVehicle />}/>
-          </Route>
-          <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
-          <Route path='/contactafter' element={<ContactAfter/>} />
-          <Route path='/profile' element={<ProfilePage />}/>
-          <Route path='/history' element={<HistoryBooking />}/>
-          <Route path='/Sidebar' element={<SideBar/>} />
-          <Route path="/adminpage" element={<AdminPage/>}/>
-          <Route path='/accommodation' element={<AccommodationPage />} />
-          <Route path='/itinerarycreator' element={
-              <ItineraryCreator />
-          }/>
-          <Route path="/itinerary-preview" element={
-              <ItineraryPreview />
-          }/>
-          <Route path='/accommodation' element={
-              <AccommodationPage />
-          }/>
-          <Route path='/villa-details/:id' element={
-              <VillaDetailsPage />
-          }/>
-          <Route path="/booking" element={
-              <BookingPage />
-          }/>
-          <Route path="/payment" element={
-              <PaymentPage />
-          }/>
+          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
           <Route path="/payment-completed" element={<PaymentCompleted />} />
-        </Routes>
+          <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
+          <Route path='/itinerarycreator' element={<ItineraryCreator />}/>
+          <Route path='/itinerary-preview' element={<ItineraryPreview />} />
+          <Route path='/accommodation' element={<AccommodationPage />} />
+          <Route path='/villadetails' element={<VillaDetailsPage />} />
+          <Route path='/contactafter' element={<ContactAfter />} />
+        </Route>
+
+      </Routes>
     </>
   );
-}
+};
 
 export default function AppWrapper() {
   return (
+    <AuthProvider>
     <Router>
       <App />
     </Router>
+    </AuthProvider>
   );
 }

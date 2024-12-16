@@ -90,7 +90,6 @@ const inputStyle = {
   border: "1px solid #ccc",
 };
 
-// Style untuk tombol Pay Now dan Cancel
 const buttonStyle = {
   backgroundColor: "#0F67B1",
   color: "white",

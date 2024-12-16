@@ -45,7 +45,7 @@ const AboutContent = ({ leftContent, rightImage }) => {
     },
     rightImage: {
       width: '100%',
-      maxWidth: '544px', // Keeps image size responsive but limits to a max width
+      maxWidth: '544px', 
       height: 'auto',
       borderRadius: '10px',
     },

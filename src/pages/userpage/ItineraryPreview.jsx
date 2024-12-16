@@ -6,18 +6,16 @@ import NavbarAfter from '../../components/NavbarAfter';
 import Footer from '../../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import useLocalStorageState from '../../hooks/useLocalStorage.js';
+import '../../styles/CalendarStyles.css';
 
 const ItineraryPreview = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const itineraryData = location.state || {};
-  const [token] = useLocalStorageState(null, 'authToken');
-  const isToken = token !== null;
   const [selectedDate, setSelectedDate] = useState(new Date(itineraryData.startDate || ''));
 
-  if (!isToken || !itineraryData){
-    navigate('/login');
+  if (!itineraryData || Object.keys(itineraryData).length === 0) {
+    navigate('/itinerarycreator');
     return null;
   }
 
@@ -102,7 +100,7 @@ const ItineraryPreview = () => {
       padding: '10px',
       marginBottom: '20px',
       marginTop: '40px',
-      textAlign: 'left', 
+      textAlign: 'center', 
     },
     // calendar: {
     //   width: '348px',
@@ -217,7 +215,7 @@ const ItineraryPreview = () => {
       },
       attractionstitle: {
         fontSize: '18px',
-        textAlign: 'left',
+        textAlign: 'center',
         backgroundColor: '#e0e0e0',
         padding: '10px',
         borderRadius: '100px',
@@ -258,7 +256,7 @@ const ItineraryPreview = () => {
               <div style={styles.attractions}>
                 <h3  style={styles.attractionstitle}>Attractions</h3>
                 <ul>
-                  {itineraryData.attractions?.map((item, index) => (
+                  {itineraryData.otherAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -278,7 +276,7 @@ const ItineraryPreview = () => {
               <div style={styles.cultureAttractions}>
                 <h3 style={styles.attractionstitle}>Culture Attractions</h3>
                 <ul>  
-                  {itineraryData.cultureAttractions?.map((item, index) => (
+                  {itineraryData.culturalAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -288,7 +286,7 @@ const ItineraryPreview = () => {
               <div style={styles.otherContainer}>
                 <h3  style={styles.attractionstitle}>Food Attractions</h3>
                 <ul>
-                  {itineraryData.miscellaneous?.map((item, index) => (
+                  {itineraryData.foodAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
