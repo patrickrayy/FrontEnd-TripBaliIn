@@ -1,5 +1,5 @@
 {
-  "name": "tripbaliin-a8",
+  "name": "tribalin-frontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,42 +10,27 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.7.1",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
-    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
-    "body-parser": "^1.20.3",
-    "bootstrap": "^5.3.3",
-    "cors": "^2.8.5",
-    "date-fns": "^4.1.0",
-    "express": "^4.21.1",
-    "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.2",
-    "jwt-decode": "^4.0.0",
-    "lucide-react": "^0.460.0",
-    "mysql2": "^3.11.4",
+    "lucide-react": "^0.468.0",
+    "postcss": "^8.4.49",
     "react": "^18.3.1",
-    "react-bootstrap": "^2.10.5",
-    "react-calendar": "^5.1.0",
-    "react-datepicker": "^7.5.0",
     "react-dom": "^18.3.1",
-    "react-icons": "^5.3.0",
-    "react-router-dom": "^6.28.0",
-    "swiper": "^11.1.14"
+    "react-router-dom": "^7.0.2",
+    "tailwindcss": "^3.4.16"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
+    "@eslint/js": "^9.15.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.13.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.15.0",
     "eslint-plugin-react": "^7.37.2",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.11.0",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.15",
-    "vite": "^5.4.11"
+    "globals": "^15.12.0",
+    "vite": "^6.0.1"
   }
 }

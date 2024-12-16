@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import LandingPage from './pages/userpage/LandingPage';
@@ -68,9 +69,43 @@ const App = () => {
 
       </Routes>
     </>
+=======
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import LoginPage from './pages/auth/LoginPage.jsx';
+import RegisterPage from './pages/auth/RegisterPage.jsx';
+import ProfilePage from './pages/dashboard/ProfilePage.jsx';
+
+// Protected Route Component
+const PrivateRoute = ({ children }) => {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" />;
+};
+
+function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <ProfilePage />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+>>>>>>> f5f7df2628560a1b982456fafbff6bfba910e946
   );
 };
 
+<<<<<<< HEAD
 export default function AppWrapper() {
   return (
     <AuthProvider>
@@ -80,3 +115,6 @@ export default function AppWrapper() {
     </AuthProvider>
   );
 }
+=======
+export default App;
+>>>>>>> f5f7df2628560a1b982456fafbff6bfba910e946
