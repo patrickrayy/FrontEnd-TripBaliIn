@@ -17,9 +17,9 @@ const DetailVehicle = () => {
       rentalProvider: [
         {
           name: "PT. INFINITY",
-          totalPrice: "IDR 140.000",
-          perDayPrice: "IDR 70.000",
-          reviewValue: 100,
+          totalPrice: "IDR 200.000",
+          perDayPrice: "IDR 100.000",
+          reviewValue: 154,
           ratingStar: 5
         },
       ],
@@ -36,33 +36,97 @@ const DetailVehicle = () => {
       fromPrice: "IDR 70.000",
       rentalProvider: [
         {
-          name: "PT. INTFINITY",
+          name: "MOTORLY",
           totalPrice: "IDR 140.000",
           perDayPrice: "IDR 70.000",
-          reviewValue: 100,
-          ratingStar: 5
+          reviewValue: 41,
+          ratingStar: 3
         },
       ],
     },
-    // Additional vehicles...
+    {
+      id: 3,
+      image: "/assets/images/vehicle/fazio.png",
+      type: "Motorcycle",
+      vehicleName: "Yamaha Fazzio",
+      transmission: "Automatic",
+      luggageValue: 0,
+      peopleValue: 2,
+      withDriver: false,
+      fromPrice: "IDR 90.000",
+      rentalProvider: [
+        {
+          name: "PT. TRIPPY",
+          totalPrice: "IDR 180.000",
+          perDayPrice: "IDR 90.000",
+          reviewValue: 80,
+          ratingStar: 4
+        },
+      ],
+    },
+    {
+      id: 4,
+      image: "/assets/images/vehicle/scoopy.png",
+      type: "Motorcycle",
+      vehicleName: "Honda Scoopy",
+      transmission: "Automatic",
+      luggageValue: 0,
+      peopleValue: 2,
+      withDriver: false,
+      fromPrice: "IDR 80.000",
+      rentalProvider: [
+        {
+          name: "RideIn",
+          totalPrice: "IDR 160.000",
+          perDayPrice: "IDR 80.000",
+          reviewValue: 29,
+          ratingStar: 4
+        },
+      ],
+    },
+    {
+      id: 5,
+      image: "/assets/images/vehicle/beat.png",
+      type: "Motorcycle",
+      vehicleName: "Honda Beat",
+      transmission: "Automatic",
+      luggageValue: 0,
+      peopleValue: 2,
+      withDriver: false,
+      fromPrice: "IDR 75.000",
+      rentalProvider: [
+        {
+          name: "PT. ENGINS",
+          totalPrice: "IDR 150.000",
+          perDayPrice: "IDR 75.000",
+          reviewValue: 48,
+          ratingStar: 4
+        },
+      ],
+    },
   ];
-  
+
   const vehicleDetail = vehicleData.find((item) => item.id == id);
-  
+
   return (
     <div style={styles.container}>
-      <div style={styles.vehicleHeaderSection} className="vehicle-header-section">
-        <div className="vehicle-image">
-          <img src={vehicleDetail.image} alt={vehicleDetail.vehicleName} style={styles.vehicleImage} />
-        </div>
-        <div style={styles.identity} className="vehicle-identity">
-          <h2 style={styles.typeVehicle}>Type {vehicleDetail.type}</h2>
+      {/* Header Section */}
+      <div style={styles.vehicleHeaderSection}>
+        <img
+          src={vehicleDetail.image}
+          alt={vehicleDetail.vehicleName}
+          style={styles.vehicleImage}
+        />
+        <div style={styles.identity}>
+          <h2 style={styles.typeVehicle}>Type: {vehicleDetail.type}</h2>
           <h1 style={styles.vehicleName}>{vehicleDetail.vehicleName.toUpperCase()}</h1>
-          <h2 style={styles.transmission}>{vehicleDetail.transmission}</h2>
+          <h2 style={styles.transmission}>Transmission: {vehicleDetail.transmission}</h2>
         </div>
       </div>
-      <div className="rental-provider">
-        <h1 style={styles.rentalProvider}>Select a rental provider</h1>
+
+      {/* Rental Providers */}
+      <div style={styles.rentalProviderSection}>
+        <h1 style={styles.rentalProviderTitle}>Select a Rental Provider</h1>
         {vehicleDetail.rentalProvider.map((item, index) => (
           <RentalProviderCard 
             key={index}
@@ -81,79 +145,61 @@ const DetailVehicle = () => {
 const styles = {
   container: {
     width: "90%",
-    margin: "140px auto",
+    margin: "100px auto",
     padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start", 
   },
   vehicleHeaderSection: {
     display: "flex",
-    flexDirection: "row",
-    height: "180px",
-    flexWrap: "wrap", // Allow wrapping for smaller screens
+    alignItems: "center",
+    justifyContent: "flex-start",
     gap: "20px",
+    marginBottom: "30px",
   },
   vehicleImage: {
-    width: "100%",
+    width: "250px",
     height: "auto",
-    maxWidth: "400px", // Limit the max width of the image
     borderRadius: "8px",
-  },
-  typeVehicle: {
-    fontSize: "15px",
-    color: "#6F6F6F",
-    fontWeight: "500",
-  },
-  vehicleName: {
-    fontSize: "20px",  // Increased font size for better visibility
-    fontWeight: "700",
-    color: "black",
-  },
-  transmission: {
-    fontSize: "15px",
-    color: "#6F6F6F",
-    fontWeight: "500",
   },
   identity: {
     display: "flex",
-    alignItems: "start",
     flexDirection: "column",
     justifyContent: "center",
-    marginLeft: "18px",
-    width: "100%", // Ensure the identity section is full width on smaller screens
+    gap: "10px",
   },
-  rentalProvider: {
-    fontSize: "24px",
-    fontWeight: "bold",
-    margin: "6px 0 20px 0",  // Increased bottom margin for better spacing
+  typeVehicle: {
+    fontSize: "16px",
+    color: "#555",
+    fontWeight: "500",
+    margin: "0",
     textAlign: "left",
   },
-
-  // Mobile responsive styles (max-width: 768px)
-  "@media (max-width: 768px)": {
-    container: {
-      width: "95%",  // Allow the container to use more space on small screens
-    },
-    vehicleHeaderSection: {
-      flexDirection: "column",  // Stack the image and text vertically
-      alignItems: "center",     // Center align the elements
-      height: "auto",           // Allow the section to adjust based on content
-    },
-    vehicleName: {
-      fontSize: "18px",  // Reduce font size for mobile
-    },
-    rentalProvider: {
-      fontSize: "20px",  // Adjust the font size for better readability
-    },
-    vehicleImage: {
-      maxWidth: "100%",  // Make the image fully responsive
-    },
+  vehicleName: {
+    fontSize: "24px",
+    fontWeight: "700",
+    color: "#333",
+    margin: "0",
+    textAlign: "left",
   },
-
-  // Tablet and larger screens (min-width: 768px)
-  "@media (min-width: 768px)": {
-    vehicleHeaderSection: {
-      flexDirection: "row", // Stack items side by side for tablet/desktop
-      height: "180px",
-    },
+  transmission: {
+    fontSize: "16px",
+    color: "#555",
+    fontWeight: "500",
+    margin: "0",
+    textAlign: "left",
+  },
+  rentalProviderSection: {
+    width: "100%",
+    marginTop: "20px",
+  },
+  rentalProviderTitle: {
+    fontSize: "22px",
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: "15px",
+    textAlign: "left",
   },
 };
 

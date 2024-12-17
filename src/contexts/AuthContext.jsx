@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
             const storedToken = localStorage.getItem('token');
             if (storedToken) {
                 try {
-                    const response = await fetch('http://localhost:3000/api/auth/profile', {
+                    const response = await fetch('http://localhost:3000/api/profile/profile', {
                         headers: {
                             'Authorization': `Bearer ${storedToken}`
                         }

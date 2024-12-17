@@ -105,7 +105,7 @@ const styles = {
     fontFamily: "Montserrat, sans-serif",
   },
   backButton: {
-    backgroundColor: "#007BFF",
+    backgroundColor: "#0F67B1",
     color: "#fff",
     border: "none",
     borderRadius: "8px",

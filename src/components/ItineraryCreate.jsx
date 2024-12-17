@@ -292,7 +292,7 @@ const styles = {
     borderRadius: '10px',
     width: '1077px',
     minHeight: '1230px',
-    alignItems:'center',
+    alignItems:'left',
     marginTop: '70px',
     marginLeft:'40px',
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
@@ -312,7 +312,8 @@ const styles = {
     display:'block',
     fontSize: '18px',
     fontWeight: '550',
-    marginBottom:'10px'
+    marginBottom:'10px',
+    
   },
   input: {
     width: '100%',

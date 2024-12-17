@@ -6,7 +6,7 @@ import NavbarAfter from '../../components/NavbarAfter';
 import Footer from '../../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../styles/Calendar.css';
+import '../../styles/CustomCalendar.css';
 
 const ItineraryPreview = () => {
   const location = useLocation();
@@ -100,16 +100,8 @@ const ItineraryPreview = () => {
       padding: '10px',
       marginBottom: '20px',
       marginTop: '40px',
-      textAlign: 'center', 
+      textAlign: 'left', 
     },
-    // calendar: {
-    //   width: '348px',
-    //   height: '340px',
-    //   backgroundColor: '#fff',
-    //   borderRadius: '10px',
-    //   padding: '10px',
-    //   marginBottom: '20px',
-    // },
     cultureAttractions: {
       width: '380px',
       height: '198px',
@@ -118,6 +110,7 @@ const ItineraryPreview = () => {
       padding: '10px',
       marginBottom: '20px',
       marginTop: '20px',
+      textAlign: 'left', 
     },
     otherContainer: {
       width: '380px',
@@ -125,6 +118,7 @@ const ItineraryPreview = () => {
       backgroundColor: '#fff',
       borderRadius: '10px',
       padding: '10px',
+      textAlign: 'left', 
     },
     sectionTitle: {
       fontSize: '18px',
@@ -149,14 +143,6 @@ const ItineraryPreview = () => {
       fontSize: '18px',
       fontWeight: '600',
     },
-      // calendar: {
-      //   border: 'none',
-      //   borderRadius: '10px',
-      //   boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-      //   padding: '10px',
-      //   backgroundColor: '#ffffff',
-      //   fontFamily: "'Montserrat', sans-serif",
-      // },
       navigation: {
         display: 'flex',
         justifyContent: 'space-between',
@@ -254,9 +240,9 @@ const ItineraryPreview = () => {
             <div>
               {/* Attractions */}
               <div style={styles.attractions}>
-                <h3  style={styles.attractionstitle}>Attractions</h3>
+                <h3  style={styles.attractionstitle}>Cultural Attractions</h3>
                 <ul>
-                  {itineraryData.otherAttractions?.map((item, index) => (
+                  {itineraryData.culturalAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -274,9 +260,9 @@ const ItineraryPreview = () => {
   
               {/* Culture Attractions */}
               <div style={styles.cultureAttractions}>
-                <h3 style={styles.attractionstitle}>Culture Attractions</h3>
+                <h3 style={styles.attractionstitle}>Food Attractions</h3>
                 <ul>  
-                  {itineraryData.culturalAttractions?.map((item, index) => (
+                  {itineraryData.foodAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
@@ -284,9 +270,9 @@ const ItineraryPreview = () => {
   
               {/* Miscellaneous */}
               <div style={styles.otherContainer}>
-                <h3  style={styles.attractionstitle}>Food Attractions</h3>
+                <h3  style={styles.attractionstitle}>Other Attractions</h3>
                 <ul>
-                  {itineraryData.foodAttractions?.map((item, index) => (
+                  {itineraryData.otherAttractions?.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ul>

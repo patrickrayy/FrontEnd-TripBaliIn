@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useAuth } from "../contexts/AuthContext"; // Import useAuth
+import React, { useState,useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext"; 
 
 const Profiledetails = () => {
   const { user, token, updateUser } = useAuth(); // Ambil data user, token, dan fungsi updateUser dari AuthContext
@@ -15,6 +15,10 @@ const Profiledetails = () => {
       [name]: value,
     }));
   };
+
+  useEffect(() => {
+    setUpdatedProfile(user || {});
+  }, [user]);
 
   const handleSaveChanges = async () => {
     try {
@@ -43,6 +47,7 @@ const Profiledetails = () => {
       setSuccessMessage(null);
     }
   };
+
 
   return (
     <div style={styles.container}>
@@ -137,7 +142,10 @@ const Profiledetails = () => {
           <button
             style={styles.editButton}
             type="button"
-            onClick={() => setIsEditing(true)}
+            onClick={() => {
+              setUpdatedProfile(user);
+              setIsEditing(true);
+            }}
           >
             Edit Profile
           </button>
