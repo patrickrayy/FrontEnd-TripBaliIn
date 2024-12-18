@@ -59,7 +59,7 @@ const BookingPage = () => {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
-              style={{ padding: "10px", width: "100%", borderRadius: "10px", backgroundColor: "#",border: "1px solid #ccc" }}
+              style={{ padding: "10px", width: "100%", borderRadius: "10px", backgroundColor: "#e9e9e9", color:'#000', border: "1px solid #ccc" }}
             />
           </div>
 

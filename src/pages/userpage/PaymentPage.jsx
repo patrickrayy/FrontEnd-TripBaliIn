@@ -90,7 +90,7 @@ const inputStyle = {
   borderRadius: "10px",
   border: "1px solid #ccc",
   backgroundColor: '#e9e9e9',
-  colo  
+  color:'#000',
 };
 
 // Style untuk tombol Pay Now dan Cancel
