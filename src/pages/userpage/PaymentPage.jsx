@@ -24,8 +24,8 @@ const PaymentPage = () => {
   return (
     <div style={{ padding: "40px",fontFamily: "Montserrat, sans-serif", maxWidth: "800px", margin: "0 auto",marginTop:"70px",marginLeft: "calc((100vw - 800px) / 2 - 20px)",  }}>
       <NavbarAfter />
-      <h1 style={{ textAlign: "center", marginBottom: "20px",fontWeight: "bold" }}>Payment</h1>
-      <p style={{ textAlign: "center", marginBottom: "30px", color: "#888" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "20px",marginLeft: "40px",fontWeight: "bold" }}>Payment</h1>
+      <p style={{ marginLeft: "40px",textAlign: "center", marginBottom: "30px", color: "#888" }}>
         Kindly follow the instructions below
       </p>
 
@@ -34,14 +34,15 @@ const PaymentPage = () => {
           display: "flex",
           justifyContent: "space-between",
           border: "1px solid #ddd",
-          borderRadius: "8px",
+          marginLeft: "40px",
+          borderRadius: "10px",
           padding: "20px",
           boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
         {/* Informasi Booking */}
-        <div style={{ width: "45%" }}>
-          <p>Transfer TripBaliin:</p>
+        <div style={{ width: "45%", textAlign:'left', marginTop: '30px' }}>
+          <p style={{fontWeight:'650'}}>Transfer TripBaliin:</p>
           <p>
             {days} Days at {villa.title},<br />
             {villa.location}
@@ -73,7 +74,7 @@ const PaymentPage = () => {
       </div>
 
       {/* Tombol Pay Now dan Cancel */}
-      <div style={{ textAlign: "center", marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px",fontFamily: "Montserrat, sans-serif", }}>
+      <div style={{ textAlign: "center", marginTop: "30px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px",fontFamily: "Montserrat, sans-serif"}}>
   <button onClick={handlePayNow} style={payNowStyle}>Pay Now</button>
   <button onClick={handleCancel} style={cancelStyle}>Cancel</button>
       </div>
@@ -86,8 +87,10 @@ const inputStyle = {
   width: "100%",
   padding: "10px",
   marginBottom: "15px",
-  borderRadius: "5px",
+  borderRadius: "10px",
   border: "1px solid #ccc",
+  backgroundColor: '#e9e9e9',
+  colo  
 };
 
 // Style untuk tombol Pay Now dan Cancel
@@ -100,6 +103,7 @@ const buttonStyle = {
   fontSize: "16px",
   cursor: "pointer",
   fontFamily: "Montserrat, sans-serif",
+  marginLeft: "40px"
 };
 
 const payNowStyle = { ...buttonStyle, width: "150px", marginRight: "10px" };

@@ -20,12 +20,13 @@ import ItineraryCreator from "./pages/userpage/ItineraryCreator.jsx";
 import ItineraryPreview from "./pages/userpage/ItineraryPreview.jsx";
 import AccommodationPage from "./pages/userpage/AccommodationPage.jsx";
 import VillaDetailsPage from "./pages/userpage/VillaDetailsPage.jsx";
-import BookingPage from "./pages/userpage/BokingPage.jsx";
+import BookingPage from "./pages/userpage/BookingPage.jsx";
 import PaymentPage from "./pages/userpage/PaymentPage.jsx";
 import PaymentCompleted from "./pages/userpage/PaymentCompleted.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth, AuthProvider } from "./contexts/AuthContext.jsx";
 import AdminPage from "./pages/adminpage/adminPage.jsx"
+import { useAco, AcoProvider } from "./contexts/AcoContext.jsx";
 
 const App = () => {
   const { token } = useAuth();
@@ -55,14 +56,14 @@ const App = () => {
           <Route path="/transportation/:id" element={<DetailVehicle />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path='/aboutafter' element={<AboutAfter /> }/>
-          <Route path="/booking" element={<BookingPage />} />
+          <Route path="/booking" element={<AcoProvider><BookingPage /> </AcoProvider>} />
           <Route path="/payment" element={<PaymentPage />} />
           <Route path="/payment-completed" element={<PaymentCompleted />} />
           <Route path='/IteneraryAfter' element={<ItineraryAfter/>} />
           <Route path='/itinerarycreator' element={<ItineraryCreator />}/>
           <Route path='/itinerary-preview' element={<ItineraryPreview />} />
-          <Route path='/accommodation' element={<AccommodationPage />} />
-          <Route path='/villadetails' element={<VillaDetailsPage />} />
+          <Route path='/accommodation' element={ <AcoProvider> <AccommodationPage /> </AcoProvider>}/>
+          <Route path='/villadetails' element={<AcoProvider> <VillaDetailsPage /> </AcoProvider>} />
           <Route path='/contactafter' element={<ContactAfter />} />
         </Route>
       </Routes>

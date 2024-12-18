@@ -1,10 +1,10 @@
 import React from "react";
 
-const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image }) => {
+const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image, }) => {
   const styles = {
     card: {
       width: "357px",
-      height: "364px",
+      height: "auto",
       borderRadius: "10px",
       overflow: "hidden",
       boxShadow: "10px 10px 10px rgba(0, 0, 0, 0.1)",
@@ -13,14 +13,14 @@ const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image 
       cursor: "pointer",
     },
     image: {
-      width: "100%",
-      height: "200px",
+      width: '100%',
+      height: "auto",
       padding: "10px",
       borderRadius: "10px",
     //   objectFit: "cover",
     },
     content: {
-      padding: "15px",
+      padding: "10px",
       backgroundColor: "#fff",
     },
     title: {
@@ -39,7 +39,6 @@ const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image 
     },
     details: {
       display: "flex",
-    //   justifyContent: "space-between",
       fontSize: "14px",
       color: "#555",
       marginBottom: "5px",
@@ -71,7 +70,7 @@ const ScrollableVillaCards = ({ title, price, persons, bedrooms, hasPool, image 
               alt="Persons"
               style={styles.icon}
             />
-            {persons} Person
+            {persons} Person  
           </div>
           <div style={styles.detailText}>
             <img

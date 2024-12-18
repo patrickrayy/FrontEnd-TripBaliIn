@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link
-import { useAuth } from "../contexts/AuthContext"; // Import useAuth
+import { Link } from "react-router-dom"; 
+import { useAuth } from "../contexts/AuthContext"; 
 
 const SideBar = () => {
-  const { user } = useAuth(); // Ambil data user dari AuthContext
+  const { user } = useAuth(); 
 
   return (
     <div style={styles.sidebar}>
@@ -42,6 +42,7 @@ const styles = {
     padding: "20px",
     borderRight: "1px solid #ddd",
     minHeight: "100vh",
+    fontFamily: 'Montserrat, sans-serif'
   },
   profile: {
     textAlign: "center",
@@ -78,6 +79,7 @@ const styles = {
   },
   button: {
     padding: "10px",
+    width : "211px",
     backgroundColor: "#fff",
     color: "#333",
     border: "1px solid #ddd",

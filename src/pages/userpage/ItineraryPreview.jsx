@@ -6,7 +6,7 @@ import NavbarAfter from '../../components/NavbarAfter';
 import Footer from '../../components/Footer';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../../styles/CustomCalendar.css';
+import '../../styles/Animation.css';
 
 const ItineraryPreview = () => {
   const location = useLocation();

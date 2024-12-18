@@ -153,18 +153,21 @@ const AcoContent = () => {
       flex: "1",
       padding: "20px",
       zIndex: 2,
+      position: "relative", // Needed for absolute-positioned children
     },
     title: {
       fontSize: "18px",
       fontWeight: "bold",
       color: "#fff",
       marginBottom: "10px",
+      marginRight: '200px'
     },
     discount: {
       fontSize: "36px",
       fontWeight: "bold",
       color: "#fff",
       marginBottom: "10px",
+      marginRight:'200px'
     },
     codeContainer: {
       display: "flex",
@@ -181,6 +184,9 @@ const AcoContent = () => {
     description: {
       fontSize: "8px",
       color: "#fff",
+      position: "absolute", // Independent positioning
+      bottom: "10px", // Adjust as needed
+      left: "10px", // Adjust as needed
     },
     image: {
       position: "absolute",
@@ -210,6 +216,14 @@ const AcoContent = () => {
       clipPath: "polygon(0 0, 70% 0, 60% 100%, 0% 100%)",
       zIndex: 0,
     },
+    cashbackText: {
+      position: "absolute", // Independent positioning
+      top: "10px", // Adjust as needed
+      left: "10px", // Adjust as needed
+      fontSize: "14px",
+      fontWeight: "bold",
+      color: "#fff",
+    },  
   };
 
   return (

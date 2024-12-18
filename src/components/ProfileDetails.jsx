@@ -2,8 +2,8 @@ import React, { useState,useEffect } from "react";
 import { useAuth } from "../contexts/AuthContext"; 
 
 const Profiledetails = () => {
-  const { user, token, updateUser } = useAuth(); // Ambil data user, token, dan fungsi updateUser dari AuthContext
-  const [updatedProfile, setUpdatedProfile] = useState(user || {}); // Mulai dengan data user
+  const { user, token, updateUser } = useAuth(); 
+  const [updatedProfile, setUpdatedProfile] = useState(user || {}); 
   const [isEditing, setIsEditing] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
@@ -34,7 +34,7 @@ const Profiledetails = () => {
       if (response.ok) {
         const data = await response.json();
         setUpdatedProfile(data);
-        updateUser(data); // Perbarui data di AuthContext
+        updateUser(data); 
         setSuccessMessage("Profile updated successfully!");
         setErrorMessage(null);
         setIsEditing(false);
@@ -114,7 +114,7 @@ const Profiledetails = () => {
               type="button"
               onClick={() => {
                 setIsEditing(false);
-                setUpdatedProfile(user); // Reset ke data asli jika dibatalkan
+                setUpdatedProfile(user); 
               }}
             >
               Cancel
@@ -169,7 +169,7 @@ const styles = {
   heading1: {
     fontSize: "20px",
     fontWeight: "bold",
-    marginBottom: "30px",
+    marginBottom: "0px",
     color: "#333",
     textAlign: "left",
   },
@@ -177,7 +177,7 @@ const styles = {
     fontSize: "20px",
     fontWeight: "bold",
     marginTop: "20px",
-    marginBottom: "25px",
+    marginBottom: "20px",
     color: "#333",
     textAlign: "left",
   },
@@ -192,7 +192,7 @@ const styles = {
   },
   label: {
     fontSize: "16px",
-    color: "#555",
+    color: "#fff",
     marginBottom: "5px",
 
   },
@@ -202,6 +202,7 @@ const styles = {
     border: "1px solid #ddd",
     borderRadius: "5px",
     fontSize: "14px",
+    color: "#000",
     backgroundColor: "#e9e9e9",
   },
   viewText: {
@@ -224,7 +225,7 @@ const styles = {
     color: "#fff",
     border: "none",
     padding: "10px 20px",
-    borderRadius: "5px",
+    borderRadius: "10px",
     cursor: "pointer",
   },
   cancelButton: {
@@ -232,7 +233,7 @@ const styles = {
     color: "#555",
     border: "1px solid #ddd",
     padding: "10px 20px",
-    borderRadius: "5px",
+    borderRadius: "10px",
     cursor: "pointer",
   },
   error: {
@@ -241,6 +242,10 @@ const styles = {
   success: {
     color: "green",
   },
+  editButton: {
+    backgroundColor: "#0F67B1",
+    borderRadius : "10px",
+  }
 };
 
 export default Profiledetails;

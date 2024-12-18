@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    // Load user data if token exists
     useEffect(() => {
         const loadUserProfile = async () => {
             const storedToken = localStorage.getItem('token');

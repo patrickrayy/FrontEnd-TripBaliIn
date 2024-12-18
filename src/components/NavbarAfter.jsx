@@ -139,6 +139,7 @@ const styles = {
     cursor: 'pointer',
     fontFamily: 'Montserrat, sans-serif',
     fontWeight: '550',
+    marginRight:'40px'
   },
 };
 

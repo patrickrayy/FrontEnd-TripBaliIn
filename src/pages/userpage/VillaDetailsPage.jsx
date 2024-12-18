@@ -14,10 +14,10 @@ const VillaDetailsPage = () => {
     return <div>Villa not found</div>;
   };
 
-  const navigate = useNavigate(); // Hook untuk navigasi
+  const navigate = useNavigate(); 
   
   const handleBookingClick = () => {
-    navigate("/booking", { state: { villa } }); // Kirim data villa ke halaman booking
+    navigate("/booking", { state: { villa } }); 
   };
 
   return (
@@ -63,7 +63,7 @@ const VillaDetailsPage = () => {
           {/* Booking Information (Right Side) */}
           <div
             style={{
-              flex: "0 0 300px", // Ensures it has a fixed width
+              flex: "0 0 300px", 
               padding: "20px",
               border: "1px solid #ddd",
               borderRadius: "8px",
@@ -86,9 +86,9 @@ const VillaDetailsPage = () => {
   {/* Start Booking */}
   <div
     style={{
-      fontSize: "18px", // Smaller font for the "Start Booking"
-      fontWeight: "600", // Slightly lighter weight
-      color: "#333", // Darker color for the "Start Booking"
+      fontSize: "18px", 
+      fontWeight: "600", 
+      color: "#333",
       fontFamily: "Montserrat, sans-serif",
     }}
   >
@@ -99,7 +99,7 @@ const VillaDetailsPage = () => {
   <div
     style={{
       fontSize: "20px", // Larger font for the price
-      fontWeight: "300", // Bold weight for the price
+      fontWeight: "600", // Bold weight for the price
       color: "red", // Red color for the price to make it stand out
       marginTop: "5px", // Small gap between "Start Booking" and price
       fontFamily: "Montserrat, sans-serif",
